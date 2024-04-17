@@ -48,7 +48,7 @@ jobs:
       id: lighthouseCheck
       with:
         accessToken: ${{ secrets.LIGHTHOUSE_TOKEN }}
-        gitHubAccessToken: ${{secrets.GITHUB_TOKEN}}
+        gitHubAccessToken: ${{secrets.WEBPAGE}}
         emulatedFormFactor: 'all'
         prCommentEnabled: true
         prCommentSaveOld: true
@@ -75,7 +75,7 @@ jobs:
       id: lychee
       uses: lycheeverse/lychee-action@v1.9.3
       env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        GITHUB_TOKEN: ${{secrets.WEBPAGE}}
       with:
         args: "--verbose --exclude-mail ${{steps.preview.outputs.url}} --exclude=['https://www.udemy.com/']"
         output: lychee/out.md
