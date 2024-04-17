@@ -1,4 +1,4 @@
 ---
-title: Stack
-description: Tools I use everyday
+title: To be updated
+description: 
 ---
