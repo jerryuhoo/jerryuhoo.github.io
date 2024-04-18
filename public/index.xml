@@ -6,8 +6,15 @@
     <description>Recent content in Homepage on Wings Music</description>
     <generator>Hugo 0.125.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 09 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Mar 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://jerryuhoo.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Walk Through The Forest</title>
+      <link>https://jerryuhoo.github.io/music/music1/</link>
+      <pubDate>Tue, 26 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://jerryuhoo.github.io/music/music1/</guid>
+      <description>EP&#xA;I See Birds Flying (Electronica) Walk Through The Forest (Melodic Dubstep) Netease QQ Spotify</description>
+    </item>
     <item>
       <title>PyraMuse</title>
       <link>https://jerryuhoo.github.io/portfolio/design2/</link>
@@ -35,6 +42,13 @@
       <pubDate>Wed, 13 Jul 2022 00:00:00 +0000</pubDate>
       <guid>https://jerryuhoo.github.io/portfolio/design1/</guid>
       <description>Hi, I made a free multi-band distortion plugin 『Fire』.&#xA;GitHub&#xA;Download</description>
+    </item>
+    <item>
+      <title>Escape From The Earth</title>
+      <link>https://jerryuhoo.github.io/music/music2/</link>
+      <pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
+      <guid>https://jerryuhoo.github.io/music/music2/</guid>
+      <description>Single&#xA;Lyrics:&#xA;I become immortal&#xA;Wandering from the earth on the morrow&#xA;Dried tears without any sorrow&#xA;If there is light I’ll just follow&#xA;All is meaningless&#xA;If consciousness can live without substance&#xA;I’ll never know who I am&#xA;Never know where’s the end&#xA;I am dust in the universe&#xA;Can’t escape from the curse&#xA;Homeless, drown in loneliness&#xA;I am dust in the universe&#xA;Can’t escape from the curse</description>
     </item>
   </channel>
 </rss>
