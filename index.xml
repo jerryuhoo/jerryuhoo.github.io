@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Homepage on Wings Music</title><link>https://jerryuhoo.github.io/</link><description>Recent content in Homepage on Wings Music</description><generator>Hugo 0.125.0</generator><language>en-us</language><lastBuildDate>Sat, 09 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jerryuhoo.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>PyraMuse</title><link>https://jerryuhoo.github.io/portfolio/design2/</link><pubDate>Sat, 09 Mar 2024 00:00:00 +0000</pubDate><guid>https://jerryuhoo.github.io/portfolio/design2/</guid><description>Creators: Xuedan Gao, Yifeng Yu
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Homepage on Wings Music</title><link>https://jerryuhoo.github.io/</link><description>Recent content in Homepage on Wings Music</description><generator>Hugo 0.125.1</generator><language>en-us</language><lastBuildDate>Tue, 26 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jerryuhoo.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Walk Through The Forest</title><link>https://jerryuhoo.github.io/music/music1/</link><pubDate>Tue, 26 Mar 2024 00:00:00 +0000</pubDate><guid>https://jerryuhoo.github.io/music/music1/</guid><description>EP
+I See Birds Flying (Electronica) Walk Through The Forest (Melodic Dubstep) Netease QQ Spotify</description></item><item><title>PyraMuse</title><link>https://jerryuhoo.github.io/portfolio/design2/</link><pubDate>Sat, 09 Mar 2024 00:00:00 +0000</pubDate><guid>https://jerryuhoo.github.io/portfolio/design2/</guid><description>Creators: Xuedan Gao, Yifeng Yu
 🏆 Most Completed Prototype Award in Music Technology Hackathon 2024.
 Winners Announced Link
 GitHub Project Link
@@ -6,4 +7,18 @@ Video Link</description></item><item><title>Singing Voice Data Scaling-up An Int
 In singing voice synthesis (SVS), generating singing voices from musical scores faces challenges due to limited data availability, a constraint less common in text-to-speech (TTS). This study proposes a new approach to address this data scarcity. We utilize an existing singing voice synthesizer for data augmentation and apply precise manual tuning to reduce unnatural voice synthesis.</description></item><item><title>A Systematic Exploration of Joint-training for Singing Voice Synthesis</title><link>https://jerryuhoo.github.io/articles/2/</link><pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate><guid>https://jerryuhoo.github.io/articles/2/</guid><description>Yuning Wu, Yifeng Yu, Jiatong Shi, Tao Qian, Qin Jin
 There has been a growing interest in using end-to-end acoustic models for singing voice synthesis (SVS). Typically, these models require an additional vocoder to transform the generated acoustic features into the final waveform. However, since the acoustic model and the vocoder are not jointly optimized, a gap can exist between the two models, leading to suboptimal performance. Although a similar problem has been addressed in the TTS systems by joint-training or by replacing acoustic features with a latent representation, adopting corresponding approaches to SVS is not an easy task.</description></item><item><title>Fire</title><link>https://jerryuhoo.github.io/portfolio/design1/</link><pubDate>Wed, 13 Jul 2022 00:00:00 +0000</pubDate><guid>https://jerryuhoo.github.io/portfolio/design1/</guid><description>Hi, I made a free multi-band distortion plugin 『Fire』.
 GitHub
-Download</description></item></channel></rss>
+Download</description></item><item><title>Escape From The Earth</title><link>https://jerryuhoo.github.io/music/music2/</link><pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate><guid>https://jerryuhoo.github.io/music/music2/</guid><description>Single
+Lyrics:
+I become immortal
+Wandering from the earth on the morrow
+Dried tears without any sorrow
+If there is light I’ll just follow
+All is meaningless
+If consciousness can live without substance
+I’ll never know who I am
+Never know where’s the end
+I am dust in the universe
+Can’t escape from the curse
+Homeless, drown in loneliness
+I am dust in the universe
+Can’t escape from the curse</description></item></channel></rss>
