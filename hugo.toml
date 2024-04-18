@@ -20,10 +20,6 @@ theme = 'digitalgarden'
   name = 'Projects'
   url = '/portfolio'
   weight = 4
-[[menu.main]]
-  name = 'Stack'
-  url = '/stack'
-  weight = 5
 
 [[menu.social]]
   name = 'GitHub'
