@@ -13,5 +13,6 @@ My name is **Yifeng Yu**, and I'm a programmer and music producer.
 - 🎶 Check out my music under the artist name **羽翼深蓝Wings** on various platforms:
   - [网易云音乐](https://music.163.com/#/artist?id=12118139)
   - [QQ音乐](https://y.qq.com/n/ryqq/singer/001uCNn02tdnZ1)
-  - [Spotify](https://open.spotify.com/artist/0xi1eMyrrSXdZMX8n7Ilmt)
+  - [Spotify](https://open.spotify.com/artist/6OD2fSvopX3DFsnzrUuUkr)
+  - [Apple Music](https://music.apple.com/us/artist/%E7%BE%BD%E7%BF%BC%E6%B7%B1%E8%97%8Dwings/1739993081)
   - [SoundCloud](https://soundcloud.com/jerry-876742699/tracks)
