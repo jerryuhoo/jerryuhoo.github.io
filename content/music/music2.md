@@ -42,3 +42,4 @@ Only this vast space understands me
 [Netease](https://music.163.com/#/album?id=127053187)
 [SoundCloud](https://soundcloud.com/jerry-876742699/escape-from-the-earth)
 [Spotify](https://open.spotify.com/album/5o7xyorwc8G6Ko7i1CWpmL)
+[Apple Music](https://music.apple.com/us/album/escape-from-the-earth-single/1743345940)

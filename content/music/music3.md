@@ -110,3 +110,4 @@ Before I break free
 [Netease](https://music.163.com/#/album?id=85096272)
 [SoundCloud](https://soundcloud.com/jerry-876742699/sets/the-end-of-the-world)
 [Spotify](https://open.spotify.com/album/2W6NYMrViNdj9RqEDPQdMV)
+[Apple Music](https://music.apple.com/us/album/the-end-of-the-world-ep/1743348189)
