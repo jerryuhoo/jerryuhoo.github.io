@@ -2,7 +2,7 @@
 title: Walk Through The Forest
 date: 2024-03-26
 images:
-- https://y.qq.com/music/photo_new/T002R300x300M000000K9OQy068FmU_1.jpg?max_age=2592000
+- https://i.scdn.co/image/ab67616d0000b273ebcaa88c39abd0b02ddfb26b
 description: Electronica, Melodic Dubstep
 ---
 
