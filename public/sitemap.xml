@@ -2,8 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://jerryuhoo.github.io/articles/</loc>
+    <lastmod>2024-06-13T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://jerryuhoo.github.io/</loc>
-    <lastmod>2024-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2024-06-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jerryuhoo.github.io/articles/3/</loc>
+    <lastmod>2024-06-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jerryuhoo.github.io/music/</loc>
     <lastmod>2024-03-26T00:00:00+00:00</lastmod>
@@ -16,9 +22,6 @@
   </url><url>
     <loc>https://jerryuhoo.github.io/portfolio/design2/</loc>
     <lastmod>2024-03-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jerryuhoo.github.io/articles/</loc>
-    <lastmod>2024-01-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jerryuhoo.github.io/articles/1/</loc>
     <lastmod>2024-01-31T00:00:00+00:00</lastmod>
