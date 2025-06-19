@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>羽翼深蓝 - 音乐制作人 & 程序员</title>
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Custom styles and animations */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a192f;
+            color: #e6f1ff;
+            scroll-behavior: smooth;
+            padding-top: 64px;
+        }
+
+        #wave-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(45, 85, 133, 0.5);
+        }
+
+        .nav-link.active {
+            color: #60a5fa;
+            /* text-blue-400 */
+        }
+
+        .lang-btn.active {
+            background-color: #2563eb;
+            /* blue-600 */
+            color: #ffffff;
+        }
+
+        .animated-gradient {
+            background: linear-gradient(-45deg, #0a192f, #111827, #0d3d56, #0a192f);
+            background-size: 400% 400%;
+            animation: gradient-flow 20s ease infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-glow {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .card-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 0.75rem;
+            background: radial-gradient(circle at 50% 50%, rgba(29, 78, 216, 0.3), transparent 70%);
+            filter: blur(40px);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+        }
+
+        .card-glow:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-glow:hover::before {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="#home" class="text-xl font-bold text-white flex-shrink-0">羽翼深蓝</a>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors"
+                    data-lang-key="nav_about">个人介绍</a>
+                <a href="#featured-ep" class="nav-link text-gray-300 hover:text-white transition-colors"
+                    data-lang-key="nav_dolby">杜比全景声混音</a>
+                <a href="#plugin-fire" class="nav-link text-gray-300 hover:text-white transition-colors"
+                    data-lang-key="nav_plugin">音乐插件</a>
+                <a href="#music" class="nav-link text-gray-300 hover:text-white transition-colors"
+                    data-lang-key="nav_music">音乐作品</a>
+                <a href="#contact" class="nav-link text-gray-300 hover:text-white transition-colors"
+                    data-lang-key="nav_contact">联系方式</a>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <button id="lang-zh"
+                    class="lang-btn px-3 py-1 text-sm rounded-md transition-colors duration-300">中</button>
+                <button id="lang-en"
+                    class="lang-btn px-3 py-1 text-sm rounded-md transition-colors duration-300">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header / Hero Section -->
+    <header id="home"
+        class="h-screen w-full flex flex-col justify-center items-center relative animated-gradient -mt-16">
+        <canvas id="wave-canvas"></canvas>
+        <div class="text-center px-4 z-10">
+            <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight">羽翼深蓝</h1>
+            <p data-lang-key="heroSubtitle" class="mt-4 text-xl md:text-2xl text-blue-200 font-light">
+                音乐制作人 & 全栈程序员
+            </p>
+        </div>
+        <div class="absolute bottom-10 animate-bounce z-10">
+            <a href="#about" aria-label="Scroll down">
+                <svg class="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-20 space-y-28">
+
+        <section id="about" class="scroll-fade section-marker">
+            <h2 data-lang-key="aboutTitle" class="text-3xl font-bold text-center mb-12 text-blue-100">关于我</h2>
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-2/3 space-y-4 text-lg text-gray-300">
+                    <p data-lang-key="aboutP1">你好，我是羽翼深蓝。我是一位热衷于探索声音与代码交织世界的艺术家。</p>
+                    <p data-lang-key="aboutP2">作为一名电子音乐制作人，我致力于创造沉浸式的听觉体验，尤其擅长利用<span
+                            class="font-bold text-blue-300">杜比全景声 (Dolby Atmos)</span>
+                        技术构建宏大的声场。同时，作为一名程序员，我对技术充满热情，享受用代码将创意变为现实的过程。</p>
+                    <p data-lang-key="aboutP3">我相信音乐与科技的结合能释放出无穷的创造力。欢迎来到我的世界。</p>
+                </div>
+                <div class="md:w-1/3 flex justify-center">
+                    <img src="assets/avatar.jpg"
+                        onerror="this.onerror=null;this.src='https://placehold.co/300x300/0a192f/e6f1ff?text=Avatar';"
+                        alt="个人头像"
+                        class="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-blue-800 shadow-lg">
+                </div>
+            </div>
+        </section>
+
+        <section id="featured-ep" class="scroll-fade section-marker">
+            <h2 data-lang-key="epTitle" class="text-3xl font-bold text-center mb-4 text-blue-100">杜比全景声混音EP</h2>
+            <p data-lang-key="epSubtitle" class="text-center text-gray-400 mb-12">一次关于梦魇的沉浸式声音旅程</p>
+            <a href="https://music.apple.com/us/album/nightmare-ep/1817530475" target="_blank" rel="noopener noreferrer"
+                class="block card-glow">
+                <div
+                    class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 border border-blue-900/50 transition-all duration-300">
+                    <img src="https://i.scdn.co/image/ab67616d0000b273d455772d39bb8ebccaf0643b"
+                        alt="Nightmare EP Album Cover" class="w-full md:w-64 h-auto rounded-lg shadow-2xl">
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 class="text-4xl font-bold text-white">NIGHTMARE</h3>
+                        <p class="text-xl text-blue-300 mt-2">羽翼深蓝</p>
+                        <p data-lang-key="epDesc" class="text-gray-400 mt-4">
+                            这张EP是我在空间音频领域的一次深度探索。每一首曲目都经过精心设计，旨在通过杜比全景声技术，为您带来身临其境的听觉震撼。</p>
+                        <div class="mt-6 flex justify-center md:justify-start items-center gap-4">
+                            <span
+                                class="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                                <img src="https://d21buns5ku92am.cloudfront.net/68644/images/413933-Dolby%20Atmos%20Vertical-fcc018-original-1641853711.png"
+                                    alt="Dolby Atmos Logo" class="h-5 mr-2 filter invert">
+                                <span data-lang-key="epActionText">在 Apple Music 上体验</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </section>
+
+        <section id="plugin-fire" class="scroll-fade section-marker">
+            <h2 data-lang-key="pluginTitle" class="text-3xl font-bold text-center mb-12 text-blue-100">开源音乐插件</h2>
+            <div class="card-glow">
+                <div
+                    class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 md:p-8 flex flex-col md:flex-row-reverse items-center gap-8 border border-blue-900/50 transition-all duration-300">
+                    <div class="md:w-1/2 flex justify-center">
+                        <img src="assets/fire-plugin-ui.png"
+                            onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/jerryuhoo/Fire/master/Fire1.png';"
+                            alt="Fire Plugin UI" class="rounded-lg shadow-2xl w-full border border-blue-900/50">
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h3
+                            class="text-4xl font-bold text-white flex items-center gap-3 justify-center md:justify-start">
+                            <i class="fas fa-fire text-orange-400"></i>
+                            <span>Fire</span>
+                        </h3>
+                        <p data-lang-key="pluginSubtitle" class="text-xl text-blue-300 mt-2">免费开源的多段失真插件</p>
+                        <p data-lang-key="pluginDesc" class="text-gray-400 mt-4">Fire
+                            是一款我独立开发和设计的免费、开源多段失真插件。它旨在为声音设计师和音乐制作人提供一个强大而灵活的工具来塑造音色。</p>
+                        <a href="https://github.com/jerryuhoo/Fire" target="_blank" rel="noopener noreferrer"
+                            class="mt-6 inline-block bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-full font-semibold transition-colors duration-300 transform hover:scale-105">
+                            <i class="fab fa-github mr-2"></i><span data-lang-key="pluginAction">在 GitHub 上获取</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="music" class="scroll-fade section-marker">
+            <h2 data-lang-key="listenTitle" class="text-3xl font-bold text-center mb-12 text-blue-100">在各大平台收听</h2>
+            <div class="flex justify-center items-center gap-8 md:gap-12 flex-wrap">
+                <!-- Platforms... -->
+                <a href="https://music.apple.com/us/artist/%E7%BE%BD%E7%BF%BC%E6%B7%B1%E8%93%9D/1696577755"
+                    target="_blank" rel="noopener noreferrer"
+                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
+                    <div
+                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-pink-500 transition-all">
+                        <i class="fab fa-apple fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <span data-lang-key="platformAppleMusic"
+                        class="text-lg font-medium text-gray-300 group-hover:text-white">Apple Music</span>
+                </a>
+                <a href="https://open.spotify.com/artist/0xi1eMyrrSXdZMX8n7Ilmt" target="_blank"
+                    rel="noopener noreferrer"
+                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
+                    <div
+                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-green-500 transition-all">
+                        <i class="fab fa-spotify fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
+                    </div><span data-lang-key="platformSpotify"
+                        class="text-lg font-medium text-gray-300 group-hover:text-white">Spotify</span>
+                </a>
+                <a href="https://www.youtube.com/@bluewings-music" target="_blank" rel="noopener noreferrer"
+                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
+                    <div
+                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-red-600 transition-all">
+                        <i class="fab fa-youtube fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
+                    </div><span data-lang-key="platformYoutube"
+                        class="text-lg font-medium text-gray-300 group-hover:text-white">YouTube</span>
+                </a>
+                <a href="https://music.163.com/#/artist?id=12118139" target="_blank" rel="noopener noreferrer"
+                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
+                    <div
+                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-red-500 transition-all">
+                        <i class="fas fa-music fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <span data-lang-key="platformNetease"
+                        class="text-lg font-medium text-gray-300 group-hover:text-white">网易云音乐</span>
+                </a>
+                <a href="https://y.qq.com/n/ryqq/singer/001uCNn02tdnZ1" target="_blank" rel="noopener noreferrer"
+                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
+                    <div
+                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-green-400 transition-all">
+                        <i class="fab fa-qq fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <span data-lang-key="platformQQ"
+                        class="text-lg font-medium text-gray-300 group-hover:text-white">QQ音乐</span>
+                </a>
+            </div>
+        </section>
+
+        <section id="contact" class="scroll-fade section-marker">
+            <h2 data-lang-key="contactTitle" class="text-3xl font-bold text-center mb-12 text-blue-100">联系我</h2>
+            <div class="flex justify-center items-center gap-8 md:gap-12 flex-wrap">
+                <!-- Contacts... -->
+                <a href="https://github.com/jerryuhoo" target="_blank" rel="noopener noreferrer"
+                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
+                    <div
+                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-gray-500 transition-all">
+                        <i class="fab fa-github fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <span data-lang-key="contactGithub"
+                        class="text-lg font-medium text-gray-300 group-hover:text-white">GitHub</span>
+                </a>
+                <a href="https://www.instagram.com/wings_mu/" target="_blank" rel="noopener noreferrer"
+                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
+                    <div
+                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-pink-600 transition-all">
+                        <i class="fab fa-instagram fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
+                    </div><span data-lang-key="contactInstagram"
+                        class="text-lg font-medium text-gray-300 group-hover:text-white">Instagram</span>
+                </a>
+                <a href="mailto:yuyishenlanmusic@gmail.com"
+                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
+                    <div
+                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-blue-500 transition-all">
+                        <i class="fas fa-envelope fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
+                    </div><span data-lang-key="contactEmail"
+                        class="text-lg font-medium text-gray-300 group-hover:text-white">邮箱</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900/50 border-t border-blue-900/50 py-8">
+        <div class="max-w-5xl mx-auto text-center text-gray-400">
+            <p>&copy; <span id="year"></span> <span data-lang-key="footerRights">羽翼深蓝. 版权所有.</span></p>
+            <div class="mt-4 flex justify-center gap-6">
+                <a href="https://github.com/jerryuhoo" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-white transition-colors"><i class="fab fa-github fa-lg"></i></a>
+                <a href="https://www.instagram.com/yuyishenlan/" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-white transition-colors"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="mailto:yuyishenlanmusic@gmail.com" class="hover:text-white transition-colors"><i
+                        class="fas fa-envelope fa-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        // --- INTERACTIVE WAVE BACKGROUND SCRIPT ---
+        let scene, camera, renderer, lines, raycaster, interactionPlane;
+        let mouse = new THREE.Vector2(-100, -100); // Initialize mouse off-screen
+        let clock = new THREE.Clock();
+
+        function initWave() {
+            const canvas = document.getElementById('wave-canvas');
+            const container = document.getElementById('home');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 1, 1000);
+            camera.position.z = 100;
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // Raycaster for precise mouse interaction
+            raycaster = new THREE.Raycaster();
+            const planeGeometry = new THREE.PlaneGeometry(500, 500);
+            const planeMaterial = new THREE.MeshBasicMaterial({ visible: false, side: THREE.DoubleSide });
+            interactionPlane = new THREE.Mesh(planeGeometry, planeMaterial);
+            scene.add(interactionPlane);
+
+            const lineCount = 5;
+            const pointsPerLine = 200;
+            lines = [];
+
+            for (let i = 0; i < lineCount; i++) {
+                const material = new THREE.PointsMaterial({
+                    color: 0x2563eb,
+                    size: 0.5,
+                    transparent: true,
+                    opacity: 0.5 + i * 0.1
+                });
+                const geometry = new THREE.BufferGeometry();
+                const positions = new Float32Array(pointsPerLine * 3);
+                const verticalSpacing = 8;
+                const originalY = i * verticalSpacing - (lineCount * verticalSpacing) / 2;
+
+                for (let j = 0; j < pointsPerLine; j++) {
+                    const x = (j / (pointsPerLine - 1) - 0.5) * 300;
+                    positions[j * 3] = x;
+                    positions[j * 3 + 1] = originalY;
+                    positions[j * 3 + 2] = 0;
+                }
+
+                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                const line = new THREE.Points(geometry, material);
+                line.userData.originalY = originalY;
+                lines.push(line);
+                scene.add(line);
+            }
+
+            window.addEventListener('resize', onWindowResize, false);
+            document.addEventListener('mousemove', onMouseMove, false);
+            document.addEventListener('mouseleave', () => { mouse.x = -100; mouse.y = -100; });
+            animate();
+        }
+
+        function onWindowResize() {
+            const container = document.getElementById('home');
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+
+        function onMouseMove(event) {
+            // Normalize mouse position to [-1, 1] range
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const elapsedTime = clock.getElapsedTime();
+
+            // Find mouse intersection with the invisible plane
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObject(interactionPlane);
+            const intersectionPoint = (intersects.length > 0) ? intersects[0].point : null;
+
+            lines.forEach(line => {
+                const positions = line.geometry.attributes.position.array;
+
+                for (let i = 0; i < positions.length; i += 3) {
+                    const x = positions[i];
+                    const originalY = line.userData.originalY;
+
+                    // Base wave animation
+                    const wave = Math.sin(x * 0.1 + elapsedTime * 2) * 5;
+
+                    // Mouse interaction
+                    let mouseFactor = 0;
+                    if (intersectionPoint) {
+                        const dx = x - intersectionPoint.x;
+                        const dy = originalY - intersectionPoint.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        const radius = 50;
+                        const strength = 20;
+                        if (distance < radius) {
+                            mouseFactor = (1 - distance / radius) * strength;
+                        }
+                    }
+
+                    positions[i + 1] = originalY + wave + mouseFactor;
+                }
+                line.geometry.attributes.position.needsUpdate = true;
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        // --- OTHER SCRIPTS ---
+
+        const translations = {
+            zh: {
+                nav_about: "个人介绍", nav_dolby: "杜比全景声混音", nav_plugin: "音乐插件", nav_music: "音乐作品", nav_contact: "联系方式",
+                heroSubtitle: "音乐制作人 & 全栈程序员",
+                aboutTitle: "关于我", aboutP1: "你好，我是羽翼深蓝。我是一位热衷于探索声音与代码交织世界的艺术家。", aboutP2: "作为一名电子音乐制作人，我致力于创造沉浸式的听觉体验，尤其擅长利用<span class='font-bold text-blue-300'>杜比全景声 (Dolby Atmos)</span> 技术构建宏大的声场。同时，作为一名程序员，我对技术充满热情，享受用代码将创意变为现实的过程。", aboutP3: "我相信音乐与科技的结合能释放出无穷的创造力。欢迎来到我的世界。",
+                epTitle: "杜比全景声混音EP", epSubtitle: "一次关于梦魇的沉浸式声音旅程", epDesc: "这张EP是我在空间音频领域的一次深度探索。每一首曲目都经过精心设计，旨在通过杜比全景声技术，为您带来身临其境的听觉震撼。", epActionText: "在 Apple Music 上体验",
+                pluginTitle: "开源音乐插件", pluginSubtitle: "免费开源的多段失真插件", pluginDesc: "Fire 是一款我独立开发和设计的免费、开源多段失真插件。它旨在为声音设计师和音乐制作人提供一个强大而灵活的工具来塑造音色。", pluginAction: "在 GitHub 上获取",
+                listenTitle: "在各大平台收听", platformAppleMusic: "Apple Music", platformSpotify: "Spotify", platformYoutube: "YouTube", platformNetease: "网易云音乐", platformQQ: "QQ音乐",
+                contactTitle: "联系我", contactGithub: "GitHub", contactInstagram: "Instagram", contactEmail: "邮箱",
+                footerRights: "羽翼深蓝. 版权所有."
+            },
+            en: {
+                nav_about: "About", nav_dolby: "Dolby Atmos Mix", nav_plugin: "Plugin", nav_music: "Music", nav_contact: "Contact",
+                heroSubtitle: "Music Producer & Full-Stack Developer",
+                aboutTitle: "About Me", aboutP1: "Hello, I'm Yifeng Yu. My artist name is Blue Wings (羽翼深蓝). I am an artist passionate about exploring the interwoven world of sound and code.", aboutP2: "As an electronic music producer, I am dedicated to creating immersive audio experiences, specializing in building vast soundscapes with <span class='font-bold text-blue-300'>Dolby Atmos</span> technology. At the same time, as a programmer, I have a passion for technology and enjoy bringing creative ideas to life with code.", aboutP3: "I believe the fusion of music and technology can unleash limitless creativity. Welcome to my world.",
+                epTitle: "Dolby Atmos Mix EP", epSubtitle: "An immersive audio journey about a nightmare", epDesc: "This EP is my deep dive into the realm of spatial audio. Each track is meticulously designed to deliver a breathtakingly immersive auditory experience through Dolby Atmos technology.", epActionText: "Experience on Apple Music",
+                pluginTitle: "Open-Source Music Plugin", pluginSubtitle: "Free & Open-Source Multi-band Distortion", pluginDesc: "Fire is a free, open-source multi-band distortion plugin I independently developed and designed. It aims to provide sound designers and music producers with a powerful and flexible tool for sound shaping.", pluginAction: "Get it on GitHub",
+                listenTitle: "Listen On All Platforms", platformAppleMusic: "Apple Music", platformSpotify: "Spotify", platformYoutube: "YouTube", platformNetease: "NetEase Music", platformQQ: "QQ Music",
+                contactTitle: "Get In Touch", contactGithub: "GitHub", contactInstagram: "Instagram", contactEmail: "Email",
+                footerRights: "Yuyi Shenlan. All rights reserved."
+            }
+        };
+
+        const setLanguage = (lang) => {
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+            const translation = translations[lang];
+            document.querySelectorAll('[data-lang-key]').forEach(el => {
+                const key = el.dataset.langKey;
+                if (translation[key]) {
+                    el.innerHTML = translation[key];
+                }
+            });
+            document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+            localStorage.setItem('language', lang);
+        };
+
+        document.getElementById('lang-zh').addEventListener('click', () => setLanguage('zh'));
+        document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+
+        const savedLang = localStorage.getItem('language') || 'zh';
+        setLanguage(savedLang);
+
+        const sections = document.querySelectorAll('.section-marker');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const activateNavLink = () => {
+            let index = sections.length;
+            while (--index && window.scrollY + 100 < sections[index].offsetTop) { }
+            navLinks.forEach((link) => link.classList.remove('active'));
+            if (navLinks[index]) {
+                navLinks[index].classList.add('active');
+            }
+        };
+
+        window.addEventListener('scroll', activateNavLink);
+        activateNavLink();
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const faders = document.querySelectorAll('.scroll-fade');
+        const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // Initialize the wave animation once the page is loaded
+        window.onload = function () {
+            initWave();
+        }
+    </script>
+</body>
+</html>
