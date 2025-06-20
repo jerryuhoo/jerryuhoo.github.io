@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PluginHub - 您的终极插件管理器</title>
+
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a192f;
+            color: #e6f1ff;
+            scroll-behavior: smooth;
+        }
+
+        .animated-gradient-light {
+            background: linear-gradient(-45deg, #0a192f, #112a4a, #0d3d56, #0a192f);
+            background-size: 400% 400%;
+            animation: gradient-flow 25s ease infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .feature-card {
+            background-color: rgba(17, 24, 39, 0.5);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(17, 24, 39, 0.8);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lang-btn.active {
+            background-color: #2563eb;
+            color: #ffffff;
+        }
+
+        /* Slider Styles */
+        .slider-container {
+            overflow: hidden;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-slide {
+            flex: 0 0 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="relative overflow-hidden animated-gradient-light">
+        <nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+            <a href="index.html"
+                class="text-lg font-bold text-white flex-shrink-0 hover:text-blue-300 transition-colors"
+                data-lang-key="backToHome">← 返回主页</a>
+            <div class="flex items-center space-x-2">
+                <button id="lang-zh"
+                    class="lang-btn px-3 py-1 text-sm rounded-md transition-colors duration-300">中</button>
+                <button id="lang-en"
+                    class="lang-btn px-3 py-1 text-sm rounded-md transition-colors duration-300">EN</button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="py-20 md:py-32 text-center">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="mb-4">
+                    <span class="inline-block bg-blue-500/10 text-blue-300 text-sm font-semibold px-4 py-1 rounded-full"
+                        data-lang-key="comingSoon">即将推出</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight">PluginHub</h1>
+                <p class="mt-4 text-xl md:text-2xl text-blue-200 max-w-2xl mx-auto" data-lang-key="heroSubtitle">
+                    一款专为音乐制作人设计的、优雅而强大的终极音频插件管理器。
+                </p>
+                <div class="mt-10">
+                    <a href="#features"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105 inline-block"
+                        data-lang-key="exploreFeatures">
+                        探索功能
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-20 md:py-28">
+        <!-- Main Product Image Slider -->
+        <section class="max-w-6xl mx-auto px-6 -mt-16 md:-mt-24 scroll-fade">
+            <div class="relative bg-gray-900/50 p-4 rounded-2xl shadow-2xl border border-blue-800/50 backdrop-blur-sm">
+                <div class="slider-container rounded-lg">
+                    <div class="slider-track" id="slider-track">
+                        <div class="slider-slide"><img src="assets/PluginHub1.png"
+                                onerror="this.onerror=null;this.src='https://placehold.co/1200x750/0a192f/1e90ff?text=PluginHub+1';"
+                                alt="PluginHub 界面截图 1" class="w-full h-full object-cover"></div>
+                        <div class="slider-slide"><img src="assets/PluginHub2.png"
+                                onerror="this.onerror=null;this.src='https://placehold.co/1200x750/0a192f/1e90ff?text=PluginHub+2';"
+                                alt="PluginHub 界面截图 2" class="w-full h-full object-cover"></div>
+                        <div class="slider-slide"><img src="assets/PluginHub3.png"
+                                onerror="this.onerror=null;this.src='https://placehold.co/1200x750/0a192f/1e90ff?text=PluginHub+3';"
+                                alt="PluginHub 界面截图 3" class="w-full h-full object-cover"></div>
+                    </div>
+                </div>
+                <!-- Slider Controls -->
+                <button id="prev-btn"
+                    class="absolute top-1/2 left-2 md:left-8 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full z-10 transition-colors">
+                    <i class="fas fa-chevron-left fa-lg"></i>
+                </button>
+                <button id="next-btn"
+                    class="absolute top-1/2 right-2 md:right-8 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full z-10 transition-colors">
+                    <i class="fas fa-chevron-right fa-lg"></i>
+                </button>
+                <!-- Slider Dots -->
+                <div id="dots-container"
+                    class="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+                    <!-- Dots will be generated here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="max-w-7xl mx-auto px-6 mt-20 md:mt-32">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold text-white" data-lang-key="featuresTitle">强大，只为更纯粹的创作</h2>
+                <p class="mt-3 text-lg text-blue-200 max-w-2xl mx-auto" data-lang-key="featuresSubtitle">
+                    我们为您处理繁琐的管理工作，让您能专注于最重要的事：音乐。</p>
+            </div>
+
+            <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Feature Cards will be populated by JS -->
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="mt-20 md:mt-32 text-center max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-white" data-lang-key="ctaTitle">保持关注</h2>
+            <p class="mt-3 text-lg text-blue-200 max-w-2xl mx-auto" data-lang-key="ctaSubtitle">PluginHub 即将发布。关注我的
+                Instagram，第一时间获取发布通知和最新动态。</p>
+            <div class="mt-8">
+                <a href="https://www.instagram.com/wings_mu/" target="_blank" rel="noopener noreferrer"
+                    class="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:from-pink-600 hover:via-red-600 hover:to-yellow-600 text-white font-bold py-4 px-8 rounded-full text-lg transition-transform transform hover:scale-105 inline-flex items-center gap-3">
+                    <i class="fab fa-instagram"></i>
+                    <span data-lang-key="ctaButton">在 Instagram 上关注</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-20 md:mt-32 border-t border-blue-900/50 py-8">
+        <div class="max-w-7xl mx-auto text-center text-gray-400">
+            <p>&copy; <span id="year"></span> <span data-lang-key="footerText">羽翼深蓝. All Rights Reserved.</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // --- TRANSLATIONS & I18N SCRIPT ---
+        const translations = {
+            zh: {
+                title: "PluginHub - 您的终极插件管理器",
+                backToHome: "← 返回主页",
+                comingSoon: "即将推出",
+                heroSubtitle: "一款专为音乐制作人设计的、优雅而强大的终极音频插件管理器。",
+                exploreFeatures: "探索功能",
+                featuresTitle: "强大，只为更纯粹的创作",
+                featuresSubtitle: "我们为您处理繁琐的管理工作，让您能专注于最重要的事：音乐。",
+                ctaTitle: "保持关注",
+                ctaSubtitle: "PluginHub 即将发布。关注我们的官方 Instagram，第一时间获取发布通知、早期优惠和最新动态。",
+                ctaButton: "在 Instagram 上关注",
+                footerText: "羽翼深蓝. All Rights Reserved.",
+                features: [
+                    { icon: 'fa-search', title: '综合扫描', desc: '扫描系统所有标准插件路径（VST3, VST2, AU, AAX），包括用户和系统库，无一遗漏。' },
+                    { icon: 'fa-palette', title: '现代UI', desc: '优雅简洁的界面，并提供亮色、暗色及系统主题模式，呵护您的双眼。' },
+                    { icon: 'fa-sort-amount-down', title: '强大列表功能', desc: '支持按名称、厂商、类型等多种方式排序，并允许按厂商分组，管理一目了然。' },
+                    { icon: 'fa-broom', title: '深度卸载', desc: '独特的卸载流程，能智能定位并移除插件相关的预设及采样库文件。' },
+                    { icon: 'fa-shield-alt', title: '安全删除', desc: '所有文件均移至系统回收站而非永久删除，为您提供最后一道安全防线，杜绝误操作。' },
+                    { icon: 'fa-desktop', title: '跨平台兼容', desc: '完全兼容 macOS，Windows 版本也已在开发计划中，敬请期待。' }
+                ]
+            },
+            en: {
+                title: "PluginHub - Your Ultimate Plugin Manager",
+                backToHome: "← Back to Home",
+                comingSoon: "Coming Soon",
+                heroSubtitle: "An elegant and powerful ultimate audio plugin manager designed for music producers.",
+                exploreFeatures: "Explore Features",
+                featuresTitle: "Powerful, for Purer Creation",
+                featuresSubtitle: "We handle the tedious management tasks so you can focus on what matters most: your music.",
+                ctaTitle: "Stay Tuned",
+                ctaSubtitle: "PluginHub is coming soon. Follow my official Instagram to be the first to know about the launch and latest updates.",
+                ctaButton: "Follow on Instagram",
+                footerText: "Yuyi Shenlan. All Rights Reserved.",
+                features: [
+                    { icon: 'fa-search', title: 'Comprehensive Scan', desc: 'Scans all standard plugin paths (VST3, VST2, AU, AAX) on your system, including user and system libraries.' },
+                    { icon: 'fa-palette', title: 'Modern UI', desc: 'An elegant and clean interface with support for Light, Dark, and System theme modes.' },
+                    { icon: 'fa-sort-amount-down', title: 'Powerful List Features', desc: 'Supports sorting by name, vendor, type, etc., and allows grouping by vendor for clear management.' },
+                    { icon: 'fa-broom', title: 'Deep Uninstall', desc: 'A unique process that intelligently locates and removes associated presets and sample library files.' },
+                    { icon: 'fa-shield-alt', title: 'Safe Deletion', desc: 'All files are moved to the system\'s trash/recycle bin instead of being permanently deleted, preventing accidental data loss.' },
+                    { icon: 'fa-desktop', title: 'Cross-platform Compatibility', desc: 'Fully functional on macOS, with Windows support planned for the future.' }
+                ]
+            }
+        };
+
+        const setLanguage = (lang) => {
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+            const t = translations[lang];
+
+            document.title = t.title;
+
+            document.querySelectorAll('[data-lang-key]').forEach(el => {
+                const key = el.dataset.langKey;
+                if (t[key]) {
+                    el.innerHTML = t[key];
+                }
+            });
+
+            const featuresContainer = document.querySelector('#features .grid');
+            featuresContainer.innerHTML = '';
+            t.features.forEach((feature, index) => {
+                const card = document.createElement('div');
+                card.className = 'feature-card p-8 rounded-xl scroll-fade';
+                card.style.transitionDelay = `${index * 100}ms`;
+                card.innerHTML = `
+                    <i class="fas ${feature.icon} fa-2x text-blue-400"></i>
+                    <h3 class="mt-4 text-xl font-bold text-white">${feature.title}</h3>
+                    <p class="mt-2 text-gray-300">${feature.desc}</p>
+                `;
+                featuresContainer.appendChild(card);
+            });
+
+            initScrollFade();
+
+            document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+            localStorage.setItem('language', lang);
+        };
+
+        document.getElementById('lang-zh').addEventListener('click', () => setLanguage('zh'));
+        document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+
+        // --- SLIDER SCRIPT ---
+        const sliderTrack = document.getElementById('slider-track');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const dotsContainer = document.getElementById('dots-container');
+        const slides = Array.from(sliderTrack.children);
+        const slideCount = slides.length;
+        let currentIndex = 0;
+
+        for (let i = 0; i < slideCount; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('w-2.5', 'h-2.5', 'rounded-full', 'transition-colors', 'duration-300');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+        const dots = Array.from(dotsContainer.children);
+
+        const goToSlide = (index) => {
+            currentIndex = index;
+            sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateDots();
+        };
+
+        const updateDots = () => {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('bg-blue-400', index === currentIndex);
+                dot.classList.toggle('bg-gray-600', index !== currentIndex);
+            });
+        };
+
+        prevBtn.addEventListener('click', () => {
+            const newIndex = (currentIndex - 1 + slideCount) % slideCount;
+            goToSlide(newIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const newIndex = (currentIndex + 1) % slideCount;
+            goToSlide(newIndex);
+        });
+
+        // --- GENERAL SCRIPTS ---
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function initScrollFade() {
+            const faders = document.querySelectorAll('.scroll-fade');
+            const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        }
+
+        // --- INITIALIZATION ---
+        goToSlide(0);
+        const savedLang = localStorage.getItem('language') || 'zh';
+        setLanguage(savedLang);
+
+    </script>
+</body>
+</html>
