@@ -74,6 +74,12 @@
             transform: translateY(0);
         }
 
+        .lang-btn.active {
+            background-color: #ea580c;
+            /* orange-600 */
+            color: #ffffff;
+        }
+
         /* Slider Styles */
         .slider-container {
             overflow: hidden;
@@ -100,8 +106,14 @@
         <div class="relative z-10">
             <nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
                 <a href="index.html"
-                    class="text-lg font-bold text-white flex-shrink-0 hover:text-orange-300 transition-colors">←
-                    返回主页</a>
+                    class="text-lg font-bold text-white flex-shrink-0 hover:text-orange-300 transition-colors"
+                    data-lang-key="backToHome">← 返回主页</a>
+                <div class="flex items-center space-x-2">
+                    <button id="lang-zh"
+                        class="lang-btn px-3 py-1 text-sm rounded-md transition-colors duration-300">中</button>
+                    <button id="lang-en"
+                        class="lang-btn px-3 py-1 text-sm rounded-md transition-colors duration-300">EN</button>
+                </div>
             </nav>
 
             <!-- Hero Section -->
@@ -109,20 +121,21 @@
                 <div class="max-w-4xl mx-auto px-6">
                     <div class="mb-4">
                         <span
-                            class="inline-block bg-orange-500/10 text-orange-300 text-sm font-semibold px-4 py-1 rounded-full">免费
-                            & 开源</span>
+                            class="inline-block bg-orange-500/10 text-orange-300 text-sm font-semibold px-4 py-1 rounded-full"
+                            data-lang-key="tag">免费 & 开源</span>
                     </div>
                     <h1
                         class="text-5xl md:text-7xl font-bold text-white tracking-tight flex items-center justify-center gap-4">
                         <i class="fas fa-fire text-orange-400"></i>
                         <span>Fire</span>
                     </h1>
-                    <p class="mt-4 text-xl md:text-2xl text-orange-200 max-w-2xl mx-auto">
+                    <p class="mt-4 text-xl md:text-2xl text-orange-200 max-w-2xl mx-auto" data-lang-key="heroSubtitle">
                         一款强大的多段失真效果器，为您的声音注入温暖与能量。
                     </p>
                     <div class="mt-10">
                         <a href="https://github.com/jerryuhoo/Fire" target="_blank" rel="noopener noreferrer"
-                            class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105 inline-block">
+                            class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105 inline-block"
+                            data-lang-key="githubButton">
                             在 GitHub 上获取
                         </a>
                     </div>
@@ -165,41 +178,13 @@
         <!-- Features Section -->
         <section id="features" class="max-w-7xl mx-auto px-6 mt-20 md:mt-32">
             <div class="text-center">
-                <h2 class="text-4xl font-bold text-white">精细打磨，无限可能</h2>
-                <p class="mt-3 text-lg text-orange-200 max-w-2xl mx-auto">从微妙的温暖饱和到激烈的电子失真，一切尽在您的掌控之中。</p>
+                <h2 class="text-4xl font-bold text-white" data-lang-key="featuresTitle">精细打磨，无限可能</h2>
+                <p class="mt-3 text-lg text-orange-200 max-w-2xl mx-auto" data-lang-key="featuresSubtitle">
+                    从微妙的温暖饱和到激烈的电子失真，一切尽在您的掌控之中。</p>
             </div>
 
             <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <div class="feature-card p-8 rounded-xl scroll-fade">
-                    <i class="fas fa-wave-square fa-2x text-orange-400"></i>
-                    <h3 class="mt-4 text-xl font-bold text-white">多频段处理</h3>
-                    <p class="mt-2 text-gray-300">将音频分为多个频段，对每个频段进行独立的失真处理，实现精细的音色塑造。</p>
-                </div>
-                <div class="feature-card p-8 rounded-xl scroll-fade" style="transition-delay: 100ms;">
-                    <i class="fas fa-sliders-h fa-2x text-orange-400"></i>
-                    <h3 class="mt-4 text-xl font-bold text-white">独立控制</h3>
-                    <p class="mt-2 text-gray-300">每个频段均提供独立的 Drive, Tone, 和 Mix 控制，让您完全掌控失真效果的强度与风格。</p>
-                </div>
-                <div class="feature-card p-8 rounded-xl scroll-fade" style="transition-delay: 200ms;">
-                    <i class="fas fa-cut fa-2x text-orange-400"></i>
-                    <h3 class="mt-4 text-xl font-bold text-white">可调分频点</h3>
-                    <p class="mt-2 text-gray-300">自由调整频段之间的分界点，精确地对您想要处理的频率范围进行操作。</p>
-                </div>
-                <div class="feature-card p-8 rounded-xl scroll-fade" style="transition-delay: 300ms;">
-                    <i class="fab fa-dev fa-2x text-orange-400"></i>
-                    <h3 class="mt-4 text-xl font-bold text-white">JUCE 框架构建</h3>
-                    <p class="mt-2 text-gray-300">基于业界领先的 JUCE 框架开发，确保了高性能与跨平台的稳定性。</p>
-                </div>
-                <div class="feature-card p-8 rounded-xl scroll-fade" style="transition-delay: 400ms;">
-                    <i class="fas fa-puzzle-piece fa-2x text-orange-400"></i>
-                    <h3 class="mt-4 text-xl font-bold text-white">多格式支持</h3>
-                    <p class="mt-2 text-gray-300">支持 VST3 和 Audio Unit (AU) 格式，无缝集成到您喜爱的主流宿主软件中。</p>
-                </div>
-                <div class="feature-card p-8 rounded-xl scroll-fade" style="transition-delay: 500ms;">
-                    <i class="fas fa-code-branch fa-2x text-orange-400"></i>
-                    <h3 class="mt-4 text-xl font-bold text-white">开源精神</h3>
-                    <p class="mt-2 text-gray-300">代码完全公开透明，欢迎所有开发者共同学习、改进和贡献。</p>
-                </div>
+                <!-- Feature Cards will be populated by JS -->
             </div>
         </section>
 
@@ -207,13 +192,91 @@
 
     <footer class="mt-20 md:mt-32 border-t border-orange-900/50 py-8">
         <div class="max-w-7xl mx-auto text-center text-gray-500">
-            <p>&copy; <span id="year"></span> 羽翼深蓝. All Rights Reserved.</p>
+            <p>&copy; <span id="year"></span> <span data-lang-key="footerText">羽翼深蓝. All Rights Reserved.</span></p>
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <script>
+        // --- TRANSLATIONS & I18N SCRIPT ---
+        const translations = {
+            zh: {
+                title: "Fire - 多段失真插件",
+                backToHome: "← 返回主页",
+                tag: "免费 & 开源",
+                heroSubtitle: "一款强大的多段失真效果器，为您的声音注入温暖与能量。",
+                githubButton: "在 GitHub 上获取",
+                featuresTitle: "精细打磨，无限可能",
+                featuresSubtitle: "从微妙的温暖饱和到激烈的电子失真，一切尽在您的掌控之中。",
+                footerText: "羽翼深蓝. All Rights Reserved.",
+                features: [
+                    { icon: 'fa-wave-square', title: '多频段处理', desc: '将音频分为多个频段，对每个频段进行独立的失真处理，实现精细的音色塑造。' },
+                    { icon: 'fa-sliders-h', title: '独立控制', desc: '每个频段均提供独立的 Drive, Tone, 和 Mix 控制，让您完全掌控失真效果的强度与风格。' },
+                    { icon: 'fa-cut', title: '可调分频点', desc: '自由调整频段之间的分界点，精确地对您想要处理的频率范围进行操作。' },
+                    { icon: 'fab fa-dev', title: 'JUCE 框架构建', desc: '基于业界领先的 JUCE 框架开发，确保了高性能与跨平台的稳定性。' },
+                    { icon: 'fa-puzzle-piece', title: '多格式支持', desc: '支持 VST3 和 Audio Unit (AU) 格式，无缝集成到您喜爱的主流宿主软件中。' },
+                    { icon: 'fa-code-branch', title: '开源精神', desc: '代码完全公开透明，欢迎所有开发者共同学习、改进和贡献。' }
+                ]
+            },
+            en: {
+                title: "Fire - Multi-band Distortion Plugin",
+                backToHome: "← Back to Home",
+                tag: "Free & Open-Source",
+                heroSubtitle: "A powerful multi-band distortion effect, designed to inject warmth and energy into your sound.",
+                githubButton: "Get on GitHub",
+                featuresTitle: "Finely Tuned, Infinitely Possible",
+                featuresSubtitle: "From subtle warm saturation to intense electronic distortion, everything is under your control.",
+                footerText: "Yuyi Shenlan. All Rights Reserved.",
+                features: [
+                    { icon: 'fa-wave-square', title: 'Multi-band Processing', desc: 'Split audio into multiple bands for independent distortion, enabling precise tonal shaping.' },
+                    { icon: 'fa-sliders-h', title: 'Independent Controls', desc: 'Each band offers separate Drive, Tone, and Mix controls for full command over the distortion character.' },
+                    { icon: 'fa-cut', title: 'Adjustable Crossovers', desc: 'Freely adjust the crossover points between bands to accurately target specific frequency ranges.' },
+                    { icon: 'fab fa-dev', title: 'Built with JUCE', desc: 'Developed on the industry-leading JUCE framework, ensuring high performance and cross-platform stability.' },
+                    { icon: 'fa-puzzle-piece', title: 'Multi-format Support', desc: 'Supports VST3 and Audio Unit (AU) formats for seamless integration into your favorite DAWs.' },
+                    { icon: 'fa-code-branch', title: 'Open Source Spirit', desc: 'The code is fully public, welcoming all developers to learn, improve, and contribute.' }
+                ]
+            }
+        };
+
+        const setLanguage = (lang) => {
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+            const t = translations[lang];
+
+            document.title = t.title;
+
+            document.querySelectorAll('[data-lang-key]').forEach(el => {
+                const key = el.dataset.langKey;
+                if (t[key]) {
+                    el.innerHTML = t[key];
+                }
+            });
+
+            // Populate feature cards
+            const featuresContainer = document.querySelector('#features .grid');
+            featuresContainer.innerHTML = '';
+            t.features.forEach((feature, index) => {
+                const card = document.createElement('div');
+                card.className = 'feature-card p-8 rounded-xl scroll-fade';
+                card.style.transitionDelay = `${index * 100}ms`;
+                card.innerHTML = `
+                    <i class="fas ${feature.icon} fa-2x text-orange-400"></i>
+                    <h3 class="mt-4 text-xl font-bold text-white">${feature.title}</h3>
+                    <p class="mt-2 text-gray-300">${feature.desc}</p>
+                `;
+                featuresContainer.appendChild(card);
+            });
+
+            initScrollFade();
+
+            document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+            localStorage.setItem('language', lang);
+        };
+
+        document.getElementById('lang-zh').addEventListener('click', () => setLanguage('zh'));
+        document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+
         // --- INTERACTIVE FIRE PARTICLE BACKGROUND ---
         let scene, camera, renderer, particles;
 
@@ -351,7 +414,8 @@
         // --- INITIALIZATION ---
         initFireEffect();
         goToSlide(0);
-        initScrollFade();
+        const savedLang = localStorage.getItem('language') || 'zh';
+        setLanguage(savedLang);
 
     </script>
 </body>
