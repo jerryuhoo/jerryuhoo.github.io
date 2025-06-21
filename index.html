@@ -132,8 +132,8 @@
                     data-lang-key="nav_about">个人介绍</a>
                 <a href="#featured-ep" class="nav-link text-gray-300 hover:text-white transition-colors"
                     data-lang-key="nav_dolby">杜比全景声混音</a>
-                <a href="fire.html" class="nav-link text-gray-300 hover:text-white transition-colors"
-                    data-lang-key="nav_plugin">Fire</a>
+                <a href="fire.html" class="text-gray-300 hover:text-white transition-colors"
+                    data-lang-key="nav_plugin">Fire 插件</a>
                 <a href="pluginhub.html" class="text-gray-300 hover:text-white transition-colors"
                     data-lang-key="nav_pluginhub">PluginHub</a>
                 <a href="#music" class="nav-link text-gray-300 hover:text-white transition-colors"
@@ -220,9 +220,9 @@
             </a>
         </section>
 
-        <section id="plugin-fire" class="scroll-fade section-marker">
+        <section id="plugin-fire" class="scroll-fade">
             <h2 data-lang-key="pluginTitle" class="text-3xl font-bold text-center mb-12 text-blue-100">开源音乐插件</h2>
-            <div class="card-glow">
+            <a href="fire.html" class="block card-glow">
                 <div
                     class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 md:p-8 flex flex-col md:flex-row-reverse items-center gap-8 border border-blue-900/50 transition-all duration-300">
                     <div class="md:w-1/2 flex justify-center">
@@ -239,13 +239,12 @@
                         <p data-lang-key="pluginSubtitle" class="text-xl text-blue-300 mt-2">免费开源的多段失真插件</p>
                         <p data-lang-key="pluginDesc" class="text-gray-400 mt-4">Fire
                             是一款我独立开发和设计的免费、开源多段失真插件。它旨在为声音设计师和音乐制作人提供一个强大而灵活的工具来塑造音色。</p>
-                        <a href="https://github.com/jerryuhoo/Fire" target="_blank" rel="noopener noreferrer"
-                            class="mt-6 inline-block bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-full font-semibold transition-colors duration-300 transform hover:scale-105">
-                            <i class="fab fa-github mr-2"></i><span data-lang-key="pluginAction">在 GitHub 上获取</span>
-                        </a>
+                        <div class="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded-full font-semibold">
+                            <span data-lang-key="pluginLearnMore">了解更多...</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </section>
 
         <section id="music" class="scroll-fade section-marker">
@@ -469,11 +468,11 @@
 
         const translations = {
             zh: {
-                nav_about: "个人介绍", nav_dolby: "杜比全景声混音", nav_plugin: "Fire插件", nav_music: "音乐作品", nav_contact: "联系方式", nav_pluginhub: "PluginHub",
+                nav_about: "个人介绍", nav_dolby: "杜比全景声混音", nav_plugin: "Fire 插件", nav_music: "音乐作品", nav_contact: "联系方式", nav_pluginhub: "PluginHub",
                 heroSubtitle: "音乐制作人 & 全栈程序员",
                 aboutTitle: "关于我", aboutP1: "你好，我是羽翼深蓝。我是一位热衷于探索声音与代码交织世界的艺术家。", aboutP2: "作为一名电子音乐制作人，我致力于创造沉浸式的听觉体验，尤其擅长利用<span class='font-bold text-blue-300'>杜比全景声 (Dolby Atmos)</span> 技术构建宏大的声场。同时，作为一名程序员，我对技术充满热情，享受用代码将创意变为现实的过程。", aboutP3: "我相信音乐与科技的结合能释放出无穷的创造力。欢迎来到我的世界。",
                 epTitle: "杜比全景声混音EP", epSubtitle: "一次关于梦魇的沉浸式声音旅程", epDesc: "这张EP是我在空间音频领域的一次深度探索。每一首曲目都经过精心设计，旨在通过杜比全景声技术，为您带来身临其境的听觉震撼。", epActionText: "在 Apple Music 上体验",
-                pluginTitle: "开源音乐插件", pluginSubtitle: "免费开源的多段失真插件", pluginDesc: "Fire 是一款我独立开发和设计的免费、开源多段失真插件。它旨在为声音设计师和音乐制作人提供一个强大而灵活的工具来塑造音色。", pluginAction: "在 GitHub 上获取",
+                pluginTitle: "开源音乐插件", pluginSubtitle: "免费开源的多段失真插件", pluginDesc: "Fire 是一款我独立开发和设计的免费、开源多段失真插件。它旨在为声音设计师和音乐制作人提供一个强大而灵活的工具来塑造音色。", pluginLearnMore: "了解更多...",
                 listenTitle: "在各大平台收听", platformAppleMusic: "Apple Music", platformSpotify: "Spotify", platformYoutube: "YouTube", platformNetease: "网易云音乐", platformQQ: "QQ音乐",
                 contactTitle: "联系我", contactGithub: "GitHub", contactInstagram: "Instagram", contactEmail: "邮箱",
                 footerRights: "羽翼深蓝. 版权所有."
@@ -483,7 +482,7 @@
                 heroSubtitle: "Music Producer & Full-Stack Developer",
                 aboutTitle: "About Me", aboutP1: "Hello, I'm Yifeng Yu. My artist name is Blue Wings (羽翼深蓝). I am an artist passionate about exploring the interwoven world of sound and code.", aboutP2: "As an electronic music producer, I am dedicated to creating immersive audio experiences, specializing in building vast soundscapes with <span class='font-bold text-blue-300'>Dolby Atmos</span> technology. At the same time, as a programmer, I have a passion for technology and enjoy bringing creative ideas to life with code.", aboutP3: "I believe the fusion of music and technology can unleash limitless creativity. Welcome to my world.",
                 epTitle: "Dolby Atmos Mix EP", epSubtitle: "An immersive audio journey about a nightmare", epDesc: "This EP is my deep dive into the realm of spatial audio. Each track is meticulously designed to deliver a breathtakingly immersive auditory experience through Dolby Atmos technology.", epActionText: "Experience on Apple Music",
-                pluginTitle: "Open-Source Music Plugin", pluginSubtitle: "Free & Open-Source Multi-band Distortion", pluginDesc: "Fire is a free, open-source multi-band distortion plugin I independently developed and designed. It aims to provide sound designers and music producers with a powerful and flexible tool for sound shaping.", pluginAction: "Get it on GitHub",
+                pluginTitle: "Open-Source Music Plugin", pluginSubtitle: "Free & Open-Source Multi-band Distortion", pluginDesc: "Fire is a free, open-source multi-band distortion plugin I independently developed and designed. It aims to provide sound designers and music producers with a powerful and flexible tool for sound shaping.", pluginLearnMore: "Learn More...",
                 listenTitle: "Listen On All Platforms", platformAppleMusic: "Apple Music", platformSpotify: "Spotify", platformYoutube: "YouTube", platformNetease: "NetEase Music", platformQQ: "QQ Music",
                 contactTitle: "Get In Touch", contactGithub: "GitHub", contactInstagram: "Instagram", contactEmail: "Email",
                 footerRights: "Yuyi Shenlan. All rights reserved."
