@@ -20,6 +20,28 @@
             scroll-behavior: smooth;
         }
 
+        #interactive-canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .label {
+            color: #93c5fd;
+            /* text-blue-300 */
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.7);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+            white-space: nowrap;
+        }
+
         .animated-gradient-light {
             background: linear-gradient(-45deg, #0a192f, #112a4a, #0d3d56, #0a192f);
             background-size: 400% 400%;
@@ -68,7 +90,6 @@
             color: #ffffff;
         }
 
-        /* Slider Styles */
         .slider-container {
             overflow: hidden;
         }
@@ -87,36 +108,42 @@
 <body class="antialiased">
 
     <!-- Header -->
-    <header class="relative overflow-hidden animated-gradient-light">
-        <nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-            <a href="index.html"
-                class="text-lg font-bold text-white flex-shrink-0 hover:text-blue-300 transition-colors"
-                data-lang-key="backToHome">← 返回主页</a>
-            <div class="flex items-center space-x-2">
-                <button id="lang-zh"
-                    class="lang-btn px-3 py-1 text-sm rounded-md transition-colors duration-300">中</button>
-                <button id="lang-en"
-                    class="lang-btn px-3 py-1 text-sm rounded-md transition-colors duration-300">EN</button>
-            </div>
-        </nav>
+    <header id="main-header" class="relative overflow-hidden animated-gradient-light">
+        <!-- Interactive Canvas Background -->
+        <div id="interactive-canvas-container"></div>
 
-        <!-- Hero Section -->
-        <div class="py-20 md:py-32 text-center">
-            <div class="max-w-4xl mx-auto px-6">
-                <div class="mb-4">
-                    <span class="inline-block bg-blue-500/10 text-blue-300 text-sm font-semibold px-4 py-1 rounded-full"
-                        data-lang-key="comingSoon">即将推出</span>
+        <div class="relative z-10">
+            <nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+                <a href="index.html"
+                    class="text-lg font-bold text-white flex-shrink-0 hover:text-blue-300 transition-colors"
+                    data-lang-key="backToHome">← 返回主页</a>
+                <div class="flex items-center space-x-2">
+                    <button id="lang-zh"
+                        class="lang-btn px-3 py-1 text-sm rounded-md transition-colors duration-300">中</button>
+                    <button id="lang-en"
+                        class="lang-btn px-3 py-1 text-sm rounded-md transition-colors duration-300">EN</button>
                 </div>
-                <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight">PluginHub</h1>
-                <p class="mt-4 text-xl md:text-2xl text-blue-200 max-w-2xl mx-auto" data-lang-key="heroSubtitle">
-                    一款专为音乐制作人设计的、优雅而强大的终极音频插件管理器。
-                </p>
-                <div class="mt-10">
-                    <a href="#features"
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105 inline-block"
-                        data-lang-key="exploreFeatures">
-                        探索功能
-                    </a>
+            </nav>
+
+            <!-- Hero Section -->
+            <div class="py-20 md:py-32 text-center">
+                <div class="max-w-4xl mx-auto px-6">
+                    <div class="mb-4">
+                        <span
+                            class="inline-block bg-blue-500/10 text-blue-300 text-sm font-semibold px-4 py-1 rounded-full"
+                            data-lang-key="comingSoon">即将推出</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight">PluginHub</h1>
+                    <p class="mt-4 text-xl md:text-2xl text-blue-200 max-w-2xl mx-auto" data-lang-key="heroSubtitle">
+                        一款专为音乐制作人设计的、优雅而强大的终极音频插件管理器。
+                    </p>
+                    <div class="mt-10">
+                        <a href="#features"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105 inline-block"
+                            data-lang-key="exploreFeatures">
+                            探索功能
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -191,7 +218,144 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js"></script>
+
     <script>
+        // --- INTERACTIVE NETWORK BACKGROUND ---
+        let scene, camera, renderer, labelRenderer, raycaster, interactionPlane;
+        let nodes = [], lines = [];
+        let mouse = new THREE.Vector2(-200, -200);
+
+        const VENDOR_NAMES = [
+            'Native Instruments', 'FabFilter', 'Arturia', 'iZotope', 'Spectrasonics',
+            'Waves', 'Valhalla DSP', 'Output', 'Spitfire Audio', 'U-He',
+            'Plugin Alliance', 'Soundtoys', 'Xfer Records', 'Celemony',
+            'Cinesamples', 'Wings', 'Kilohearts'
+        ];
+
+        function initNetwork() {
+            const container = document.getElementById('interactive-canvas-container');
+            const header = document.getElementById('main-header');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 250;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+
+            labelRenderer = new THREE.CSS2DRenderer();
+            labelRenderer.setSize(container.clientWidth, container.clientHeight);
+            labelRenderer.domElement.style.position = 'absolute';
+            labelRenderer.domElement.style.top = '0px';
+            container.appendChild(labelRenderer.domElement);
+
+            raycaster = new THREE.Raycaster();
+            interactionPlane = new THREE.Mesh(
+                new THREE.PlaneGeometry(2000, 2000),
+                new THREE.MeshBasicMaterial({ visible: false })
+            );
+            scene.add(interactionPlane);
+
+            VENDOR_NAMES.forEach(name => {
+                const labelDiv = document.createElement('div');
+                labelDiv.className = 'label';
+                labelDiv.textContent = name;
+                const label = new THREE.CSS2DObject(labelDiv);
+                label.position.set((Math.random() - 0.5) * 600, (Math.random() - 0.5) * 400, (Math.random() - 0.5) * 300);
+
+                nodes.push({
+                    label: label,
+                    velocity: new THREE.Vector3((Math.random() - 0.5) * 0.2, (Math.random() - 0.5) * 0.2, (Math.random() - 0.5) * 0.2)
+                });
+                scene.add(label);
+            });
+
+            const lineMaterial = new THREE.LineBasicMaterial({ color: 0x3b82f6, transparent: true, opacity: 0, linewidth: 0.5 });
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dist = nodes[i].label.position.distanceTo(nodes[j].label.position);
+                    if (dist < 180) { // Increased distance for more connections
+                        const geometry = new THREE.BufferGeometry().setFromPoints([nodes[i].label.position, nodes[j].label.position]);
+                        const line = new THREE.Line(geometry, lineMaterial.clone());
+                        lines.push({ line: line, nodeA: nodes[i], nodeB: nodes[j] });
+                        scene.add(line);
+                    }
+                }
+            }
+
+            window.addEventListener('resize', onWindowResize);
+            header.addEventListener('mousemove', onMouseMove);
+            header.addEventListener('mouseleave', onMouseLeave);
+
+            animateNetwork();
+        }
+
+        function onWindowResize() {
+            const container = document.getElementById('interactive-canvas-container');
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            labelRenderer.setSize(container.clientWidth, container.clientHeight);
+        }
+
+        function onMouseMove(event) {
+            const header = document.getElementById('main-header');
+            const rect = header.getBoundingClientRect();
+            mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+        }
+
+        function onMouseLeave() {
+            mouse.x = -200;
+            mouse.y = -200;
+        }
+
+        function animateNetwork() {
+            requestAnimationFrame(animateNetwork);
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObject(interactionPlane);
+            const mousePoint = intersects.length > 0 ? intersects[0].point : null;
+
+            const effectiveRadius = 150;
+            const baseOpacity = 0.05; // Base visibility
+            const bounds = { x: 300, y: 200, z: 150 };
+
+            nodes.forEach(node => {
+                node.label.position.add(node.velocity);
+
+                if (Math.abs(node.label.position.x) > bounds.x) node.velocity.x *= -1;
+                if (Math.abs(node.label.position.y) > bounds.y) node.velocity.y *= -1;
+                if (Math.abs(node.label.position.z) > bounds.z) node.velocity.z *= -1;
+
+                let targetOpacity = baseOpacity;
+                if (mousePoint) {
+                    const dist = node.label.position.distanceTo(mousePoint);
+                    if (dist < effectiveRadius) {
+                        const falloff = Math.pow(1 - (dist / effectiveRadius), 1.5);
+                        targetOpacity = baseOpacity + (1 - baseOpacity) * falloff;
+                    }
+                }
+
+                const currentOpacity = parseFloat(node.label.element.style.opacity) || 0;
+                node.label.element.style.opacity = currentOpacity + (targetOpacity - currentOpacity) * 0.1;
+            });
+
+            lines.forEach(item => {
+                item.line.geometry.setFromPoints([item.nodeA.label.position, item.nodeB.label.position]);
+                const opacityA = parseFloat(item.nodeA.label.element.style.opacity) || 0;
+                const opacityB = parseFloat(item.nodeB.label.element.style.opacity) || 0;
+                item.line.material.opacity = Math.max(opacityA, opacityB) * 0.5;
+            });
+
+            renderer.render(scene, camera);
+            labelRenderer.render(scene, camera);
+        }
+
         // --- TRANSLATIONS & I18N SCRIPT ---
         const translations = {
             zh: {
@@ -203,7 +367,7 @@
                 featuresTitle: "强大，只为更纯粹的创作",
                 featuresSubtitle: "我们为您处理繁琐的管理工作，让您能专注于最重要的事：音乐。",
                 ctaTitle: "保持关注",
-                ctaSubtitle: "PluginHub 即将发布。关注我们的官方 Instagram，第一时间获取发布通知和最新动态。",
+                ctaSubtitle: "PluginHub 即将发布。关注我的Instagram，第一时间获取发布通知和最新动态。",
                 ctaButton: "在 Instagram 上关注",
                 footerText: "羽翼深蓝. All Rights Reserved.",
                 features: [
@@ -335,6 +499,7 @@
         }
 
         // --- INITIALIZATION ---
+        initNetwork();
         goToSlide(0);
         const savedLang = localStorage.getItem('language') || 'zh';
         setLanguage(savedLang);
