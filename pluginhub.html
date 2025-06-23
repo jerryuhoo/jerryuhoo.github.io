@@ -62,16 +62,26 @@
             }
         }
 
-        .feature-card {
+        .feature-card,
+        .pricing-card {
             background-color: rgba(17, 24, 39, 0.5);
             border: 1px solid rgba(59, 130, 246, 0.2);
             transition: all 0.3s ease;
         }
 
-        .feature-card:hover {
+        .feature-card:hover,
+        .pricing-card:hover {
             transform: translateY(-5px);
             background-color: rgba(17, 24, 39, 0.8);
             border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .pricing-card.pro {
+            border-color: rgba(96, 165, 250, 0.5);
+        }
+
+        .pricing-card.pro:hover {
+            border-color: rgba(96, 165, 250, 0.8);
         }
 
         .scroll-fade {
@@ -90,6 +100,7 @@
             color: #ffffff;
         }
 
+        /* Slider Styles */
         .slider-container {
             overflow: hidden;
         }
@@ -109,7 +120,6 @@
 
     <!-- Header -->
     <header id="main-header" class="relative overflow-hidden animated-gradient-light">
-        <!-- Interactive Canvas Background -->
         <div id="interactive-canvas-container"></div>
 
         <div class="relative z-10">
@@ -125,23 +135,22 @@
                 </div>
             </nav>
 
-            <!-- Hero Section -->
             <div class="py-20 md:py-32 text-center">
                 <div class="max-w-4xl mx-auto px-6">
                     <div class="mb-4">
                         <span
-                            class="inline-block bg-blue-500/10 text-blue-300 text-sm font-semibold px-4 py-1 rounded-full"
-                            data-lang-key="comingSoon">即将推出</span>
+                            class="inline-block bg-green-500/10 text-green-300 text-sm font-semibold px-4 py-1 rounded-full"
+                            data-lang-key="betaTag">Beta 公测中</span>
                     </div>
                     <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight">PluginHub</h1>
                     <p class="mt-4 text-xl md:text-2xl text-blue-200 max-w-2xl mx-auto" data-lang-key="heroSubtitle">
                         一款专为音乐制作人设计的、优雅而强大的终极音频插件管理器。
                     </p>
                     <div class="mt-10">
-                        <a href="#features"
-                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105 inline-block"
-                            data-lang-key="exploreFeatures">
-                            探索功能
+                        <a href="https://jerryhoo.gumroad.com/l/pluginhubtest" target="_blank" rel="noopener noreferrer"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105 inline-flex items-center gap-2"
+                            data-lang-key="heroButton">
+                            <i class="fas fa-download"></i> 获取 Beta 版
                         </a>
                     </div>
                 </div>
@@ -150,7 +159,6 @@
     </header>
 
     <main class="py-20 md:py-28">
-        <!-- Main Product Image Slider -->
         <section class="max-w-6xl mx-auto px-6 -mt-16 md:-mt-24 scroll-fade">
             <div class="relative bg-gray-900/50 p-4 rounded-2xl shadow-2xl border border-blue-800/50 backdrop-blur-sm">
                 <div class="slider-container rounded-lg">
@@ -166,47 +174,69 @@
                                 alt="PluginHub 界面截图 3" class="w-full h-full object-cover"></div>
                     </div>
                 </div>
-                <!-- Slider Controls -->
                 <button id="prev-btn"
-                    class="absolute top-1/2 left-2 md:left-8 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full z-10 transition-colors">
-                    <i class="fas fa-chevron-left fa-lg"></i>
-                </button>
+                    class="absolute top-1/2 left-2 md:left-8 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full z-10 transition-colors"><i
+                        class="fas fa-chevron-left fa-lg"></i></button>
                 <button id="next-btn"
-                    class="absolute top-1/2 right-2 md:right-8 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full z-10 transition-colors">
-                    <i class="fas fa-chevron-right fa-lg"></i>
-                </button>
-                <!-- Slider Dots -->
+                    class="absolute top-1/2 right-2 md:right-8 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full z-10 transition-colors"><i
+                        class="fas fa-chevron-right fa-lg"></i></button>
                 <div id="dots-container"
-                    class="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
-                    <!-- Dots will be generated here by JS -->
-                </div>
+                    class="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10"></div>
             </div>
         </section>
 
-        <!-- Features Section -->
         <section id="features" class="max-w-7xl mx-auto px-6 mt-20 md:mt-32">
             <div class="text-center">
                 <h2 class="text-4xl font-bold text-white" data-lang-key="featuresTitle">强大，只为更纯粹的创作</h2>
                 <p class="mt-3 text-lg text-blue-200 max-w-2xl mx-auto" data-lang-key="featuresSubtitle">
                     我们为您处理繁琐的管理工作，让您能专注于最重要的事：音乐。</p>
             </div>
-
-            <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <!-- Feature Cards will be populated by JS -->
-            </div>
+            <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
         </section>
 
-        <!-- Call to Action Section -->
-        <section class="mt-20 md:mt-32 text-center max-w-4xl mx-auto px-6">
-            <h2 class="text-4xl font-bold text-white" data-lang-key="ctaTitle">保持关注</h2>
-            <p class="mt-3 text-lg text-blue-200 max-w-2xl mx-auto" data-lang-key="ctaSubtitle">PluginHub 即将发布。关注我的
-                Instagram，第一时间获取发布通知和最新动态。</p>
-            <div class="mt-8">
-                <a href="https://www.instagram.com/wings_mu/" target="_blank" rel="noopener noreferrer"
-                    class="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:from-pink-600 hover:via-red-600 hover:to-yellow-600 text-white font-bold py-4 px-8 rounded-full text-lg transition-transform transform hover:scale-105 inline-flex items-center gap-3">
-                    <i class="fab fa-instagram"></i>
-                    <span data-lang-key="ctaButton">在 Instagram 上关注</span>
-                </a>
+        <section id="pricing" class="max-w-7xl mx-auto px-6 mt-20 md:mt-32">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold text-white" data-lang-key="pricingTitle">选择适合您的版本</h2>
+                <p class="mt-3 text-lg text-blue-200 max-w-2xl mx-auto" data-lang-key="pricingSubtitle">从免费开始，或通过 Pro
+                    版解锁全部潜力。</p>
+            </div>
+            <div class="mt-16 grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
+                <!-- Free Card -->
+                <div class="pricing-card p-8 rounded-xl flex flex-col scroll-fade">
+                    <h3 class="text-2xl font-bold text-white" data-lang-key="freeTitle">免费版</h3>
+                    <p class="mt-2 text-gray-300 flex-grow" data-lang-key="freeDesc">适合所有用户的基本工具。</p>
+                    <ul class="mt-6 space-y-4 text-gray-300">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-green-400"></i><span
+                                data-lang-key="freeFeature1">扫描与管理所有插件</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-green-400"></i><span
+                                data-lang-key="freeFeature2">基础插件卸载</span></li>
+                    </ul>
+                    <div class="mt-8">
+                        <a href="https://jerryhoo.gumroad.com/l/pluginhubtest" target="_blank" rel="noopener noreferrer"
+                            class="w-full text-center bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-md transition-colors inline-block"
+                            data-lang-key="freeButton">免费下载</a>
+                    </div>
+                </div>
+                <!-- Pro Card -->
+                <div class="pricing-card pro p-8 rounded-xl flex flex-col ring-2 ring-blue-500 scroll-fade"
+                    style="transition-delay: 100ms;">
+                    <h3 class="text-2xl font-bold text-white" data-lang-key="proTitle">Pro 版</h3>
+                    <p class="mt-2 text-gray-300 flex-grow" data-lang-key="proDesc">为专业人士打造的终极工具箱。</p>
+                    <p class="text-5xl font-bold text-white mt-4">$5</p>
+                    <ul class="mt-6 space-y-4 text-gray-300">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-400"></i><span
+                                data-lang-key="proFeature1">包含免费版所有功能</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-400"></i><span
+                                data-lang-key="proFeature2">智能深度卸载</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-400"></i><span
+                                data-lang-key="proFeature3">扫描并移除所有相关文件</span></li>
+                    </ul>
+                    <div class="mt-8">
+                        <a href="https://jerryhoo.gumroad.com/l/pluginhubtest" target="_blank" rel="noopener noreferrer"
+                            class="w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md transition-colors inline-block"
+                            data-lang-key="proButton">获取 Pro 版</a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -278,7 +308,7 @@
             for (let i = 0; i < nodes.length; i++) {
                 for (let j = i + 1; j < nodes.length; j++) {
                     const dist = nodes[i].label.position.distanceTo(nodes[j].label.position);
-                    if (dist < 180) { // Increased distance for more connections
+                    if (dist < 180) {
                         const geometry = new THREE.BufferGeometry().setFromPoints([nodes[i].label.position, nodes[j].label.position]);
                         const line = new THREE.Line(geometry, lineMaterial.clone());
                         lines.push({ line: line, nodeA: nodes[i], nodeB: nodes[j] });
@@ -322,7 +352,7 @@
             const mousePoint = intersects.length > 0 ? intersects[0].point : null;
 
             const effectiveRadius = 150;
-            const baseOpacity = 0.05; // Base visibility
+            const baseOpacity = 0.05;
             const bounds = { x: 300, y: 200, z: 150 };
 
             nodes.forEach(node => {
@@ -361,43 +391,63 @@
             zh: {
                 title: "PluginHub - 您的终极插件管理器",
                 backToHome: "← 返回主页",
-                comingSoon: "即将推出",
+                betaTag: "Beta 公测中",
                 heroSubtitle: "一款专为音乐制作人设计的、优雅而强大的终极音频插件管理器。",
-                exploreFeatures: "探索功能",
+                heroButton: '<i class="fas fa-download"></i> 获取 Beta 版',
                 featuresTitle: "强大，只为更纯粹的创作",
                 featuresSubtitle: "我们为您处理繁琐的管理工作，让您能专注于最重要的事：音乐。",
-                ctaTitle: "保持关注",
-                ctaSubtitle: "PluginHub 即将发布。关注我的Instagram，第一时间获取发布通知和最新动态。",
-                ctaButton: "在 Instagram 上关注",
+                pricingTitle: "选择适合您的版本",
+                pricingSubtitle: "从免费开始，或通过 Pro 版解锁全部潜力。",
+                freeTitle: "免费版",
+                freeDesc: "适合所有用户的基本工具。",
+                freeFeature1: "扫描与管理所有插件",
+                freeFeature2: "基础插件卸载",
+                freeButton: "免费下载",
+                proTitle: "Pro 版",
+                proDesc: "为专业人士打造的终极工具箱。",
+                proFeature1: "包含免费版所有功能",
+                proFeature2: "智能深度卸载",
+                proFeature3: "扫描并移除所有相关文件",
+                proButton: "获取 Pro 版",
                 footerText: "羽翼深蓝. All Rights Reserved.",
                 features: [
-                    { icon: 'fa-search', title: '综合扫描', desc: '扫描系统所有标准插件路径（VST3, VST2, AU, AAX），包括用户和系统库，无一遗漏。' },
+                    { icon: 'fa-search', title: '综合扫描', desc: '扫描系统所有标准插件路径（VST3, VST2, AU, AAX, CLAP），包括用户和系统库，无一遗漏。' },
                     { icon: 'fa-palette', title: '现代UI', desc: '优雅简洁的界面，并提供亮色、暗色及系统主题模式，呵护您的双眼。' },
                     { icon: 'fa-sort-amount-down', title: '强大列表功能', desc: '支持按名称、厂商、类型等多种方式排序，并允许按厂商分组，管理一目了然。' },
                     { icon: 'fa-broom', title: '深度卸载', desc: '独特的卸载流程，能智能定位并移除插件相关的预设及采样库文件。' },
                     { icon: 'fa-shield-alt', title: '安全删除', desc: '所有文件均移至系统回收站而非永久删除，为您提供最后一道安全防线，杜绝误操作。' },
-                    { icon: 'fa-desktop', title: '跨平台兼容', desc: '完全兼容 macOS，Windows 版本也已在开发计划中，敬请期待。' }
+                    { icon: 'fa-sparkles', title: '未来可期', desc: '更多强大功能正在开发中，敬请期待后续更新。' }
                 ]
             },
             en: {
                 title: "PluginHub - Your Ultimate Plugin Manager",
                 backToHome: "← Back to Home",
-                comingSoon: "Coming Soon",
+                betaTag: "Now in Beta",
                 heroSubtitle: "An elegant and powerful ultimate audio plugin manager designed for music producers.",
-                exploreFeatures: "Explore Features",
+                heroButton: '<i class="fas fa-download"></i> Get Beta Version',
                 featuresTitle: "Powerful, for Purer Creation",
                 featuresSubtitle: "We handle the tedious management tasks so you can focus on what matters most: your music.",
-                ctaTitle: "Stay Tuned",
-                ctaSubtitle: "PluginHub is coming soon. Follow my official Instagram to be the first to know about the launch and latest updates.",
-                ctaButton: "Follow on Instagram",
+                pricingTitle: "Choose Your Version",
+                pricingSubtitle: "Start for free, or unlock the full potential with Pro.",
+                freeTitle: "Free Version",
+                freeDesc: "The essential toolset for every user.",
+                freeFeature1: "Scan & manage all plugins",
+                freeFeature2: "Basic plugin uninstallation",
+                freeButton: "Download Free",
+                proTitle: "Pro Version",
+                proDesc: "The ultimate toolbox for professionals.",
+                proFeature1: "All features from the Free version",
+                proFeature2: "Intelligent Deep Uninstall",
+                proFeature3: "Scans and removes all associated files",
+                proButton: "Get Pro Version",
                 footerText: "Yuyi Shenlan. All Rights Reserved.",
                 features: [
-                    { icon: 'fa-search', title: 'Comprehensive Scan', desc: 'Scans all standard plugin paths (VST3, VST2, AU, AAX) on your system, including user and system libraries.' },
+                    { icon: 'fa-search', title: 'Comprehensive Scan', desc: 'Scans all standard plugin paths (VST3, VST2, AU, AAX, CLAP) on your system, including user and system libraries.' },
                     { icon: 'fa-palette', title: 'Modern UI', desc: 'An elegant and clean interface with support for Light, Dark, and System theme modes.' },
                     { icon: 'fa-sort-amount-down', title: 'Powerful List Features', desc: 'Supports sorting by name, vendor, type, etc., and allows grouping by vendor for clear management.' },
                     { icon: 'fa-broom', title: 'Deep Uninstall', desc: 'A unique process that intelligently locates and removes associated presets and sample library files.' },
                     { icon: 'fa-shield-alt', title: 'Safe Deletion', desc: 'All files are moved to the system\'s trash/recycle bin instead of being permanently deleted, preventing accidental data loss.' },
-                    { icon: 'fa-desktop', title: 'Cross-platform Compatibility', desc: 'Fully functional on macOS, with Windows support planned for the future.' }
+                    { icon: 'fa-sparkles', title: 'More To Come', desc: 'Many more powerful features are currently under development. Stay tuned for future updates.' }
                 ]
             }
         };
@@ -439,47 +489,49 @@
         document.getElementById('lang-zh').addEventListener('click', () => setLanguage('zh'));
         document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
 
-        // --- SLIDER SCRIPT ---
-        const sliderTrack = document.getElementById('slider-track');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const dotsContainer = document.getElementById('dots-container');
-        const slides = Array.from(sliderTrack.children);
-        const slideCount = slides.length;
-        let currentIndex = 0;
-
-        for (let i = 0; i < slideCount; i++) {
-            const dot = document.createElement('button');
-            dot.classList.add('w-2.5', 'h-2.5', 'rounded-full', 'transition-colors', 'duration-300');
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsContainer.appendChild(dot);
-        }
-        const dots = Array.from(dotsContainer.children);
-
-        const goToSlide = (index) => {
-            currentIndex = index;
-            sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-            updateDots();
-        };
-
-        const updateDots = () => {
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('bg-blue-400', index === currentIndex);
-                dot.classList.toggle('bg-gray-600', index !== currentIndex);
-            });
-        };
-
-        prevBtn.addEventListener('click', () => {
-            const newIndex = (currentIndex - 1 + slideCount) % slideCount;
-            goToSlide(newIndex);
-        });
-
-        nextBtn.addEventListener('click', () => {
-            const newIndex = (currentIndex + 1) % slideCount;
-            goToSlide(newIndex);
-        });
-
         // --- GENERAL SCRIPTS ---
+        function initSlider() {
+            const sliderTrack = document.getElementById('slider-track');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const dotsContainer = document.getElementById('dots-container');
+            const slides = Array.from(sliderTrack.children);
+            const slideCount = slides.length;
+            let currentIndex = 0;
+
+            for (let i = 0; i < slideCount; i++) {
+                const dot = document.createElement('button');
+                dot.classList.add('w-2.5', 'h-2.5', 'rounded-full', 'transition-colors', 'duration-300');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+            const dots = Array.from(dotsContainer.children);
+
+            const goToSlide = (index) => {
+                currentIndex = index;
+                sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+                updateDots();
+            };
+
+            const updateDots = () => {
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('bg-blue-400', index === currentIndex);
+                    dot.classList.toggle('bg-gray-600', index !== currentIndex);
+                });
+            };
+
+            prevBtn.addEventListener('click', () => {
+                const newIndex = (currentIndex - 1 + slideCount) % slideCount;
+                goToSlide(newIndex);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                const newIndex = (currentIndex + 1) % slideCount;
+                goToSlide(newIndex);
+            });
+            goToSlide(0);
+        }
+
         document.getElementById('year').textContent = new Date().getFullYear();
 
         function initScrollFade() {
@@ -499,8 +551,8 @@
         }
 
         // --- INITIALIZATION ---
+        initSlider();
         initNetwork();
-        goToSlide(0);
         const savedLang = localStorage.getItem('language') || 'zh';
         setLanguage(savedLang);
 
