@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atmos Check - 杜比全景声混音检测工具</title>
+
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #011a10;
+            /* Dark green-black */
+            color: #d1fae5;
+            /* Emerald-100 */
+            scroll-behavior: smooth;
+        }
+
+        #atmos-canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .animated-gradient-green {
+            background: linear-gradient(-45deg, #011a10, #043d29, #065f46, #011a10);
+            background-size: 400% 400%;
+            animation: gradient-flow 25s ease infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .feature-card {
+            background-color: rgba(4, 61, 41, 0.3);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(4, 61, 41, 0.6);
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lang-btn.active {
+            background-color: #059669;
+            /* emerald-600 */
+            color: #ffffff;
+        }
+
+        /* Slider Styles */
+        .slider-container {
+            overflow: hidden;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-slide {
+            flex: 0 0 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="main-header" class="relative overflow-hidden animated-gradient-green">
+        <!-- Interactive Canvas Background -->
+        <div id="atmos-canvas-container"></div>
+
+        <div class="relative z-10">
+            <nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+                <a href="index.html"
+                    class="text-lg font-bold text-white flex-shrink-0 hover:text-green-300 transition-colors"
+                    data-lang-key="backToHome">← 返回主页</a>
+                <div class="flex items-center space-x-2">
+                    <button id="lang-zh"
+                        class="lang-btn px-3 py-1 text-sm rounded-md transition-colors duration-300">中</button>
+                    <button id="lang-en"
+                        class="lang-btn px-3 py-1 text-sm rounded-md transition-colors duration-300">EN</button>
+                </div>
+            </nav>
+
+            <!-- Hero Section -->
+            <div class="py-20 md:py-32 text-center">
+                <div class="max-w-4xl mx-auto px-6">
+                    <div class="mb-4">
+                        <span
+                            class="inline-block bg-green-500/10 text-green-300 text-sm font-semibold px-4 py-1 rounded-full"
+                            data-lang-key="betaTag">专为杜比混音师制作</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight">Atmos Check</h1>
+                    <p class="mt-4 text-xl md:text-2xl text-green-200 max-w-2xl mx-auto" data-lang-key="heroSubtitle">
+                        在上架流媒体前，确保您的杜比全景声混音与立体声母带完美同步。
+                    </p>
+                    <div class="mt-10">
+                        <a href="#pricing"
+                            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105 inline-flex items-center gap-2"
+                            data-lang-key="heroButton">
+                            <i class="fas fa-download"></i> 即将推出
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-20 md:py-28">
+        <section class="max-w-6xl mx-auto px-6 -mt-16 md:-mt-24 scroll-fade">
+            <div class="relative bg-black/50 p-4 rounded-2xl shadow-2xl border border-emerald-800/50 backdrop-blur-sm">
+                <div class="slider-container rounded-lg">
+                    <div class="slider-track" id="slider-track">
+                        <div class="slider-slide"><img src="assets/AtmosCheck1.png"
+                                onerror="this.onerror=null;this.src='https://placehold.co/1200x750/011a10/34d399?text=Atmos+Check+UI+1';"
+                                alt="Atmos Check 界面截图 1" class="w-full h-full object-cover"></div>
+                        <div class="slider-slide"><img src="assets/AtmosCheck2.png"
+                                onerror="this.onerror=null;this.src='https://placehold.co/1200x750/011a10/34d399?text=Atmos+Check+UI+2';"
+                                alt="Atmos Check 界面截图 2" class="w-full h-full object-cover"></div>
+                    </div>
+                </div>
+                <button id="prev-btn"
+                    class="absolute top-1/2 left-2 md:left-8 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full z-10 transition-colors"><i
+                        class="fas fa-chevron-left fa-lg"></i></button>
+                <button id="next-btn"
+                    class="absolute top-1/2 right-2 md:right-8 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full z-10 transition-colors"><i
+                        class="fas fa-chevron-right fa-lg"></i></button>
+                <div id="dots-container"
+                    class="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10"></div>
+            </div>
+        </section>
+
+        <section id="features" class="max-w-7xl mx-auto px-6 mt-20 md:mt-32">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold text-white" data-lang-key="featuresTitle">精准校验，告别返工</h2>
+                <p class="mt-3 text-lg text-green-200 max-w-2xl mx-auto" data-lang-key="featuresSubtitle">
+                    自动化的对比流程，为您的作品上架保驾护航，避免因技术问题导致的审核失败。</p>
+            </div>
+            <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
+        </section>
+
+        <section id="pricing" class="max-w-7xl mx-auto px-6 mt-20 md:mt-32">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold text-white" data-lang-key="pricingTitle">即将推出</h2>
+                <p class="mt-3 text-lg text-green-200 max-w-2xl mx-auto" data-lang-key="pricingSubtitle">
+                    免费版与Pro版均在准备中，敬请期待最终发布。</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-20 md:mt-32 border-t border-emerald-900/50 py-8">
+        <div class="max-w-7xl mx-auto text-center text-gray-500">
+            <p>&copy; <span id="year"></span> <span data-lang-key="footerText">羽翼深蓝. All Rights Reserved.</span></p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        // --- INTERACTIVE ATMOS ORBITAL BACKGROUND ---
+        let scene, camera, renderer, particles;
+        let orbitingParticles;
+        let mouse = new THREE.Vector2(0.5, 0.5);
+        let lastMouse = new THREE.Vector2(0.5, 0.5);
+
+        function createCircleTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 64;
+            canvas.height = 64;
+            const context = canvas.getContext('2d');
+            const gradient = context.createRadialGradient(
+                canvas.width / 2, canvas.height / 2, 0,
+                canvas.width / 2, canvas.height / 2, canvas.width / 2
+            );
+            gradient.addColorStop(0, 'rgba(255,255,255,1)');
+            gradient.addColorStop(0.2, 'rgba(255,255,255,1)');
+            gradient.addColorStop(0.4, 'rgba(255,255,255,0.4)');
+            gradient.addColorStop(1, 'rgba(255,255,255,0)');
+            context.fillStyle = gradient;
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        function initAtmosEffect() {
+            const container = document.getElementById('atmos-canvas-container');
+            const header = document.getElementById('main-header');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 200;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+
+            const particleCount = 200;
+            const particleGeometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+
+            const colors = new Float32Array(particleCount * 3); // 每粒子 RGB
+            for (let i = 0; i < particleCount; i++) {
+                colors[i * 3] = 0.0;     // R
+                colors[i * 3 + 1] = 0.5; // G
+                colors[i * 3 + 2] = 0.0; // B
+            }
+
+            orbitingParticles = [];
+            for (let i = 0; i < particleCount; i++) {
+                orbitingParticles.push({
+                    theta: Math.random() * Math.PI * 2,
+                    phi: Math.acos((Math.random() * 2) - 1),
+                    radius: 80 + Math.random() * 80,
+                    baseSpeed: 0.001 + Math.random() * 0.0015,
+                    currentSpeed: 0.001 + Math.random() * 0.0015,
+                    twinkleOffset: Math.random() * Math.PI * 2,
+                });
+            }
+
+            particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const particleMaterial = new THREE.PointsMaterial({
+                map: createCircleTexture(),
+                size: 3,
+                blending: THREE.AdditiveBlending,
+                transparent: true,
+                depthWrite: false,
+                vertexColors: true
+            });
+
+            particles = new THREE.Points(particleGeometry, particleMaterial);
+            scene.add(particles);
+
+            window.addEventListener('resize', onWindowResize);
+            header.addEventListener('mousemove', onMouseMove);
+            header.addEventListener('mouseleave', onMouseLeave);
+
+            animateAtmosEffect();
+        }
+
+        function onWindowResize() {
+            const container = document.getElementById('atmos-canvas-container');
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+
+        function onMouseMove(event) {
+            const header = document.getElementById('main-header');
+            const rect = header.getBoundingClientRect();
+            mouse.x = (event.clientX - rect.left) / rect.width;
+            mouse.y = (event.clientY - rect.top) / rect.height;
+        }
+
+        function onMouseLeave() {
+            mouse.x = 0.5;
+            mouse.y = 0.5;
+        }
+
+        const clock = new THREE.Clock();
+        function animateAtmosEffect() {
+            requestAnimationFrame(animateAtmosEffect);
+            const elapsed = clock.getElapsedTime();
+
+            // 直接拿到两个 attribute
+            const posAttr = particles.geometry.getAttribute('position');
+            const colorAttr = particles.geometry.getAttribute('color');
+
+            orbitingParticles.forEach((p, i) => {
+                // ——位置更新（跟你原来的一样）——
+                const targetSpeed = p.baseSpeed * ((mouse.x !== lastMouse.x || mouse.y !== lastMouse.y) ? 8 : 1);
+                p.currentSpeed += (targetSpeed - p.currentSpeed) * 0.05;
+                p.theta += p.currentSpeed;
+
+                const x = p.radius * Math.sin(p.phi) * Math.cos(p.theta);
+                const y = p.radius * Math.sin(p.phi) * Math.sin(p.theta);
+                const z = p.radius * Math.cos(p.phi);
+
+                const idx3 = i * 3;
+                posAttr.array[idx3] = x;
+                posAttr.array[idx3 + 1] = y;
+                posAttr.array[idx3 + 2] = z;
+
+                // ——顶点色闪烁 ——  
+                // 生成一个 0.2–1.0 的亮度因子
+                const tw = (Math.sin(elapsed * 5 + p.twinkleOffset) + 1) / 2;
+                const brightness = 0.5 + tw * 0.5;
+
+                colorAttr.array[idx3] = 0.0;        // R 保持 0
+                colorAttr.array[idx3 + 1] = brightness; // G 动态波动
+                colorAttr.array[idx3 + 2] = 0.0;        // B 保持 0
+            });
+
+            // 标记需要更新
+            posAttr.needsUpdate = true;
+            colorAttr.needsUpdate = true;
+            lastMouse.copy(mouse);
+
+            renderer.render(scene, camera);
+        }
+
+        // --- TRANSLATIONS & I18N SCRIPT ---
+        const translations = {
+            zh: {
+                title: "Atmos Check - 杜比全景声混音检测工具",
+                backToHome: "← 返回主页",
+                betaTag: "专为杜比混音师制作",
+                heroSubtitle: "在上架流媒体前，确保您的杜比全景声混音与立体声母带完美同步。",
+                heroButton: '<i class="fas fa-download"></i> 即将推出',
+                featuresTitle: "精准校验，告别返工",
+                featuresSubtitle: "自动化的对比流程，为您的作品上架保驾护航，避免因技术问题导致的审核失败。",
+                pricingTitle: "即将推出",
+                pricingSubtitle: "免费版与Pro版均在准备中，敬请期待最终发布。",
+                footerText: "羽翼深蓝. All Rights Reserved.",
+                features: [
+                    { icon: 'fa-file-audio', title: '元数据一致性检测', desc: '自动检查并对比Atmos分轨与立体声母带的采样率、位深、声道数和总时长是否严格一致。' },
+                    { icon: 'fa-equals', title: '音频内容对比', desc: '深入分析音频内容，确保分轨混音与母带在核心结构和时间轴上完全同步，无任何偏移。' },
+                    { icon: 'fa-check-double', title: '双重验证模式', desc: '同时提供基于频谱和谐波的“频率检查”与基于振幅的“波形检查”，确保最高精度的对比结果。' },
+                ]
+            },
+            en: {
+                title: "Atmos Check - Dolby Atmos Mix Verification Tool",
+                backToHome: "← Back to Home",
+                betaTag: "Made for Dolby Atmos mixing engineers",
+                heroSubtitle: "Ensure your Dolby Atmos mix is perfectly in sync with the stereo master before uploading to streaming platforms.",
+                heroButton: '<i class="fas fa-download"></i> Coming Soon',
+                featuresTitle: "Precise Verification, No More Revisions",
+                featuresSubtitle: "An automated comparison workflow to safeguard your release, preventing rejections due to technical issues.",
+                pricingTitle: "Coming Soon",
+                pricingSubtitle: "Both Free and Pro versions are in preparation. Stay tuned for the final release.",
+                footerText: "Yuyi Shenlan. All Rights Reserved.",
+                features: [
+                    { icon: 'fa-file-audio', title: 'Metadata Consistency Check', desc: 'Automatically checks and compares if the sample rate, bit depth, channel count, and total length are identical between the Atmos stems and the stereo master.' },
+                    { icon: 'fa-equals', title: 'Audio Content Comparison', desc: 'Deeply analyzes audio content to ensure the stem mix and master are perfectly synchronized on the timeline with no offsets.' },
+                    { icon: 'fa-check-double', title: 'Dual Verification Modes', desc: 'Provides both spectrum-based "Frequency Check" and amplitude-based "Waveform Check" for the highest precision comparison.' },
+                ]
+            }
+        };
+
+        const setLanguage = (lang) => {
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+            const t = translations[lang];
+            document.title = t.title;
+            document.querySelectorAll('[data-lang-key]').forEach(el => {
+                const key = el.dataset.langKey;
+                if (t[key]) {
+                    el.innerHTML = t[key];
+                }
+            });
+            const featuresContainer = document.querySelector('#features .grid');
+            featuresContainer.innerHTML = '';
+            t.features.forEach((feature, index) => {
+                const card = document.createElement('div');
+                card.className = 'feature-card p-8 rounded-xl scroll-fade';
+                card.style.transitionDelay = `${index * 100}ms`;
+                card.innerHTML = `<i class="fas ${feature.icon} fa-2x text-emerald-400"></i><h3 class="mt-4 text-xl font-bold text-white">${feature.title}</h3><p class="mt-2 text-gray-300">${feature.desc}</p>`;
+                featuresContainer.appendChild(card);
+            });
+            initScrollFade();
+            document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+            localStorage.setItem('language', lang);
+        };
+
+        document.getElementById('lang-zh').addEventListener('click', () => setLanguage('zh'));
+        document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+
+        function initSlider() {
+            const sliderTrack = document.getElementById('slider-track');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const dotsContainer = document.getElementById('dots-container');
+            const slides = Array.from(sliderTrack.children);
+            const slideCount = slides.length;
+            let currentIndex = 0;
+            for (let i = 0; i < slideCount; i++) {
+                const dot = document.createElement('button');
+                dot.classList.add('w-2.5', 'h-2.5', 'rounded-full', 'transition-colors', 'duration-300');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+            const dots = Array.from(dotsContainer.children);
+            const goToSlide = (index) => {
+                currentIndex = index;
+                sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+                updateDots();
+            };
+            const updateDots = () => {
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('bg-emerald-400', index === currentIndex);
+                    dot.classList.toggle('bg-gray-700', index !== currentIndex);
+                });
+            };
+            prevBtn.addEventListener('click', () => {
+                goToSlide((currentIndex - 1 + slideCount) % slideCount);
+            });
+            nextBtn.addEventListener('click', () => {
+                goToSlide((currentIndex + 1) % slideCount);
+            });
+            goToSlide(0);
+        }
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function initScrollFade() {
+            const faders = document.querySelectorAll('.scroll-fade');
+            const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        }
+
+        // --- INITIALIZATION ---
+        initAtmosEffect();
+        initSlider();
+        const savedLang = localStorage.getItem('language') || 'zh';
+        setLanguage(savedLang);
+    </script>
+</body>
+</html>
