@@ -29,6 +29,10 @@
             padding-top: 64px;
         }
 
+        .sidebar-open {
+            transform: translateX(0);
+        }
+
         #wave-canvas {
             position: absolute;
             top: 0;
@@ -125,6 +129,11 @@
     <!-- Top Navigation Bar -->
     <nav class="top-nav">
         <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+
+            <button id="hamburger-button" class="md:hidden text-white p-2 mr-4 z-[1100]">
+                <i class="fas fa-bars fa-lg"></i>
+            </button>
+
             <a href="#home" class="text-xl font-bold text-white flex-shrink-0">羽翼深蓝</a>
 
             <div class="hidden md:flex items-center space-x-8">
@@ -151,6 +160,25 @@
             </div>
         </div>
     </nav>
+
+    <div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-gray-900 bg-opacity-90 backdrop-blur-lg shadow-lg z-[1050]
+            transform -translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="flex flex-col items-start p-8 space-y-6 mt-16">
+            <a href="#about" class="sidebar-link text-lg text-gray-300 hover:text-white"
+                data-lang-key="nav_about">个人介绍</a>
+            <a href="#featured-ep" class="sidebar-link text-lg text-gray-300 hover:text-white"
+                data-lang-key="nav_dolby">杜比全景声混音</a>
+            <a href="fire.html" class="sidebar-link text-lg text-gray-300 hover:text-white"
+                data-lang-key="nav_plugin">Fire 插件</a>
+            <a href="pluginhub.html" class="sidebar-link text-lg text-gray-300 hover:text-white"
+                data-lang-key="nav_pluginhub">PluginHub</a>
+            <a href="atmos_check.html" class="sidebar-link text-lg text-gray-300 hover:text-white">Atmos Check</a>
+            <a href="#music" class="sidebar-link text-lg text-gray-300 hover:text-white"
+                data-lang-key="nav_music">音乐作品</a>
+            <a href="#contact" class="sidebar-link text-lg text-gray-300 hover:text-white"
+                data-lang-key="nav_contact">联系方式</a>
+        </div>
+    </div>
 
     <!-- Header / Hero Section -->
     <header id="home"
@@ -227,7 +255,7 @@
                 <div
                     class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 md:p-8 flex flex-col md:flex-row-reverse items-center gap-8 border border-blue-900/50 transition-all duration-300">
                     <div class="md:w-1/2 flex justify-center">
-                        <img src="assets/fire-plugin-ui.png"
+                        <img src="assets/Fire1.png"
                             onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/jerryuhoo/Fire/master/Fire1.png';"
                             alt="Fire Plugin UI" class="rounded-lg shadow-2xl w-full border border-blue-900/50">
                     </div>
@@ -547,8 +575,36 @@
 
         // Initialize the wave animation once the page is loaded
         window.onload = function () {
+            // 首先执行您原来的初始化
             initWave();
-        }
+
+            // 侧边栏
+            const btn = document.getElementById('hamburger-button');
+            const sb = document.getElementById('sidebar');
+            const links = document.querySelectorAll('.sidebar-link');
+
+            btn.addEventListener('click', e => {
+                e.stopPropagation();
+                sb.classList.toggle('-translate-x-full');
+                sb.classList.toggle('translate-x-0');
+            });
+
+            document.addEventListener('click', e => {
+                if (
+                    sb.classList.contains('translate-x-0') &&
+                    !sb.contains(e.target) &&
+                    e.target !== btn
+                ) {
+                    sb.classList.replace('translate-x-0', '-translate-x-full');
+                }
+            });
+
+            links.forEach(link =>
+                link.addEventListener('click', () =>
+                    sb.classList.replace('translate-x-0', '-translate-x-full')
+                )
+            );
+        };
     </script>
 </body>
 </html>
