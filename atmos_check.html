@@ -340,7 +340,7 @@
             zh: {
                 title: "Atmos Check - 杜比全景声混音检测工具",
                 backToHome: "← 返回主页",
-                betaTag: "专为杜比混音师制作",
+                betaTag: "专为杜比混音师打造",
                 heroSubtitle: "在上架流媒体前，确保您的杜比全景声混音与立体声母带完美同步。",
                 heroButton: '<i class="fas fa-download"></i> 即将推出',
                 featuresTitle: "精准校验，告别返工",
@@ -349,9 +349,21 @@
                 pricingSubtitle: "免费版与Pro版均在准备中，敬请期待最终发布。",
                 footerText: "羽翼深蓝. All Rights Reserved.",
                 features: [
-                    { icon: 'fa-file-audio', title: '元数据一致性检测', desc: '自动检查并对比Atmos分轨与立体声母带的采样率、位深、声道数和总时长是否严格一致。' },
-                    { icon: 'fa-equals', title: '音频内容对比', desc: '深入分析音频内容，确保分轨混音与母带在核心结构和时间轴上完全同步，无任何偏移。' },
-                    { icon: 'fa-check-double', title: '双重验证模式', desc: '同时提供基于频谱和谐波的“频率检查”与基于振幅的“波形检查”，确保最高精度的对比结果。' },
+                    {
+                        icon: 'fa-table-cells',
+                        title: '交互式文件分析',
+                        desc: '自动检测并高亮显示不合规的采样率、位深、声道数和时长。采样峰值检测，确保交付前无数字失真。'
+                    },
+                    {
+                        icon: 'fa-chart-line',
+                        title: '可视化差异对比',
+                        desc: '通过差异曲线图直观地定位问题点。点击图表任意位置，波形播放器将立即跳转到对应时间点进行试听。'
+                    },
+                    {
+                        icon: 'fa-check-double',
+                        title: '双重验证算法',
+                        desc: '提供严格的“波形”模式与宽容的“频率”模式，以适应不同的对比需求，确保最高精度的验证结果。'
+                    },
                 ]
             },
             en: {
@@ -366,9 +378,21 @@
                 pricingSubtitle: "Both Free and Pro versions are in preparation. Stay tuned for the final release.",
                 footerText: "Yuyi Shenlan. All Rights Reserved.",
                 features: [
-                    { icon: 'fa-file-audio', title: 'Metadata Consistency Check', desc: 'Automatically checks and compares if the sample rate, bit depth, channel count, and total length are identical between the Atmos stems and the stereo master.' },
-                    { icon: 'fa-equals', title: 'Audio Content Comparison', desc: 'Deeply analyzes audio content to ensure the stem mix and master are perfectly synchronized on the timeline with no offsets.' },
-                    { icon: 'fa-check-double', title: 'Dual Verification Modes', desc: 'Provides both spectrum-based "Frequency Check" and amplitude-based "Waveform Check" for the highest precision comparison.' },
+                    {
+                        icon: 'fa-table-cells',
+                        title: 'Interactive File Analysis',
+                        desc: 'Automatically detects and highlights non-compliant sample rates, bit depths, channel counts, and durations. Sample peak detection ensures no digital clipping before delivery.'
+                    },
+                    {
+                        icon: 'fa-chart-line',
+                        title: 'Visual Difference Comparison',
+                        desc: 'Intuitively locate issues with the difference curve chart. Click anywhere on the chart, and the waveform players will instantly seek to that exact time for auditioning.'
+                    },
+                    {
+                        icon: 'fa-check-double',
+                        title: 'Dual Verification Algorithms',
+                        desc: 'Offers a strict "Waveform" mode and a tolerant "Frequency" mode to adapt to various comparison needs, ensuring the highest precision verification.'
+                    },
                 ]
             }
         };
