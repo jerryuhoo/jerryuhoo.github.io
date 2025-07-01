@@ -152,6 +152,12 @@
                         <div class="slider-slide"><img src="assets/AtmosCheck2.png"
                                 onerror="this.onerror=null;this.src='https://placehold.co/1200x750/011a10/34d399?text=Atmos+Check+UI+2';"
                                 alt="Atmos Check 界面截图 2" class="w-full h-full object-cover"></div>
+                        <div class="slider-slide"><img src="assets/AtmosCheck3.png"
+                                onerror="this.onerror=null;this.src='https://placehold.co/1200x750/011a10/34d399?text=Atmos+Check+UI+3';"
+                                alt="Atmos Check 界面截图 3" class="w-full h-full object-cover"></div>
+                        <div class="slider-slide"><img src="assets/AtmosCheck4.png"
+                                onerror="this.onerror=null;this.src='https://placehold.co/1200x750/011a10/34d399?text=Atmos+Check+UI+4';"
+                                alt="Atmos Check 界面截图 4" class="w-full h-full object-cover"></div>
                     </div>
                 </div>
                 <button id="prev-btn"
@@ -350,19 +356,34 @@
                 footerText: "羽翼深蓝. All Rights Reserved.",
                 features: [
                     {
-                        icon: 'fa-table-cells',
-                        title: '交互式文件分析',
-                        desc: '自动检测并高亮显示不合规的采样率、位深、声道数和时长。采样峰值检测，确保交付前无数字失真。'
-                    },
-                    {
                         icon: 'fa-chart-line',
-                        title: '可视化差异对比',
-                        desc: '通过差异曲线图直观地定位问题点。点击图表任意位置，波形播放器将立即跳转到对应时间点进行试听。'
+                        title: '差异对比分析',
+                        desc: '通过严格的波形对比，确保您的分轨与立体声母带完美零测试通过。切换至频谱算法，可忽略相位差异，校验与双耳声渲染版本之间的音色平衡。'
                     },
                     {
-                        icon: 'fa-check-double',
-                        title: '双重验证算法',
-                        desc: '提供严格的“波形”模式与宽容的“频率”模式，以适应不同的对比需求，确保最高精度的验证结果。'
+                        icon: 'fa-magnifying-glass-chart',
+                        title: '可视化分析报告',
+                        desc: '在详细报告页中，通过差异曲线图直观地定位问题点。点击图表任意位置，上下两个同步波形播放器将立即跳转到对应时间点，方便您进行精准的A/B试听。'
+                    },
+                    {
+                        icon: 'fa-file-audio',
+                        title: 'ADM BWF 合规性检查',
+                        desc: '加载ADM BWF母版文件，即时校验其技术规格。自动检查采样率(48kHz)、位深(24-bit)，并高亮显示超出杜比交付限制的总通道数(>128)或对象数(>118)。'
+                    },
+                    {
+                        icon: 'fa-sliders-h',
+                        title: '行业标准响度计量',
+                        desc: '分析您的5.1环绕声或立体声文件。基于ITU-R BS.1770-4标准，获得精准的综合响度(LUFS)与真实峰值(dBTP)读数，确保您的混音符合流媒体平台要求。'
+                    },
+                    {
+                        icon: 'fa-list-check',
+                        title: '智能文件列表',
+                        desc: '所有加载的音频文件都会被自动分析并陈列。采样率、位深、声道数等关键信息一目了然，任何不符合当前模式要求的参数都会被实时高亮警示。'
+                    },
+                    {
+                        icon: 'fa-cogs',
+                        title: '多模式与流畅工作流',
+                        desc: '在差异对比、响度计量、ADM检查等多种专业模式间自由切换。优化的异步架构和清晰的进度条，保证了处理大文件时依然拥有流畅不卡顿的交互体验。'
                     },
                 ]
             },
@@ -379,19 +400,34 @@
                 footerText: "Yuyi Shenlan. All Rights Reserved.",
                 features: [
                     {
-                        icon: 'fa-table-cells',
-                        title: 'Interactive File Analysis',
-                        desc: 'Automatically detects and highlights non-compliant sample rates, bit depths, channel counts, and durations. Sample peak detection ensures no digital clipping before delivery.'
-                    },
-                    {
                         icon: 'fa-chart-line',
-                        title: 'Visual Difference Comparison',
-                        desc: 'Intuitively locate issues with the difference curve chart. Click anywhere on the chart, and the waveform players will instantly seek to that exact time for auditioning.'
+                        title: 'Differential Analysis',
+                        desc: 'Ensure your stems perfectly null-test against the stereo master using strict waveform comparison. Switch to the spectral algorithm to check tonal balance against a binaural render, ignoring phase differences.'
                     },
                     {
-                        icon: 'fa-check-double',
-                        title: 'Dual Verification Algorithms',
-                        desc: 'Offers a strict "Waveform" mode and a tolerant "Frequency" mode to adapt to various comparison needs, ensuring the highest precision verification.'
+                        icon: 'fa-magnifying-glass-chart',
+                        title: 'Interactive Analysis Report',
+                        desc: 'In the detailed report, intuitively locate issues with the difference curve chart. Click anywhere on the chart, and the two synchronized waveform players will instantly seek to that exact time for precise A/B auditioning.'
+                    },
+                    {
+                        icon: 'fa-file-audio',
+                        title: 'ADM BWF Conformance Check',
+                        desc: 'Load your ADM BWF master file to instantly verify its technical specifications. Automatically checks sample rate (48kHz), bit depth (24-bit), and highlights channel (>128) or object (>118) counts that exceed Dolby\'s delivery limits.'
+                    },
+                    {
+                        icon: 'fa-sliders-h',
+                        title: 'Industry-Standard Loudness Metering',
+                        desc: 'Analyze your 5.1 surround or stereo files for loudness compliance. Get precise, Integrated Loudness (LUFS) and True Peak (dBTP) measurements based on the ITU-R BS.1770-4 standard, ensuring your mix meets streaming platform requirements.'
+                    },
+                    {
+                        icon: 'fa-list-check',
+                        title: 'Intelligent File List',
+                        desc: 'All loaded audio files are automatically analyzed and listed. Key information like sample rate, bit depth, and channel count is visible at a glance, with any parameters not conforming to the current mode highlighted in real-time.'
+                    },
+                    {
+                        icon: 'fa-cogs',
+                        title: 'Multi-Mode & Smooth Workflow',
+                        desc: 'Freely switch between various professional modes like differential comparison, loudness metering, and ADM inspection. The optimized asynchronous architecture with clear progress bars ensures a smooth, non-blocking experience even with large files.'
                     },
                 ]
             }
