@@ -118,7 +118,6 @@
 </head>
 <body class="antialiased">
 
-    <!-- Header -->
     <header id="main-header" class="relative overflow-hidden animated-gradient-light">
         <div id="interactive-canvas-container"></div>
 
@@ -139,8 +138,8 @@
                 <div class="max-w-4xl mx-auto px-6">
                     <div class="mb-4">
                         <span
-                            class="inline-block bg-green-500/10 text-green-300 text-sm font-semibold px-4 py-1 rounded-full"
-                            data-lang-key="betaTag">Beta 公测中</span>
+                            class="inline-block bg-yellow-500/10 text-yellow-300 text-sm font-semibold px-4 py-1 rounded-full"
+                            data-lang-key="betaTag">公测已结束</span>
                     </div>
                     <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight">PluginHub</h1>
                     <p class="mt-4 text-xl md:text-2xl text-blue-200 max-w-2xl mx-auto" data-lang-key="heroSubtitle">
@@ -150,7 +149,7 @@
                         <a href="#pricing"
                             class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105 inline-flex items-center gap-2"
                             data-lang-key="heroButton">
-                            <i class="fas fa-download"></i> 获取 Beta 版
+                            <i class="fas fa-info-circle"></i> 查看版本信息
                         </a>
                     </div>
                 </div>
@@ -201,7 +200,6 @@
                     版解锁全部潜力。</p>
             </div>
             <div class="mt-16 grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
-                <!-- Free Card -->
                 <div class="pricing-card p-8 rounded-xl flex flex-col scroll-fade">
                     <h3 class="text-2xl font-bold text-white" data-lang-key="freeTitle">免费版</h3>
                     <p class="mt-2 text-gray-300 flex-grow" data-lang-key="freeDesc">适合所有用户的基本工具。</p>
@@ -211,13 +209,17 @@
                         <li class="flex items-center gap-3"><i class="fas fa-check-circle text-green-400"></i><span
                                 data-lang-key="freeFeature2">基础插件卸载</span></li>
                     </ul>
-                    <div class="mt-8">
-                        <a href="https://jerryhoo.gumroad.com/l/pluginhubfree" target="_blank" rel="noopener noreferrer"
-                            class="w-full text-center bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-md transition-colors inline-block"
-                            data-lang-key="freeButton">免费下载</a>
+                    <div class="mt-8 text-center bg-gray-800/50 p-4 rounded-md border border-gray-700">
+                        <h4 class="font-semibold text-white" data-lang-key="betaEndedTitle">第一轮公测已结束</h4>
+                        <p class="text-sm text-gray-400 mt-2" data-lang-key="betaEndedDesc">
+                            感谢您的参与！敬请期待下一轮更新。如有问题，请随时联系我们。</p>
+                        <a href="mailto:jerryuhoo@gmail.com?subject=PluginHub Beta Feedback"
+                            class="mt-4 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-colors text-sm"
+                            data-lang-key="contactButton">
+                            <i class="fas fa-envelope mr-2"></i>联系开发者
+                        </a>
                     </div>
                 </div>
-                <!-- Pro Card -->
                 <div class="pricing-card pro p-8 rounded-xl flex flex-col ring-2 ring-blue-500 scroll-fade"
                     style="transition-delay: 100ms;">
                     <h3 class="text-2xl font-bold text-white" data-lang-key="proTitle">Pro 版</h3>
@@ -231,10 +233,15 @@
                         <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-400"></i><span
                                 data-lang-key="proFeature3">智能搜索用户预置文件目录</span></li>
                     </ul>
-                    <div class="mt-8">
-                        <a href="https://jerryhoo.gumroad.com/l/pluginhubpro" target="_blank" rel="noopener noreferrer"
-                            class="w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md transition-colors inline-block"
-                            data-lang-key="proButton">获取 Pro 版</a>
+                    <div class="mt-8 text-center bg-gray-800/50 p-4 rounded-md border border-gray-700">
+                        <h4 class="font-semibold text-white" data-lang-key="betaEndedTitle">第一轮公测已结束</h4>
+                        <p class="text-sm text-gray-400 mt-2" data-lang-key="betaEndedDesc">
+                            感谢您的参与！敬请期待下一轮更新。如有问题，请随时联系我们。</p>
+                        <a href="mailto:jerryuhoo@gmail.com?subject=PluginHub Beta Feedback"
+                            class="mt-4 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-colors text-sm"
+                            data-lang-key="contactButton">
+                            <i class="fas fa-envelope mr-2"></i>联系开发者
+                        </a>
                     </div>
                 </div>
             </div>
@@ -391,9 +398,9 @@
             zh: {
                 title: "PluginHub - 您的终极插件管理器",
                 backToHome: "← 返回主页",
-                betaTag: "Beta 公测中",
+                betaTag: "公测已结束",
                 heroSubtitle: "一款专为音乐制作人设计的、优雅而强大的终极音频插件管理器。",
-                heroButton: '<i class="fas fa-download"></i> 获取 Beta 版',
+                heroButton: '<i class="fas fa-info-circle"></i> 查看版本信息',
                 featuresTitle: "强大，只为更纯粹的创作",
                 featuresSubtitle: "我们为您处理繁琐的管理工作，让您能专注于最重要的事：音乐。",
                 pricingTitle: "选择适合您的版本",
@@ -402,14 +409,15 @@
                 freeDesc: "适合所有用户的基本工具。",
                 freeFeature1: "扫描与管理所有插件",
                 freeFeature2: "基础插件卸载",
-                freeButton: "免费下载",
                 proTitle: "Pro 版",
                 proDesc: "为专业人士打造的终极工具箱，彻底清理您的插件环境。",
                 proFeature1: "包含免费版所有功能",
                 proFeature2: "智能深度卸载所有相关安装带来的文件",
                 proFeature3: "智能搜索用户预置文件目录",
-                proButton: "获取 Pro 版",
                 footerText: "羽翼深蓝. All Rights Reserved.",
+                betaEndedTitle: "第一轮公测已结束",
+                betaEndedDesc: "感谢您的参与！敬请期待下一轮更新。如有问题，请随时联系我们。",
+                contactButton: '<i class="fas fa-envelope mr-2"></i>联系开发者',
                 features: [
                     { icon: 'fa-search', title: '综合扫描', desc: '扫描系统所有标准插件路径（VST3, VST2, AU, AAX, CLAP），包括用户和系统库，无一遗漏。' },
                     { icon: 'fa-palette', title: '现代UI', desc: '优雅简洁的界面，并提供亮色、暗色及系统主题模式，呵护您的双眼。' },
@@ -422,9 +430,9 @@
             en: {
                 title: "PluginHub - Your Ultimate Plugin Manager",
                 backToHome: "← Back to Home",
-                betaTag: "Now in Beta",
+                betaTag: "Beta Concluded",
                 heroSubtitle: "An elegant and powerful ultimate audio plugin manager designed for music producers.",
-                heroButton: '<i class="fas fa-download"></i> Get Beta Version',
+                heroButton: '<i class="fas fa-info-circle"></i> View Version Info',
                 featuresTitle: "Powerful, for Purer Creation",
                 featuresSubtitle: "We handle the tedious management tasks so you can focus on what matters most: your music.",
                 pricingTitle: "Choose Your Version",
@@ -433,14 +441,15 @@
                 freeDesc: "The essential toolset for every user.",
                 freeFeature1: "Scan & manage all plugins",
                 freeFeature2: "Basic plugin uninstallation",
-                freeButton: "Download Free",
                 proTitle: "Pro Version",
                 proDesc: "The ultimate toolbox for professionals to completely clean up your plugin environment.",
                 proFeature1: "All features from the Free version",
                 proFeature2: "Intelligently deep uninstalls all related installation files",
                 proFeature3: "Intelligently searches user preset directories",
-                proButton: "Get Pro Version",
                 footerText: "Yuyi Shenlan. All Rights Reserved.",
+                betaEndedTitle: "First Beta Round Concluded",
+                betaEndedDesc: "Thank you for your participation! Stay tuned for the next update. Please contact us if you have any questions.",
+                contactButton: '<i class="fas fa-envelope mr-2"></i>Contact Developer',
                 features: [
                     { icon: 'fa-search', title: 'Comprehensive Scan', desc: 'Scans all standard plugin paths (VST3, VST2, AU, AAX, CLAP) on your system, including user and system libraries.' },
                     { icon: 'fa-palette', title: 'Modern UI', desc: 'An elegant and clean interface with support for Light, Dark, and System theme modes.' },
