@@ -98,9 +98,7 @@
 </head>
 <body class="antialiased">
 
-    <!-- Header -->
     <header id="main-header" class="relative overflow-hidden animated-gradient-fire">
-        <!-- Interactive Canvas Background -->
         <div id="fire-canvas-container"></div>
 
         <div class="relative z-10">
@@ -116,13 +114,12 @@
                 </div>
             </nav>
 
-            <!-- Hero Section -->
             <div class="py-20 md:py-32 text-center">
                 <div class="max-w-4xl mx-auto px-6">
                     <div class="mb-4">
                         <span
                             class="inline-block bg-orange-500/10 text-orange-300 text-sm font-semibold px-4 py-1 rounded-full"
-                            data-lang-key="tag">免费 & 开源</span>
+                            data-lang-key="tag">v1.5.0 - 免费 & 开源</span>
                     </div>
                     <h1
                         class="text-5xl md:text-7xl font-bold text-white tracking-tight flex items-center justify-center gap-4">
@@ -145,7 +142,6 @@
     </header>
 
     <main class="py-20 md:py-28">
-        <!-- Main Product Image Slider -->
         <section class="max-w-6xl mx-auto px-6 -mt-16 md:-mt-24 scroll-fade">
             <div class="relative bg-black/50 p-4 rounded-2xl shadow-2xl border border-orange-800/50 backdrop-blur-sm">
                 <div class="slider-container rounded-lg">
@@ -156,9 +152,11 @@
                         <div class="slider-slide"><img src="assets/Fire2.png"
                                 onerror="this.onerror=null;this.src='https://placehold.co/1200x750/2d0f00/ffae00?text=Fire+UI+2';"
                                 alt="Fire 插件界面截图 2" class="w-full h-full object-cover"></div>
+                        <div class="slider-slide"><img src="assets/Fire3.png"
+                                onerror="this.onerror=null;this.src='https://placehold.co/1200x750/2d0f00/ffae00?text=Fire+UI+3';"
+                                alt="Fire 插件界面截图 3" class="w-full h-full object-cover"></div>
                     </div>
                 </div>
-                <!-- Slider Controls -->
                 <button id="prev-btn"
                     class="absolute top-1/2 left-2 md:left-8 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full z-10 transition-colors">
                     <i class="fas fa-chevron-left fa-lg"></i>
@@ -167,15 +165,12 @@
                     class="absolute top-1/2 right-2 md:right-8 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full z-10 transition-colors">
                     <i class="fas fa-chevron-right fa-lg"></i>
                 </button>
-                <!-- Slider Dots -->
                 <div id="dots-container"
                     class="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
-                    <!-- Dots will be generated here by JS -->
                 </div>
             </div>
         </section>
 
-        <!-- Features Section -->
         <section id="features" class="max-w-7xl mx-auto px-6 mt-20 md:mt-32">
             <div class="text-center">
                 <h2 class="text-4xl font-bold text-white" data-lang-key="featuresTitle">精细打磨，无限可能</h2>
@@ -184,7 +179,6 @@
             </div>
 
             <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <!-- Feature Cards will be populated by JS -->
             </div>
         </section>
 
@@ -204,7 +198,7 @@
             zh: {
                 title: "Fire - 多段失真插件",
                 backToHome: "← 返回主页",
-                tag: "免费 & 开源",
+                tag: "v1.5.0 - 免费 & 开源",
                 heroSubtitle: "一款强大的多段失真效果器，为您的声音注入温暖与能量。",
                 githubButton: "在 GitHub 上获取",
                 featuresTitle: "精细打磨，无限可能",
@@ -214,6 +208,9 @@
                     { icon: 'fa-wave-square', title: '多频段处理', desc: '将音频分为多个频段，对每个频段进行独立的失真处理，实现精细的音色塑造。' },
                     { icon: 'fa-sliders-h', title: '独立控制', desc: '每个频段均提供独立的 Drive, Tone, 和 Mix 控制，让您完全掌控失真效果的强度与风格。' },
                     { icon: 'fa-cut', title: '可调分频点', desc: '自由调整频段之间的分界点，精确地对您想要处理的频率范围进行操作。' },
+                    { icon: 'fa-envelope-open-text', title: 'LFO 调制系统', desc: '新增四个完全可定制的LFO，可用于调制插件中的大多数参数，为声音设计带来动态变化。' },
+                    { icon: 'fa-drafting-compass', title: '强大的LFO编辑器', desc: '通过图形编辑器创建自定义LFO形状。支持添加、删除、拖动点，并调整曲线，实现复杂的调制。' },
+                    { icon: 'fa-magic', title: '快速调制分配', desc: '全新的“分配”模式，只需点击旋钮，即可立即将其映射为调制目标，操作流程极致简化。' },
                     { icon: 'fab fa-dev', title: 'JUCE 框架构建', desc: '基于业界领先的 JUCE 框架开发，确保了高性能与跨平台的稳定性。' },
                     { icon: 'fa-puzzle-piece', title: '多格式支持', desc: '支持 VST3 和 Audio Unit (AU) 格式，无缝集成到您喜爱的主流宿主软件中。' },
                     { icon: 'fa-code-branch', title: '开源精神', desc: '代码完全公开透明，欢迎所有开发者共同学习、改进和贡献。' }
@@ -222,7 +219,7 @@
             en: {
                 title: "Fire - Multi-band Distortion Plugin",
                 backToHome: "← Back to Home",
-                tag: "Free & Open-Source",
+                tag: "v1.5.0 - Free & Open-Source",
                 heroSubtitle: "A powerful multi-band distortion effect, designed to inject warmth and energy into your sound.",
                 githubButton: "Get on GitHub",
                 featuresTitle: "Finely Tuned, Infinitely Possible",
@@ -232,6 +229,9 @@
                     { icon: 'fa-wave-square', title: 'Multi-band Processing', desc: 'Split audio into multiple bands for independent distortion, enabling precise tonal shaping.' },
                     { icon: 'fa-sliders-h', title: 'Independent Controls', desc: 'Each band offers separate Drive, Tone, and Mix controls for full command over the distortion character.' },
                     { icon: 'fa-cut', title: 'Adjustable Crossovers', desc: 'Freely adjust the crossover points between bands to accurately target specific frequency ranges.' },
+                    { icon: 'fa-envelope-open-text', title: 'LFO Modulation System', desc: 'Adds four fully customizable LFOs that can modulate most parameters in the plugin, bringing dynamic changes to your sound design.' },
+                    { icon: 'fa-drafting-compass', title: 'Powerful LFO Editor', desc: 'Create custom LFO shapes with a powerful graphical editor. Add, remove, and drag points, and adjust curvatures for complex modulation.' },
+                    { icon: 'fa-magic', title: 'Quick Modulation Assignment', desc: 'A new "Assign" mode allows you to click any knob to instantly map it as a modulation target, streamlining your workflow.' },
                     { icon: 'fab fa-dev', title: 'Built with JUCE', desc: 'Developed on the industry-leading JUCE framework, ensuring high performance and cross-platform stability.' },
                     { icon: 'fa-puzzle-piece', title: 'Multi-format Support', desc: 'Supports VST3 and Audio Unit (AU) formats for seamless integration into your favorite DAWs.' },
                     { icon: 'fa-code-branch', title: 'Open Source Spirit', desc: 'The code is fully public, welcoming all developers to learn, improve, and contribute.' }
