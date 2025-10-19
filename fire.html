@@ -171,6 +171,28 @@
             </div>
         </section>
 
+        <section id="demo" class="max-w-4xl mx-auto px-6 mt-20 md:mt-32 scroll-fade">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold text-white" data-lang-key="demoTitle">产品演示</h2>
+                <p class="mt-3 text-lg text-orange-200 max-w-2xl mx-auto" data-lang-key="demoSubtitle">观看视频，快速了解 Fire
+                    的核心功能与操作。</p>
+            </div>
+            <div class="mt-12 relative w-full shadow-2xl border border-orange-800/50 rounded-lg"
+                style="padding-top: 56.25%;">
+                <div id="video-en" class="absolute top-0 left-0 w-full h-full">
+                    <iframe class="w-full h-full rounded-lg" src="https://www.youtube.com/embed/U5UTz6kWVE4"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+                <div id="video-zh" class="absolute top-0 left-0 w-full h-full">
+                    <iframe class="w-full h-full rounded-lg"
+                        src="//player.bilibili.com/player.html?bvid=BV11MWpzUEKA&page=1&as_wide=1&high_quality=1&danmaku=0"
+                        scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+            </div>
+        </section>
+
         <section id="features" class="max-w-7xl mx-auto px-6 mt-20 md:mt-32">
             <div class="text-center">
                 <h2 class="text-4xl font-bold text-white" data-lang-key="featuresTitle">精细打磨，无限可能</h2>
@@ -201,6 +223,8 @@
                 tag: "v1.5.0 - 免费 & 开源",
                 heroSubtitle: "一款强大的多段失真效果器，为您的声音注入温暖与能量。",
                 githubButton: "在 GitHub 上获取",
+                demoTitle: "产品演示",
+                demoSubtitle: "观看视频，快速了解 Fire 的核心功能与操作。",
                 featuresTitle: "精细打磨，无限可能",
                 featuresSubtitle: "从微妙的温暖饱和到激烈的电子失真，一切尽在您的掌控之中。",
                 footerText: "羽翼深蓝. All Rights Reserved.",
@@ -222,6 +246,8 @@
                 tag: "v1.5.0 - Free & Open-Source",
                 heroSubtitle: "A powerful multi-band distortion effect, designed to inject warmth and energy into your sound.",
                 githubButton: "Get on GitHub",
+                demoTitle: "Demo Video",
+                demoSubtitle: "Watch the video to quickly understand the core features and operations of Fire.",
                 featuresTitle: "Finely Tuned, Infinitely Possible",
                 featuresSubtitle: "From subtle warm saturation to intense electronic distortion, everything is under your control.",
                 footerText: "Yuyi Shenlan. All Rights Reserved.",
@@ -272,6 +298,8 @@
             document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
             document.getElementById('lang-en').classList.toggle('active', lang === 'en');
             localStorage.setItem('language', lang);
+            document.getElementById('video-en').style.display = lang === 'en' ? 'block' : 'none';
+            document.getElementById('video-zh').style.display = lang === 'zh' ? 'block' : 'none';
         };
 
         document.getElementById('lang-zh').addEventListener('click', () => setLanguage('zh'));
