@@ -217,6 +217,8 @@ html[data-theme="dark"] .dialog-close:hover { background: var(--theme-hover); }
     margin-bottom: 20px;
 }
 .policy-toolbar > a { color: var(--muted); font-size: 12px; text-decoration: none; }
+.policy-toolbar > a { display: inline-flex; align-items: center; gap: 10px; }
+.policy-brand-mark { display: block; width: 30px; height: 30px; padding: 3px; border-radius: 5px; background: #22231f; object-fit: contain; }
 .policy-toolbar > a:hover { color: var(--blue); }
 .privacy-page .container {
     padding: clamp(24px, 5vw, 57px);

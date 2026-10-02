@@ -11,7 +11,7 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.bluewingsmusic.com/assets/PluginHub1.png">
     <title>PluginHub — 给灵感，腾出空间 · Blue Wings</title>
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="assets/firewingslogo.svg">
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/project.css">
     <script src="assets/js/project.js" defer></script>
@@ -23,7 +23,7 @@
     <a class="skip-link" href="#main" data-en="Skip to content">跳至主要内容</a>
     <header class="site-header detail-header">
         <a class="wordmark" href="index.html" aria-label="Blue Wings · 首页" data-en-label="Blue Wings · Home">
-            <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M4 9 18 17 16 31 4 9ZM36 9 22 17 24 31 36 9Z" fill="currentColor"/><path d="m14 5 6 7 6-7-6 19-6-19Z" fill="currentColor"/></svg>
+            <img class="brand-mark" src="assets/firewingslogo.svg" alt="" width="38" height="38">
             <span>BLUE WINGS<span class="wordmark-cn">羽翼深蓝</span></span>
         </a>
         <a class="detail-back" href="index.html#work" aria-label="全部项目" data-en-label="All projects"><span aria-hidden="true">↖</span> <span data-en="All projects">全部项目</span></a>
@@ -35,13 +35,13 @@
 
     <main id="main">
         <section class="product-hero section-shell" aria-labelledby="product-title">
-            <div class="project-kicker mono"><span>03 / CREATIVE WORKFLOW</span><span data-en="A PLACE FOR EVERY PLUGIN">让每个插件，各得其所</span></div>
+            <div class="project-kicker mono"><span>03 / CREATIVE WORKFLOW</span><span data-en="FREE &amp; OPEN SOURCE — PLANNED">计划免费开源</span></div>
             <div class="product-hero-grid">
                 <div class="product-heading">
                     <h1 id="product-title">PluginHub<span class="accent">.</span></h1>
                     <p class="product-tagline" data-en="Less searching.<br><span class='serif'>More creating.</span>">给灵感，<br><span class="serif">腾出空间。</span></p>
                     <p class="product-description" data-en="Your tools should make room for your ideas. Scan, find, and organize your audio plugins in one place, with a clear view of every installation on your Mac.">工具越多，越需要清晰的秩序。在一个地方扫描、查找和管理音频插件，理清 Mac 上的每一份安装，把注意力还给创作。</p>
-                    <div class="product-actions"><a class="button button-project" href="#download"><span data-en="Versions &amp; availability">版本与获取</span><span aria-hidden="true">↗</span></a><a class="text-link" href="#features"><span data-en="Explore the features">了解功能</span><span aria-hidden="true">↓</span></a></div>
+                    <div class="product-actions"><a class="button button-project" href="#download"><span data-en="Open source &amp; support">开源与支持</span><span aria-hidden="true">↗</span></a><a class="text-link" href="#features"><span data-en="Explore the features">了解功能</span><span aria-hidden="true">↓</span></a></div>
                 </div>
                 <div class="product-emblem" aria-hidden="true">
                     <svg viewBox="0 0 520 440" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -68,11 +68,11 @@
             <dl class="product-facts">
                 <div><dt class="mono" data-en="PLATFORM">运行平台</dt><dd>macOS</dd></div>
                 <div><dt class="mono" data-en="PLUGIN FORMATS">插件格式</dt><dd>VST3 · VST2 · AU · AAX · CLAP</dd></div>
-                <div><dt class="mono" data-en="AVAILABILITY">获取状态</dt><dd data-en="First public beta concluded">第一轮公测已结束</dd></div>
+                <div><dt class="mono" data-en="RELEASE PLAN">发布计划</dt><dd data-en="Free &amp; open source planned">计划免费开源</dd></div>
             </dl>
         </section>
 
-        <nav class="product-section-nav section-shell" aria-label="项目导航" data-en-label="Project navigation"><a href="#overview" data-en="01 / Overview">01 / 界面概览</a><a href="#features" data-en="02 / Features">02 / 功能</a><a href="#workflow" data-en="03 / Workflow">03 / 工作流</a><a href="#download" data-en="04 / Availability">04 / 版本与获取</a></nav>
+        <nav class="product-section-nav section-shell" aria-label="项目导航" data-en-label="Project navigation"><a href="#overview" data-en="01 / Overview">01 / 界面概览</a><a href="#features" data-en="02 / Features">02 / 功能</a><a href="#workflow" data-en="03 / Workflow">03 / 工作流</a><a href="#download" data-en="04 / Open source &amp; support">04 / 开源与支持</a></nav>
 
         <section class="product-gallery section-shell" id="overview" aria-labelledby="gallery-title">
             <div class="gallery-heading"><p class="eyebrow mono">THE INTERFACE / 01</p><h2 class="gallery-title" id="gallery-title" data-en="A clear view.<br><span class='serif'>A quieter workspace.</span>">让庞杂的工具，<span class="serif">回归清晰。</span></h2></div>
@@ -113,15 +113,15 @@
 
         <section class="product-cta section-shell" id="download" aria-labelledby="download-title">
             <div id="pricing" class="cta-panel">
-                <p class="eyebrow mono">VERSIONS &amp; AVAILABILITY / 04</p>
-                <h2 id="download-title" data-en="Find your<br><span class='serif'>creative space.</span>">为下一次创作，<br><span class="serif">留些空间。</span></h2>
-                <p data-en="The first public beta has concluded. For the next release, availability, or feedback, get in touch with the developer.">第一轮公测已结束。关于下一轮更新、版本获取或使用反馈，欢迎直接与我联系。</p>
+                <p class="eyebrow mono">OPEN SOURCE &amp; SUPPORT / 04</p>
+                <h2 id="download-title" data-en="Good tools.<br><span class='serif'>For everyone.</span>">让好工具，<br><span class="serif">向每个人开放。</span></h2>
+                <p data-en="PluginHub will be free and open source. Future payments will be voluntary tips only, with no paid feature tiers or unlocks. For release information or feedback, get in touch.">PluginHub 计划免费开源。后续所有付费支持都只作为自愿打赏，功能不会按付费划分，也不需要付费解锁。关于发布进展或使用反馈，欢迎直接与我联系。</p>
                 <a class="button button-project" href="mailto:jerryuhoo@gmail.com?subject=PluginHub%20Inquiry"><span data-en="Contact the developer">联系开发者</span><span aria-hidden="true">↗</span></a>
                 <div class="edition-grid">
-                    <article class="edition"><p class="eyebrow mono">THE ESSENTIALS</p><h3 data-en="Free edition">免费版</h3><p class="edition-price" data-en="Free">免费</p><p data-en="The essentials for a more organized plugin library.">为日常插件整理，准备好基础工具。</p><ul><li data-en="Scan and manage your plugin library">扫描与管理插件库</li><li data-en="Basic plugin uninstall">基础插件卸载</li></ul></article>
-                    <article class="edition"><p class="eyebrow mono">A CLOSER LOOK</p><h3 data-en="Pro edition">Pro 版</h3><p class="edition-price">$5</p><p data-en="Take a closer look at what comes with each installation.">进一步查看每次安装背后的关联资源。</p><ul><li data-en="All Free edition features">包含免费版全部功能</li><li data-en="Deep scan for related installation files">深度扫描关联安装文件</li><li data-en="Locate user preset directories">查找用户预置文件目录</li></ul></article>
+                    <article class="edition"><p class="eyebrow mono">OPEN SOURCE</p><h3 data-en="Next: free and open source">下一步，免费开源</h3><p data-en="All features are planned to be available for free, without separate free and paid editions. Source release details will be shared when ready.">所有功能计划免费提供，不再区分免费版与付费版。源码发布信息会在准备好后更新。</p></article>
+                    <article class="edition"><p class="eyebrow mono">VOLUNTARY SUPPORT</p><h3 data-en="Support is always optional">支持，完全出于自愿</h3><p data-en="Future tips will support development and maintenance. Tipping will not unlock extra features or change access to the software.">未来仅通过自愿打赏支持维护与开发。打赏不会解锁额外功能，也不会影响软件的使用权限。</p></article>
                 </div>
-                <p class="cta-note" data-en="Both editions are awaiting the next release. Contact the developer about availability.">两个版本均待后续发布，获取信息请联系开发者。</p>
+                <p class="cta-note" data-en="Tipping is not available yet. Support channels will be added later.">打赏渠道尚未开通，后续再补充。</p>
             </div>
         </section>
 

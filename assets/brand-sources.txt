@@ -1,0 +1,10 @@
+Dolby Atmos horizontal logo
+Local file: dolby-atmos.png
+Official source page: https://news.dolby.com/en-WW/assets/228229/
+Original download URL: https://d21buns5ku92am.cloudfront.net/68644/images/413934-Dolby%20Atmos%20Horizontal-015e44-original-1641853769.png?download=1
+Retrieved: 2026-10-02
+Dimensions: 665 x 95 pixels (7:1)
+Appearance: black logo with transparent background
+Asset preserved as downloaded; no tracing, cropping or recoloring.
+SHA-256: e2127a244232c0dca7c3e8499685e352c75977a1b80332eb2be93998114d3045
+Dolby, Dolby Atmos, and the double-D symbol are trademarks of Dolby Laboratories.
