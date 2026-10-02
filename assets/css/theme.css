@@ -1,0 +1,310 @@
+/* Shared appearance settings. The clock and saved preference live in theme.js. */
+:root {
+    --paper: #f3f2ee;
+    --ink: #22231f;
+    --muted: #6b6c65;
+    --blue: #2948dc;
+    --line: #d6d6cd;
+    --sans: "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    --theme-surface: #fcfbf8;
+    --theme-hover: #e8e9e1;
+    --theme-header: rgba(243, 242, 238, .95);
+    --theme-shadow: 0 12px 45px #22231f16, 0 2px 7px #22231f08;
+    --theme-on-accent: #fff;
+    color-scheme: light;
+}
+
+html[data-theme="light"] { color-scheme: light; }
+
+html[data-theme="dark"] {
+    --paper: #11161d;
+    --ink: #eeece4;
+    --muted: #a7b0bd;
+    --blue: #a3b5ff;
+    --line: #343e4c;
+    --theme-surface: #1a222d;
+    --theme-hover: #263242;
+    --theme-header: rgba(17, 22, 29, .96);
+    --theme-shadow: 0 18px 55px #0007, 0 2px 8px #0004;
+    --theme-on-accent: #111923;
+    color-scheme: dark;
+}
+
+html[data-theme="dark"] .project-page {
+    --project-accent: #efac88;
+    --project-tint: #292320;
+    --project-dark: #211d1c;
+    --project-light: #f5c4a4;
+}
+
+html[data-theme="dark"] .theme-atmos {
+    --project-accent: #90c8d0;
+    --project-tint: #1c2a31;
+    --project-dark: #162329;
+    --project-light: #bddedf;
+}
+
+html[data-theme="dark"] .theme-hub {
+    --project-accent: #c1afe7;
+    --project-tint: #282432;
+    --project-dark: #211e2b;
+    --project-light: #d7c8ed;
+}
+
+.site-header { background: var(--theme-header); }
+.site-header .header-controls { gap: 15px; }
+.detail-header { gap: 20px; }
+
+/* Appearance menu: small enough to belong to the navigation, with a clear selection. */
+[data-theme-control], .theme-control { position: relative; flex-shrink: 0; }
+.theme-control { font-family: var(--sans); color: var(--ink); }
+.theme-control [hidden] { display: none !important; }
+.theme-trigger {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    min-height: 40px;
+    padding: 8px 7px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color .16s, background .16s;
+}
+.theme-trigger:hover, .theme-trigger[aria-expanded="true"] {
+    background: var(--theme-hover);
+    color: var(--ink);
+}
+.theme-icon { display: grid; place-items: center; flex: 0 0 17px; }
+.theme-trigger svg { display: block; width: 17px; height: 17px; }
+.theme-label { font-size: 10px; line-height: 1.3; }
+.theme-chevron { font-size: 13px; line-height: 1; margin-left: 1px; }
+.theme-trigger[aria-expanded="true"] .theme-chevron { transform: rotate(180deg); }
+.theme-control button:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+}
+.theme-panel {
+    position: absolute;
+    z-index: 40;
+    top: calc(100% + 13px);
+    right: 0;
+    width: 250px;
+    max-width: calc(100vw - 32px);
+    padding: 19px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-sizing: border-box;
+    background: var(--theme-surface);
+    color: var(--ink);
+    box-shadow: var(--theme-shadow);
+    text-align: left;
+}
+.theme-panel-title {
+    margin: 0 0 15px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: .3px;
+    color: var(--ink);
+}
+.theme-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.theme-options > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    min-height: 67px;
+    padding: 11px 5px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: transparent;
+    color: var(--muted);
+    font: 10px/1.4 var(--sans);
+    cursor: pointer;
+    transition: background .16s, color .16s, border-color .16s;
+}
+.theme-options > button > svg { display: block; width: 18px; height: 18px; flex-shrink: 0; }
+.theme-options > button:hover { color: var(--ink); background: var(--theme-hover); }
+.theme-options > button[aria-pressed="true"] {
+    background: var(--blue);
+    color: var(--theme-on-accent);
+    border-color: var(--blue);
+}
+.theme-schedule {
+    margin: 15px 0 0;
+    padding-top: 13px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+/* Night colors are assigned to surfaces and line art; media keeps its original pixels. */
+html[data-theme="dark"] ::selection { background: var(--blue); color: var(--theme-on-accent); }
+html[data-theme="dark"] .project-page ::selection { background: var(--project-accent); color: var(--theme-on-accent); }
+html[data-theme="dark"] .skip-link { color: var(--paper); }
+html[data-theme="dark"] .language-switch > span { color: #738093; }
+html[data-theme="dark"] .sound-art {
+    background-image: radial-gradient(#3b4556 .75px, transparent .75px);
+}
+html[data-theme="dark"] .sound-fallback [stroke="#2948dc"] { stroke: var(--blue); }
+html[data-theme="dark"] .crosshair { color: #8490a1; }
+html[data-theme="dark"] .sound-modes button[aria-pressed="true"] { color: var(--theme-on-accent); }
+html[data-theme="dark"] .sound-modes button:hover:not([aria-pressed="true"]) { background: var(--theme-hover); }
+html[data-theme="dark"] #motion-toggle:hover { background: var(--theme-hover); color: var(--ink); }
+html[data-theme="dark"] .fire-visual { background: #252725; }
+html[data-theme="dark"] .atmos-visual { background: #1c3037; color: #c2dce0; }
+html[data-theme="dark"] .hub-visual { background: #2a2639; color: #d4c9eb; }
+html[data-theme="dark"] .atmos-rings i { border-color: #7badb45c; }
+html[data-theme="dark"] .format-labels span { border-color: #a896cf69; }
+html[data-theme="dark"] .project-visual img { box-shadow: 0 20px 40px #0005; }
+html[data-theme="dark"] .music-section { background: #1c251f; color: #f1f0e6; }
+html[data-theme="dark"] .music-section .button-light { color: #273025; }
+html[data-theme="dark"] .product-emblem {
+    background-image: radial-gradient(#46505b80 .75px, transparent .75px);
+}
+html[data-theme="dark"] .product-emblem::before,
+html[data-theme="dark"] .product-emblem::after { color: #7d8998; }
+html[data-theme="dark"] .product-emblem svg [fill="#f3f2ee"] { fill: var(--paper); }
+html[data-theme="dark"] .product-emblem svg [stroke="#f3f2ee"] { stroke: var(--paper); }
+html[data-theme="dark"] .button-project,
+html[data-theme="dark"] .gallery-tabs button[aria-pressed="true"],
+html[data-theme="dark"] .project-art-mode[aria-pressed="true"] { color: var(--theme-on-accent); }
+html[data-theme="dark"] .button-project:hover { background: var(--project-light); color: var(--theme-on-accent); }
+html[data-theme="dark"] .project-art-mode:hover:not([aria-pressed="true"]) { background: var(--project-tint); }
+html[data-theme="dark"] .product-story { color: var(--ink); }
+html[data-theme="dark"] .product-story .story-copy > p:not(.eyebrow),
+html[data-theme="dark"] .product-story .workflow-list p { color: #c0c6ce; }
+html[data-theme="dark"] .product-story .product-note { color: #a7b4bf; }
+html[data-theme="dark"] .product-story .workflow-list li { border-color: #ffffff24; }
+html[data-theme="dark"] .cta-panel .text-link,
+html[data-theme="dark"] .edition { border-color: #63708270; }
+html[data-theme="dark"] .edition { background: #11161d26; }
+html[data-theme="dark"] .edition .edition-price { color: var(--ink); }
+html[data-theme="dark"] .image-dialog { background: var(--theme-surface); border-color: var(--line); }
+html[data-theme="dark"] .image-dialog::backdrop { background: #060a10e8; }
+html[data-theme="dark"] .dialog-close:hover { background: var(--theme-hover); }
+
+/* The policy is a quiet reading page, with the same navigation and appearance control. */
+.privacy-page, .privacy-page * { box-sizing: border-box; }
+.privacy-page {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 24px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+}
+.policy-toolbar {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 48px;
+    margin-bottom: 20px;
+}
+.policy-toolbar > a { color: var(--muted); font-size: 12px; text-decoration: none; }
+.policy-toolbar > a:hover { color: var(--blue); }
+.privacy-page .container {
+    padding: clamp(24px, 5vw, 57px);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--theme-surface);
+}
+.privacy-page h1 {
+    margin: 0 0 15px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    font-size: clamp(29px, 4.7vw, 42px);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -1px;
+}
+.privacy-page h2 { margin: 37px 0 13px; color: var(--ink); font-size: 21px; font-weight: 500; line-height: 1.4; }
+.privacy-page .container p, .privacy-page .container li { color: var(--muted); }
+.privacy-page .container p { margin: 16px 0; }
+.privacy-page .container ul { padding-left: 21px; }
+.privacy-page .container li { padding-left: 3px; margin-block: 10px; }
+.privacy-page .container strong { color: var(--ink); font-weight: 600; }
+.privacy-page .container .last-updated { color: var(--muted); font: 11px/1.8 var(--mono); margin-bottom: 33px; }
+.privacy-page a:focus-visible { outline: 2px solid var(--blue); outline-offset: 5px; }
+
+@media (max-width: 1100px) {
+    .site-header { gap: 20px; }
+    .site-header .main-nav { gap: 22px; }
+    .site-header .header-controls { gap: 10px; }
+    .site-header .language-switch { padding-left: 17px; }
+    .detail-header { gap: 14px; }
+    .detail-header .language-switch { padding-left: 14px; }
+}
+
+@media (max-width: 860px) and (min-width: 761px) {
+    .site-header { gap: 13px; }
+    .site-header .main-nav { gap: 15px; }
+    .site-header .wordmark { font-size: 14px; }
+    .site-header .brand-mark { width: 32px; }
+    .site-header .language-switch { padding-left: 12px; }
+    .site-header .theme-trigger { padding-inline: 5px; }
+    .site-header .theme-label, .site-header .theme-chevron { display: none; }
+}
+
+@media (max-width: 760px) {
+    .site-header { gap: 10px; }
+    .site-header .header-controls { gap: 7px; }
+    .site-header .language-switch { padding-left: 0; }
+    .detail-header { gap: 9px; }
+    .theme-trigger { width: 36px; height: 40px; padding: 7px; gap: 0; }
+    .theme-label, .theme-chevron { display: none; }
+    .site-header .theme-panel { position: fixed; top: 82px; right: 16px; }
+    .theme-options > button { min-height: 70px; font-size: 11px; }
+    .privacy-page { padding: 16px; font-size: 13px; }
+    .policy-toolbar { margin-bottom: 13px; }
+    .privacy-page .container { padding: 27px 23px; }
+    .privacy-page h2 { font-size: 20px; }
+}
+
+@media (max-width: 480px) {
+    .detail-header .detail-back { min-width: 29px; min-height: 40px; justify-content: center; gap: 0; }
+    .detail-header .detail-back > span[data-en] {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+    .detail-header .detail-back > span[aria-hidden="true"] { font-size: 17px; }
+}
+
+@media (max-width: 380px) {
+    .site-header { padding-inline: 16px; gap: 7px; }
+    .site-header .wordmark { font-size: 11px; letter-spacing: .6px; gap: 6px; }
+    .site-header .brand-mark { width: 25px; height: 29px; }
+    .site-header .wordmark-cn { font-size: 7px; letter-spacing: 2.5px; }
+    .site-header .header-controls { gap: 5px; }
+    .site-header .language-switch { gap: 3px; font-size: 9px; }
+    .site-header .menu-toggle { width: 32px; padding-inline: 6px; }
+    .theme-trigger { width: 33px; }
+    .detail-header { gap: 7px; }
+    .privacy-page .container { padding: 25px 19px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .theme-trigger, .theme-options > button { transition: none; }
+}

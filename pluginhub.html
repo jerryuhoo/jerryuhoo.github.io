@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#f3f2ee">
+    <script src="assets/js/theme.js"></script>
     <meta name="description" content="PluginHub，羽翼深蓝为音乐制作人设计的 macOS 音频插件管理工具。扫描五种插件格式，整理安装副本，逐项确认清理。" data-en="PluginHub by Blue Wings. A macOS audio plugin manager to scan five formats, organize installations, and review cleanup before moving files to Trash.">
     <meta property="og:title" content="PluginHub — Blue Wings">
     <meta property="og:description" content="Less searching. More creating. 给灵感，腾出空间。">
@@ -16,6 +17,7 @@
     <script src="assets/js/project.js" defer></script>
     <script src="assets/js/project-art-hub.js" defer></script>
     <script src="assets/js/project-art.js" defer></script>
+    <link rel="stylesheet" href="assets/css/theme.css">
 </head>
 <body class="project-page theme-hub" data-project="hub" data-title-en="PluginHub — Less searching. More creating. · Blue Wings">
     <a class="skip-link" href="#main" data-en="Skip to content">跳至主要内容</a>
@@ -24,7 +26,8 @@
             <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M4 9 18 17 16 31 4 9ZM36 9 22 17 24 31 36 9Z" fill="currentColor"/><path d="m14 5 6 7 6-7-6 19-6-19Z" fill="currentColor"/></svg>
             <span>BLUE WINGS<span class="wordmark-cn">羽翼深蓝</span></span>
         </a>
-        <a class="detail-back" href="index.html#work"><span aria-hidden="true">↖</span> <span data-en="All projects">全部项目</span></a>
+        <a class="detail-back" href="index.html#work" aria-label="全部项目" data-en-label="All projects"><span aria-hidden="true">↖</span> <span data-en="All projects">全部项目</span></a>
+        <div data-theme-control></div>
         <div class="language-switch" role="group" aria-label="Language">
             <button type="button" data-language="zh" aria-pressed="true">中</button><span aria-hidden="true">/</span><button type="button" data-language="en" aria-pressed="false">EN</button>
         </div>
@@ -45,11 +48,11 @@
                         <g stroke="currentColor" stroke-width="1" opacity=".17"><path d="M45 90h430M45 170h430M45 250h430M45 330h430M100 35v365M180 35v365M260 35v365M340 35v365M420 35v365"/><circle cx="260" cy="220" r="184"/></g>
                         <g transform="translate(88 40) rotate(-12 172 172)" stroke="currentColor" stroke-width="1.5">
                             <path d="M16 314h300v22H16z" fill="currentColor" opacity=".08"/>
-                            <rect x="0" y="35" width="304" height="286" rx="4" fill="#f3f2ee"/>
-                            <rect x="21" y="15" width="304" height="286" rx="4" fill="#f3f2ee"/>
-                            <rect x="42" y="-5" width="304" height="286" rx="4" fill="#f3f2ee"/>
+                            <rect x="0" y="35" width="304" height="286" rx="4" fill="var(--paper, #f3f2ee)"/>
+                            <rect x="21" y="15" width="304" height="286" rx="4" fill="var(--paper, #f3f2ee)"/>
+                            <rect x="42" y="-5" width="304" height="286" rx="4" fill="var(--paper, #f3f2ee)"/>
                             <path d="M42 38h304"/><circle cx="61" cy="17" r="3" fill="currentColor" stroke="none"/><circle cx="74" cy="17" r="3" fill="currentColor" stroke="none" opacity=".5"/><circle cx="87" cy="17" r="3" fill="currentColor" stroke="none" opacity=".25"/>
-                            <g transform="translate(66 61)"><rect width="70" height="81" rx="2" fill="currentColor"/><circle cx="35" cy="33" r="17" stroke="#f3f2ee"/><path d="M35 17v16l11 11" stroke="#f3f2ee"/><path d="M17 64h36" stroke="#f3f2ee"/>
+                            <g transform="translate(66 61)"><rect width="70" height="81" rx="2" fill="currentColor"/><circle cx="35" cy="33" r="17" stroke="var(--paper, #f3f2ee)"/><path d="M35 17v16l11 11" stroke="var(--paper, #f3f2ee)"/><path d="M17 64h36" stroke="var(--paper, #f3f2ee)"/>
                                 <rect x="94" width="70" height="81" rx="2"/><path d="M108 43v-9m8 19V20m8 39V14m8 33V25m8 18v-9m8 21V23"/><path d="M111 64h36"/>
                                 <rect x="188" width="70" height="81" rx="2"/><path d="M204 37c6-28 12 28 18 0s12 28 18 0"/><path d="M205 64h36"/>
                                 <rect y="108" width="70" height="81" rx="2"/><path d="M16 165v-38m12 38v-38m14 38v-38m12 38v-38" opacity=".4"/><path d="M12 142h8m4 11h8m6-19h8m4 11h8" stroke-width="4"/>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#f3f2ee">
+    <script src="assets/js/theme.js"></script>
     <meta name="description" content="羽翼深蓝（Yifeng Yu / Blue Wings）的个人作品集。探索电子音乐、空间音频，以及 Fire、Atmos Check 和 PluginHub 音频工具。">
     <meta property="og:title" content="Blue Wings — Sound × Code">
     <meta property="og:description" content="音乐制作人、独立开发者。在声音与代码之间，探索新的可能。">
@@ -15,6 +16,7 @@
     <link rel="stylesheet" href="assets/css/home.css">
     <script src="assets/js/home.js" defer></script>
     <script src="assets/js/sound-field.js" defer></script>
+    <link rel="stylesheet" href="assets/css/theme.css">
 </head>
 <body>
     <a class="skip-link" href="#main" data-i18n="skip">跳至主要内容</a>
@@ -30,6 +32,7 @@
             <a href="#contact" class="nav-contact"><span data-i18n="navContact">聊聊想法</span><span aria-hidden="true">↗</span></a>
         </nav>
         <div class="header-controls">
+            <div data-theme-control></div>
             <div class="language-switch" role="group" aria-label="Language">
                 <button type="button" data-language="zh" aria-pressed="true">中</button><span aria-hidden="true">/</span><button type="button" data-language="en" aria-pressed="false">EN</button>
             </div>
@@ -51,7 +54,7 @@
                 <div class="hero-artwork">
                     <div class="art-corner art-corner-top mono"><span>FIG. 01</span><span id="art-caption">SPATIAL FIELD</span></div>
                     <div class="sound-art" role="img" aria-label="随指针轻轻旋转的蓝色声场雕塑" data-i18n-label="artDescription">
-                        <svg class="sound-fallback" viewBox="0 0 600 560" aria-hidden="true"><g fill="none" stroke="#2948dc" stroke-width="1.1" transform="translate(300 280) rotate(-27)"><ellipse rx="235" ry="128"/><ellipse rx="225" ry="145"/><ellipse rx="209" ry="165"/><ellipse rx="190" ry="182"/><ellipse rx="169" ry="195"/><ellipse rx="145" ry="209"/><ellipse rx="120" ry="218"/><ellipse rx="95" ry="228"/><ellipse rx="65" ry="235"/><ellipse rx="34" ry="239"/></g></svg>
+                        <svg class="sound-fallback" viewBox="0 0 600 560" aria-hidden="true"><g fill="none" stroke="var(--blue, #2948dc)" stroke-width="1.1" transform="translate(300 280) rotate(-27)"><ellipse rx="235" ry="128"/><ellipse rx="225" ry="145"/><ellipse rx="209" ry="165"/><ellipse rx="190" ry="182"/><ellipse rx="169" ry="195"/><ellipse rx="145" ry="209"/><ellipse rx="120" ry="218"/><ellipse rx="95" ry="228"/><ellipse rx="65" ry="235"/><ellipse rx="34" ry="239"/></g></svg>
                         <canvas id="sound-field" aria-hidden="true"></canvas>
                     </div>
                     <div class="art-note mono"><span class="crosshair" aria-hidden="true">+</span><span data-i18n="artNote">声音的另一种形状</span><span class="crosshair" aria-hidden="true">+</span></div>

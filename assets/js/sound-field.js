@@ -19,6 +19,7 @@
   const weights = [1, 0, 0];
   const points = new Float32Array((ROWS + 1) * STRIDE * 3);
   const depthPaths = Array.from({ length: 8 }, () => []);
+  const strokePalette = new Array(depthPaths.length);
   const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
   const pointer = { x: 0, y: 0, targetX: 0, targetY: 0 };
   let selectedMode = 0;
@@ -32,6 +33,40 @@
   let rendered = false;
 
   const canAnimate = () => !paused && visible && !document.hidden;
+
+  function colorRGB(value) {
+    const hex = value.match(/^#([\da-f]{3,4}|[\da-f]{6}|[\da-f]{8})$/i);
+    if (hex) {
+      const digits = hex[1].length < 5 ? hex[1].split('').map(char => char + char).join('') : hex[1];
+      return [0, 2, 4].map(index => parseInt(digits.slice(index, index + 2), 16));
+    }
+    const rgb = value.match(/^rgba?\(([^)]+)\)$/i);
+    if (!rgb) return null;
+    const channels = rgb[1].trim().split(/[,\s/]+/).slice(0, 3).map(channel => {
+      const number = parseFloat(channel);
+      return Math.round(Math.max(0, Math.min(255, channel.endsWith('%') ? number * 2.55 : number)));
+    });
+    return channels.length === 3 && channels.every(Number.isFinite) ? channels : null;
+  }
+
+  // Resolve CSS only when the palette changes, including while motion is paused.
+  function refreshPalette() {
+    const dark = document.documentElement.dataset.theme === 'dark';
+    let rgb = dark ? [145, 165, 255] : [41, 72, 220];
+    const previousStroke = context.strokeStyle;
+    try {
+      const style = window.getComputedStyle(container);
+      const color = style.getPropertyValue('--blue').trim() || style.color;
+      context.strokeStyle = `rgb(${rgb.join(',')})`;
+      context.strokeStyle = color;
+      rgb = colorRGB(context.strokeStyle) || rgb;
+    } catch (_) { /* A usable theme palette remains available without style resolution. */ }
+    context.strokeStyle = previousStroke;
+    for (let bucket = 0; bucket < strokePalette.length; bucket++) {
+      const alpha = dark ? 0.18 + bucket * 0.087 : 0.12 + bucket * 0.077;
+      strokePalette[bucket] = `rgba(${rgb.join(',')},${alpha.toFixed(3)})`;
+    }
+  }
 
   function render() {
     if (!width || !height) return;
@@ -116,7 +151,7 @@
         context.moveTo(points[first], points[first + 1]);
         context.lineTo(points[second], points[second + 1]);
       }
-      context.strokeStyle = `rgba(35, 65, 205, ${0.12 + bucket * 0.077})`;
+      context.strokeStyle = strokePalette[bucket];
       context.lineWidth = (width < 440 ? 0.51 : 0.62) + bucket * 0.022;
       context.stroke();
     }
@@ -192,6 +227,10 @@
     paused = Boolean(event.detail && event.detail.paused);
     syncMotion();
   });
+  window.addEventListener('site-theme-change', () => {
+    refreshPalette();
+    render();
+  });
   document.addEventListener('visibilitychange', syncMotion);
   function syncMotionPreference(event) {
     paused = event.matches;
@@ -208,6 +247,7 @@
   }
   if ('ResizeObserver' in window) new ResizeObserver(resize).observe(container);
   window.addEventListener('resize', resize, { passive: true });
+  refreshPalette();
   resize();
   syncMotion();
 })();

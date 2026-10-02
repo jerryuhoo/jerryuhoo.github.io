@@ -45,7 +45,7 @@
         for (let index = 0; index < 6; index += 1) {
             const group = node('g', { stroke: 'currentColor', 'stroke-width': '1.15' });
             const shadow = node('rect', { x: -33, y: -38, width: 76, height: 86, rx: 3, fill: 'currentColor', opacity: '.055', stroke: 'none' }, group);
-            node('rect', { x: -38, y: -43, width: 76, height: 86, rx: 3, fill: '#f3f2ee' }, group);
+            node('rect', { x: -38, y: -43, width: 76, height: 86, rx: 3, fill: 'var(--paper, #f3f2ee)' }, group);
             node('path', { d: 'M-38-23H38', opacity: '.55' }, group);
             node('circle', { cx: -26, cy: -33, r: 1.9, fill: 'currentColor', stroke: 'none' }, group);
             node('path', { d: 'M-17-33H4', opacity: '.35' }, group);
@@ -63,7 +63,7 @@
             } else if (index === 2) {
                 [-16, 0, 16].forEach(x => {
                     node('path', { d: `M${x}-14V22`, opacity: '.3' }, icon);
-                    animated.push(node('rect', { x: x - 4, y: 0, width: 8, height: 5, rx: '.8', fill: '#f3f2ee' }, icon));
+                    animated.push(node('rect', { x: x - 4, y: 0, width: 8, height: 5, rx: '.8', fill: 'var(--paper, #f3f2ee)' }, icon));
                 });
             } else if (index === 3) {
                 for (let i = 0; i < 7; i += 1) {
