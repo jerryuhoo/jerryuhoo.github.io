@@ -232,3 +232,33 @@
     .product-facts > div { padding-inline: 10px; }
     .project-next h2 { font-size: 32px; }
 }
+
+/* Interactive studies retain their static SVG fallback until initialization succeeds. */
+.product-emblem.is-interactive { display: block; aspect-ratio: auto; place-items: normal; }
+.project-art-stage { position: relative; width: 100%; aspect-ratio: 1.1; touch-action: pan-y; cursor: crosshair; }
+.project-art-stage > svg { display: block; width: 100%; height: 100%; overflow: hidden; }
+.project-art-stage:focus-visible { outline: 1px dashed var(--project-accent); outline-offset: 4px; }
+.project-art-controls { display: flex; align-items: center; width: 100%; gap: 10px; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.project-art-caption { flex: 1; font-size: 8px; letter-spacing: .7px; white-space: nowrap; }
+.project-art-state { font-size: 7px; letter-spacing: 1px; color: var(--muted); }
+.project-art-toggle { display: grid; place-items: center; width: 31px; height: 31px; padding: 0; flex-shrink: 0; border: 1px solid var(--line); border-radius: 50%; background: var(--paper); color: var(--project-accent); font-size: 15px; }
+.project-art-toggle:hover { border-color: var(--project-accent); }
+.project-art-modes { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 13px; }
+.project-art-mode { background: transparent; padding: 7px 10px; min-height: 30px; border: 1px solid transparent; border-radius: 20px; font-size: 9px; color: var(--muted); transition: color .25s, background .25s; }
+.project-art-mode:hover { color: var(--project-accent); border-color: var(--project-tint); }
+.project-art-mode[aria-pressed=true] { color: white; background: var(--project-accent); }
+.project-art-hint { margin-top: 14px; color: var(--muted); font-size: 9px; letter-spacing: .7px; }
+.product-emblem.is-interactive::after { display: none; }
+@media (max-width: 760px) {
+    .product-emblem.is-interactive { max-width: 360px; margin-top: 7px; }
+    .project-art-stage { aspect-ratio: 1.15; }
+    .project-art-controls { padding-block: 9px; }
+    .project-art-caption { font-size: 8px; }
+    .project-art-mode { padding: 9px 11px; }
+    .project-art-hint { margin-top: 12px; font-size: 8px; }
+}
+@media (max-width: 380px) {
+    .project-art-modes { gap: 4px; }
+    .project-art-mode { padding: 8px 9px; font-size: 8px; }
+    .project-art-state { font-size: 6px; }
+}
