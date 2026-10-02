@@ -3,608 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>羽翼深蓝 - 音乐制作人 & 程序员</title>
-
-    <!-- THIS IS THE NEW LINE FOR THE FAVICON -->
+    <meta name="theme-color" content="#f3f2ee">
+    <meta name="description" content="羽翼深蓝（Yifeng Yu / Blue Wings）的个人作品集。探索电子音乐、空间音频，以及 Fire、Atmos Check 和 PluginHub 音频工具。">
+    <meta property="og:title" content="Blue Wings — Sound × Code">
+    <meta property="og:description" content="音乐制作人、独立开发者。在声音与代码之间，探索新的可能。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.bluewingsmusic.com/assets/avatar.jpg">
+    <meta property="og:url" content="https://www.bluewingsmusic.com/">
+    <title>羽翼深蓝 Blue Wings — 声音与代码之间</title>
     <link rel="icon" type="image/png" href="assets/favicon.png">
-
-    <!-- Tailwind CSS for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-        /* Custom styles and animations */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a192f;
-            color: #e6f1ff;
-            scroll-behavior: smooth;
-            padding-top: 64px;
-        }
-
-        .sidebar-open {
-            transform: translateX(0);
-        }
-
-        #wave-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .top-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background-color: rgba(10, 25, 47, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(45, 85, 133, 0.5);
-        }
-
-        .nav-link.active {
-            color: #60a5fa;
-            /* text-blue-400 */
-        }
-
-        .lang-btn.active {
-            background-color: #2563eb;
-            /* blue-600 */
-            color: #ffffff;
-        }
-
-        .animated-gradient {
-            background: linear-gradient(-45deg, #0a192f, #111827, #0d3d56, #0a192f);
-            background-size: 400% 400%;
-            animation: gradient-flow 20s ease infinite;
-        }
-
-        @keyframes gradient-flow {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .scroll-fade {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .scroll-fade.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .card-glow {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .card-glow::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 0.75rem;
-            background: radial-gradient(circle at 50% 50%, rgba(29, 78, 216, 0.3), transparent 70%);
-            filter: blur(40px);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: -1;
-        }
-
-        .card-glow:hover {
-            transform: translateY(-10px);
-        }
-
-        .card-glow:hover::before {
-            opacity: 1;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/home.css">
+    <script src="assets/js/home.js" defer></script>
+    <script src="assets/js/sound-field.js" defer></script>
 </head>
-<body class="antialiased">
-    <!-- Top Navigation Bar -->
-    <nav class="top-nav">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
-
-            <button id="hamburger-button" class="md:hidden text-white p-2 mr-4 z-[1100]">
-                <i class="fas fa-bars fa-lg"></i>
-            </button>
-
-            <a href="#home" class="text-xl font-bold text-white flex-shrink-0">羽翼深蓝</a>
-
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors"
-                    data-lang-key="nav_about">个人介绍</a>
-                <a href="#featured-ep" class="nav-link text-gray-300 hover:text-white transition-colors"
-                    data-lang-key="nav_dolby">杜比全景声混音</a>
-                <a href="fire.html" class="text-gray-300 hover:text-white transition-colors"
-                    data-lang-key="nav_plugin">Fire 插件</a>
-                <a href="pluginhub.html" class="text-gray-300 hover:text-white transition-colors"
-                    data-lang-key="nav_pluginhub">PluginHub</a>
-                <a href="atmos_check.html" class="text-gray-300 hover:text-white transition-colors">Atmos Check</a>
-                <a href="#music" class="nav-link text-gray-300 hover:text-white transition-colors"
-                    data-lang-key="nav_music">音乐作品</a>
-                <a href="#contact" class="nav-link text-gray-300 hover:text-white transition-colors"
-                    data-lang-key="nav_contact">联系方式</a>
+<body>
+    <a class="skip-link" href="#main" data-i18n="skip">跳至主要内容</a>
+    <header class="site-header">
+        <a class="wordmark" href="#home" aria-label="Blue Wings · 首页">
+            <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M4 9 18 17 16 31 4 9ZM36 9 22 17 24 31 36 9Z" fill="currentColor"/><path d="m14 5 6 7 6-7-6 19-6-19Z" fill="currentColor"/></svg>
+            <span>BLUE WINGS<span class="wordmark-cn">羽翼深蓝</span></span>
+        </a>
+        <nav id="main-nav" class="main-nav" aria-label="主导航" data-i18n-label="navigation">
+            <a href="#work" data-i18n="navWork">精选项目</a>
+            <a href="#music" data-i18n="navMusic">音乐</a>
+            <a href="#about" data-i18n="navAbout">关于我</a>
+            <a href="#contact" class="nav-contact"><span data-i18n="navContact">聊聊想法</span><span aria-hidden="true">↗</span></a>
+        </nav>
+        <div class="header-controls">
+            <div class="language-switch" role="group" aria-label="Language">
+                <button type="button" data-language="zh" aria-pressed="true">中</button><span aria-hidden="true">/</span><button type="button" data-language="en" aria-pressed="false">EN</button>
             </div>
-
-            <div class="flex items-center space-x-2">
-                <button id="lang-zh"
-                    class="lang-btn px-3 py-1 text-sm rounded-md transition-colors duration-300">中</button>
-                <button id="lang-en"
-                    class="lang-btn px-3 py-1 text-sm rounded-md transition-colors duration-300">EN</button>
-            </div>
-        </div>
-    </nav>
-
-    <div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-gray-900 bg-opacity-90 backdrop-blur-lg shadow-lg z-[1050]
-            transform -translate-x-full transition-transform duration-300 ease-in-out">
-        <div class="flex flex-col items-start p-8 space-y-6 mt-16">
-            <a href="#about" class="sidebar-link text-lg text-gray-300 hover:text-white"
-                data-lang-key="nav_about">个人介绍</a>
-            <a href="#featured-ep" class="sidebar-link text-lg text-gray-300 hover:text-white"
-                data-lang-key="nav_dolby">杜比全景声混音</a>
-            <a href="fire.html" class="sidebar-link text-lg text-gray-300 hover:text-white"
-                data-lang-key="nav_plugin">Fire 插件</a>
-            <a href="pluginhub.html" class="sidebar-link text-lg text-gray-300 hover:text-white"
-                data-lang-key="nav_pluginhub">PluginHub</a>
-            <a href="atmos_check.html" class="sidebar-link text-lg text-gray-300 hover:text-white">Atmos Check</a>
-            <a href="#music" class="sidebar-link text-lg text-gray-300 hover:text-white"
-                data-lang-key="nav_music">音乐作品</a>
-            <a href="#contact" class="sidebar-link text-lg text-gray-300 hover:text-white"
-                data-lang-key="nav_contact">联系方式</a>
-        </div>
-    </div>
-
-    <!-- Header / Hero Section -->
-    <header id="home"
-        class="h-screen w-full flex flex-col justify-center items-center relative animated-gradient -mt-16">
-        <canvas id="wave-canvas"></canvas>
-        <div class="text-center px-4 z-10">
-            <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight">羽翼深蓝</h1>
-            <p data-lang-key="heroSubtitle" class="mt-4 text-xl md:text-2xl text-blue-200 font-light">
-                音乐制作人 & 全栈程序员
-            </p>
-        </div>
-        <div class="absolute bottom-10 animate-bounce z-10">
-            <a href="#about" aria-label="Scroll down">
-                <svg class="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                </svg>
-            </a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="打开菜单" data-i18n-label="menuOpen"><span></span><span></span></button>
         </div>
     </header>
 
-    <main class="max-w-5xl mx-auto px-6 py-20 space-y-28">
-
-        <section id="about" class="scroll-fade section-marker">
-            <h2 data-lang-key="aboutTitle" class="text-3xl font-bold text-center mb-12 text-blue-100">关于我</h2>
-            <div class="flex flex-col md:flex-row items-center gap-10">
-                <div class="md:w-2/3 space-y-4 text-lg text-gray-300">
-                    <p data-lang-key="aboutP1">你好，我是羽翼深蓝。我是一位热衷于探索声音与代码交织世界的艺术家。</p>
-                    <p data-lang-key="aboutP2">作为一名电子音乐制作人，我致力于创造沉浸式的听觉体验，尤其擅长利用<span
-                            class="font-bold text-blue-300">杜比全景声 (Dolby Atmos)</span>
-                        技术构建宏大的声场。同时，作为一名程序员，我对技术充满热情，享受用代码将创意变为现实的过程。</p>
-                    <p data-lang-key="aboutP3">我相信音乐与科技的结合能释放出无穷的创造力。欢迎来到我的世界。</p>
+    <main id="main">
+        <section class="hero section-shell" id="home" aria-labelledby="hero-title">
+            <div class="hero-topline mono"><span><span class="status-dot"></span> INDEPENDENT ARTIST & DEVELOPER</span><span class="hero-edition">SOUND × CODE / PORTFOLIO</span></div>
+            <div class="hero-layout">
+                <div class="hero-copy">
+                    <p class="eyebrow" data-i18n="heroEyebrow">羽翼深蓝 / YIFENG YU</p>
+                    <h1 id="hero-title">Sound.<br>Code.<br><span class="serif">Beyond.</span><span class="hero-asterisk" aria-hidden="true">✳</span></h1>
+                    <p class="hero-statement" data-i18n="heroStatement">在声音与代码之间，创造更多可能。</p>
+                    <p class="hero-description" data-i18n="heroDescription">音乐制作人，也是独立开发者。<br>创作沉浸式的声音，也打磨让创作更自由的工具。</p>
+                    <div class="hero-actions"><a class="button button-dark" href="#work"><span data-i18n="exploreWork">探索我的作品</span><span aria-hidden="true">↗</span></a><a class="text-link" href="#music"><span class="small-play" aria-hidden="true">▷</span><span data-i18n="listenMusic">听听我的音乐</span></a></div>
                 </div>
-                <div class="md:w-1/3 flex justify-center">
-                    <img src="assets/avatar.jpg"
-                        onerror="this.onerror=null;this.src='https://placehold.co/300x300/0a192f/e6f1ff?text=Avatar';"
-                        alt="个人头像"
-                        class="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-blue-800 shadow-lg">
-                </div>
-            </div>
-        </section>
-
-        <section id="featured-ep" class="scroll-fade section-marker">
-            <h2 data-lang-key="epTitle" class="text-3xl font-bold text-center mb-4 text-blue-100">杜比全景声混音EP</h2>
-            <p data-lang-key="epSubtitle" class="text-center text-gray-400 mb-12">一次关于梦魇的沉浸式声音旅程</p>
-            <a href="https://music.apple.com/us/album/nightmare-ep/1817530475" target="_blank" rel="noopener noreferrer"
-                class="block card-glow">
-                <div
-                    class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 border border-blue-900/50 transition-all duration-300">
-                    <img src="https://i.scdn.co/image/ab67616d0000b273d455772d39bb8ebccaf0643b"
-                        alt="Nightmare EP Album Cover" class="w-full md:w-64 h-auto rounded-lg shadow-2xl">
-                    <div class="flex-1 text-center md:text-left">
-                        <h3 class="text-4xl font-bold text-white">NIGHTMARE</h3>
-                        <p class="text-xl text-blue-300 mt-2">羽翼深蓝</p>
-                        <p data-lang-key="epDesc" class="text-gray-400 mt-4">
-                            这张EP是我在空间音频领域的一次深度探索。每一首曲目都经过精心设计，旨在通过杜比全景声技术，为您带来身临其境的听觉震撼。</p>
-                        <div class="mt-6 flex justify-center md:justify-start items-center gap-4">
-                            <span
-                                class="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                                <img src="https://d21buns5ku92am.cloudfront.net/68644/images/413933-Dolby%20Atmos%20Vertical-fcc018-original-1641853711.png"
-                                    alt="Dolby Atmos Logo" class="h-5 mr-2 filter invert">
-                                <span data-lang-key="epActionText">在 Apple Music 上体验</span>
-                            </span>
+                <div class="hero-artwork">
+                    <div class="art-corner art-corner-top mono"><span>FIG. 01</span><span id="art-caption">SPATIAL FIELD</span></div>
+                    <div class="sound-art" role="img" aria-label="随指针轻轻旋转的蓝色声场雕塑" data-i18n-label="artDescription">
+                        <svg class="sound-fallback" viewBox="0 0 600 560" aria-hidden="true"><g fill="none" stroke="#2948dc" stroke-width="1.1" transform="translate(300 280) rotate(-27)"><ellipse rx="235" ry="128"/><ellipse rx="225" ry="145"/><ellipse rx="209" ry="165"/><ellipse rx="190" ry="182"/><ellipse rx="169" ry="195"/><ellipse rx="145" ry="209"/><ellipse rx="120" ry="218"/><ellipse rx="95" ry="228"/><ellipse rx="65" ry="235"/><ellipse rx="34" ry="239"/></g></svg>
+                        <canvas id="sound-field" aria-hidden="true"></canvas>
+                    </div>
+                    <div class="art-note mono"><span class="crosshair" aria-hidden="true">+</span><span data-i18n="artNote">声音的另一种形状</span><span class="crosshair" aria-hidden="true">+</span></div>
+                    <div class="art-controls">
+                        <div class="sound-modes" role="group" aria-label="声场形态" data-i18n-label="artModes">
+                            <button type="button" data-sound-mode="spatial" aria-pressed="true" data-i18n="modeSpatial">空间</button>
+                            <button type="button" data-sound-mode="wave" aria-pressed="false" data-i18n="modeWave">波形</button>
+                            <button type="button" data-sound-mode="drive" aria-pressed="false" data-i18n="modeDrive">失真</button>
                         </div>
+                        <button type="button" id="motion-toggle" aria-pressed="false" aria-label="暂停动画" data-i18n-label="pauseMotion"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><path class="pause-symbol" d="M4 3h3v10H4zM9 3h3v10H9z"/><path class="play-symbol" d="m5 3 8 5-8 5z"/></svg></button>
                     </div>
                 </div>
-            </a>
+            </div>
+            <div class="hero-baseline"><span class="mono">MUSIC PRODUCTION &nbsp; / &nbsp; AUDIO SOFTWARE &nbsp; / &nbsp; CREATIVE EXPLORATION</span><a href="#work" class="scroll-link"><span data-i18n="scrollExplore">向下探索</span><span aria-hidden="true">↓</span></a></div>
         </section>
 
-        <section id="plugin-fire" class="scroll-fade">
-            <h2 data-lang-key="pluginTitle" class="text-3xl font-bold text-center mb-12 text-blue-100">开源音乐插件</h2>
-            <a href="fire.html" class="block card-glow">
-                <div
-                    class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 md:p-8 flex flex-col md:flex-row-reverse items-center gap-8 border border-blue-900/50 transition-all duration-300">
-                    <div class="md:w-1/2 flex justify-center">
-                        <img src="assets/Fire1.png"
-                            onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/jerryuhoo/Fire/master/Fire1.png';"
-                            alt="Fire Plugin UI" class="rounded-lg shadow-2xl w-full border border-blue-900/50">
-                    </div>
-                    <div class="flex-1 text-center md:text-left">
-                        <h3
-                            class="text-4xl font-bold text-white flex items-center gap-3 justify-center md:justify-start">
-                            <i class="fas fa-fire text-orange-400"></i>
-                            <span>Fire</span>
-                        </h3>
-                        <p data-lang-key="pluginSubtitle" class="text-xl text-blue-300 mt-2">免费开源的多段失真插件</p>
-                        <p data-lang-key="pluginDesc" class="text-gray-400 mt-4">Fire
-                            是一款我独立开发和设计的免费、开源多段失真插件。它旨在为声音设计师和音乐制作人提供一个强大而灵活的工具来塑造音色。</p>
-                        <div class="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded-full font-semibold">
-                            <span data-lang-key="pluginLearnMore">了解更多...</span>
-                        </div>
-                    </div>
+        <section class="work-section section-shell" id="work" aria-labelledby="work-title">
+            <div class="section-heading"><div><p class="eyebrow mono"><span class="section-number">01 /</span> SELECTED WORK</p><h2 id="work-title" data-i18n="workTitle">为声音，<span class="serif accent">造工具。</span></h2></div><p class="section-intro" data-i18n="workIntro">每一个工具，都始于创作中的一个真实问题。<br>从声音塑形到工作流，把想法变成日常。</p></div>
+            <div class="projects">
+                <article class="project project-fire" id="plugin-fire">
+                    <a href="fire.html" class="project-visual fire-visual" aria-label="探索 Fire 多段失真插件" data-i18n-label="fireLink">
+                        <div class="visual-topline mono"><span>01 / SOUND SHAPING</span><span>FIRE</span></div>
+                        <div class="fire-orbit" aria-hidden="true"></div><span class="fire-type" aria-hidden="true">Make some<br><i>beautiful noise.</i></span>
+                        <img class="fire-screenshot" src="assets/Fire1.png" alt="Fire 多段失真插件界面" data-i18n-alt="fireAlt" width="2004" height="1004" loading="lazy" decoding="async">
+                        <span class="visual-arrow" aria-hidden="true">↗</span>
+                    </a>
+                    <div class="project-info"><div class="project-title-row"><h3><a href="fire.html">Fire<span aria-hidden="true">↗</span></a></h3><span class="project-kind" data-i18n="fireKind">声音设计 / 开源插件</span></div><p data-i18n="fireDescription">让声音拥有自己的性格。多段失真、灵活调制与效果处理，从细腻的温度，到不循常规的音色。</p><div class="project-bottom"><ul class="tags" aria-label="Fire"><li>Multi-band</li><li>Distortion</li><li>Open Source</li></ul><a class="project-detail" href="fire.html"><span data-i18n="viewProject">探索项目</span><span aria-hidden="true">↗</span></a></div></div>
+                </article>
+                <article class="project project-atmos">
+                    <a href="atmos_check.html" class="project-visual atmos-visual" aria-label="探索 Atmos Check 音频检查工具" data-i18n-label="atmosLink">
+                        <div class="visual-topline mono"><span>02 / SPATIAL AUDIO</span><span class="mini-orbit" aria-hidden="true">◎</span></div>
+                        <div class="atmos-rings" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                        <span class="visual-heading">Every detail.<br><span class="serif">In its place.</span></span>
+                        <img src="assets/AtmosCheck1.png" alt="Atmos Check 母带与分轨检查界面" data-i18n-alt="atmosAlt" width="2400" height="1600" loading="lazy" decoding="async">
+                        <span class="visual-arrow" aria-hidden="true">↗</span>
+                    </a>
+                    <div class="project-info"><div class="project-title-row"><h3><a href="atmos_check.html">Atmos Check<span aria-hidden="true">↗</span></a></h3><span class="project-kind" data-i18n="atmosKind">空间音频 / 工作流</span></div><p data-i18n="atmosDescription">把注意力留给混音。校验母带与分轨、分析音频差异、检查 ADM 元数据，让交付前的每一步更清晰。</p><div class="project-bottom"><ul class="tags" aria-label="Atmos Check"><li>Stem Check</li><li>ADM</li><li>Audio Analysis</li></ul><a class="project-detail" href="atmos_check.html"><span data-i18n="viewProject">探索项目</span><span aria-hidden="true">↗</span></a></div></div>
+                </article>
+                <article class="project project-hub">
+                    <a href="pluginhub.html" class="project-visual hub-visual" aria-label="探索 PluginHub 音频插件管理器" data-i18n-label="hubLink">
+                        <div class="visual-topline mono"><span>03 / CREATIVE WORKFLOW</span><span aria-hidden="true">⊞</span></div>
+                        <span class="visual-heading">Less searching.<br><span class="serif">More creating.</span></span>
+                        <div class="format-labels mono" aria-hidden="true"><span>VST3</span><span>AU</span><span>AAX</span><span>CLAP</span></div>
+                        <img src="assets/PluginHub1.png" alt="PluginHub 按厂商及格式整理音频插件的界面" data-i18n-alt="hubAlt" width="2398" height="1540" loading="lazy" decoding="async">
+                        <span class="visual-arrow" aria-hidden="true">↗</span>
+                    </a>
+                    <div class="project-info"><div class="project-title-row"><h3><a href="pluginhub.html">PluginHub<span aria-hidden="true">↗</span></a></h3><span class="project-kind" data-i18n="hubKind">插件管理 / 效率工具</span></div><p data-i18n="hubDescription">给灵感腾出空间。在一个地方扫描、查找和管理音频插件，让庞杂的插件库重新变得井井有条。</p><div class="project-bottom"><ul class="tags" aria-label="PluginHub"><li>macOS</li><li>5 Formats</li><li>Plugin Manager</li></ul><a class="project-detail" href="pluginhub.html"><span data-i18n="viewProject">探索项目</span><span aria-hidden="true">↗</span></a></div></div>
+                </article>
+            </div>
+            <a class="github-link text-link" href="https://github.com/jerryuhoo" target="_blank" rel="noopener noreferrer"><span data-i18n="githubExplore">更多代码与实验，尽在 GitHub</span><span aria-hidden="true">↗</span></a>
+        </section>
+
+        <section class="music-section" id="music" aria-labelledby="music-title">
+            <div class="section-shell music-inner">
+                <div class="section-heading"><div><p class="eyebrow mono"><span class="section-number">02 /</span> THE OTHER SIDE</p><h2 id="music-title" data-i18n="musicTitle">代码之外，<span class="serif">还有声音。</span></h2></div><span class="music-symbol" aria-hidden="true">✳</span></div>
+                <div class="album-feature" id="featured-ep">
+                    <a class="album-art" href="https://music.apple.com/us/album/nightmare-ep/1817530475" target="_blank" rel="noopener noreferrer" aria-label="在 Apple Music 收听 NIGHTMARE EP" data-i18n-label="albumLink">
+                        <div class="album-fallback" aria-hidden="true"><span>BLUE WINGS</span><strong>NIGHT<br>MARE</strong><span>AN IMMERSIVE JOURNEY / EP</span></div>
+                        <img src="https://i.scdn.co/image/ab67616d0000b273d455772d39bb8ebccaf0643b" width="640" height="640" alt="NIGHTMARE EP 专辑封面" data-i18n-alt="albumAlt" loading="lazy" decoding="async">
+                        <span class="album-play" aria-hidden="true">↗</span>
+                    </a>
+                    <div class="album-copy"><p class="eyebrow mono">FEATURED RELEASE &nbsp; / &nbsp; EP</p><h3>NIGHTMARE</h3><p class="album-artist">羽翼深蓝 <span>/ BLUE WINGS</span></p><p class="album-description" data-i18n="albumDescription">走进梦的深处，听见声音的边界。<br>一场以电子音乐与杜比全景声构建的沉浸式旅程。</p><span class="atmos-badge"><span aria-hidden="true">◖◗</span> DOLBY ATMOS</span><a class="button button-light" href="https://music.apple.com/us/album/nightmare-ep/1817530475" target="_blank" rel="noopener noreferrer"><span data-i18n="albumListen">在 Apple Music 体验</span><span aria-hidden="true">↗</span></a></div>
                 </div>
-            </a>
-        </section>
-
-        <section id="music" class="scroll-fade section-marker">
-            <h2 data-lang-key="listenTitle" class="text-3xl font-bold text-center mb-12 text-blue-100">在各大平台收听</h2>
-            <div class="flex justify-center items-center gap-8 md:gap-12 flex-wrap">
-                <!-- Platforms... -->
-                <a href="https://music.apple.com/us/artist/%E7%BE%BD%E7%BF%BC%E6%B7%B1%E8%93%9D/1696577755"
-                    target="_blank" rel="noopener noreferrer"
-                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
-                    <div
-                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-pink-500 transition-all">
-                        <i class="fab fa-apple fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <span data-lang-key="platformAppleMusic"
-                        class="text-lg font-medium text-gray-300 group-hover:text-white">Apple Music</span>
-                </a>
-                <a href="https://open.spotify.com/artist/0xi1eMyrrSXdZMX8n7Ilmt" target="_blank"
-                    rel="noopener noreferrer"
-                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
-                    <div
-                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-green-500 transition-all">
-                        <i class="fab fa-spotify fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
-                    </div><span data-lang-key="platformSpotify"
-                        class="text-lg font-medium text-gray-300 group-hover:text-white">Spotify</span>
-                </a>
-                <a href="https://www.youtube.com/@bluewings-music" target="_blank" rel="noopener noreferrer"
-                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
-                    <div
-                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-red-600 transition-all">
-                        <i class="fab fa-youtube fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
-                    </div><span data-lang-key="platformYoutube"
-                        class="text-lg font-medium text-gray-300 group-hover:text-white">YouTube</span>
-                </a>
-                <a href="https://music.163.com/#/artist?id=12118139" target="_blank" rel="noopener noreferrer"
-                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
-                    <div
-                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-red-500 transition-all flex justify-center items-center">
-                        <svg class="h-12 w-12 text-gray-300 group-hover:text-white transition-colors" role="img"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                            <path
-                                d="M10.421 11.375c-.294 1.028.012 2.064.784 2.653 1.061.81 2.565.3 2.874-.995.08-.337.103-.722.027-1.056-.23-1.001-.52-1.988-.792-2.996-1.33.154-2.543 1.172-2.893 2.394zm5.548-.287c.273 1.012.285 2.017-.127 3-1.128 2.69-4.721 3.14-6.573.826-1.302-1.627-1.28-3.961.06-5.734.78-1.032 1.804-1.707 3.048-2.054l.379-.104c-.084-.415-.188-.816-.243-1.224-.176-1.317.512-2.503 1.744-3.04 1.226-.535 2.708-.216 3.53.76.406.479.395 1.08-.025 1.464-.412.377-.996.346-1.435-.09-.247-.246-.51-.44-.877-.436-.525.006-.987.418-.945.937.037.468.173.93.3 1.386.022.078.216.135.338.153 1.334.197 2.504.731 3.472 1.676 2.558 2.493 2.861 6.531.672 9.44-1.529 2.032-3.61 3.168-6.127 3.409-4.621.44-8.664-2.53-9.7-7.058C2.515 10.255 4.84 5.831 8.795 4.25c.586-.234 1.143-.031 1.371.498.232.537-.019 1.086-.61 1.35-2.368 1.06-3.817 2.855-4.215 5.424-.533 3.433 1.656 6.776 5 7.72 2.723.77 5.658-.166 7.308-2.33 1.586-2.08 1.4-5.099-.427-6.873a3.979 3.979 0 0 0-1.823-1.013c.198.716.389 1.388.57 2.062z" />
-                        </svg>
-                    </div>
-                    <span data-lang-key="platformNetease"
-                        class="text-lg font-medium text-gray-300 group-hover:text-white">网易云音乐</span>
-                </a>
-                <a href="https://y.qq.com/n/ryqq/singer/001uCNn02tdnZ1" target="_blank" rel="noopener noreferrer"
-                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
-                    <div
-                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-green-400 transition-all">
-                        <i class="fab fa-qq fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <span data-lang-key="platformQQ"
-                        class="text-lg font-medium text-gray-300 group-hover:text-white">QQ音乐</span>
-                </a>
+                <div class="platforms"><span class="mono" data-i18n="listenElsewhere">也可以在这里找到我</span><div><a href="https://music.apple.com/us/artist/%E7%BE%BD%E7%BF%BC%E6%B7%B1%E8%93%9D/1696577755" target="_blank" rel="noopener noreferrer">Apple Music ↗</a><a href="https://open.spotify.com/artist/0xi1eMyrrSXdZMX8n7Ilmt" target="_blank" rel="noopener noreferrer">Spotify ↗</a><a href="https://www.youtube.com/@bluewings-music" target="_blank" rel="noopener noreferrer">YouTube ↗</a><a href="https://music.163.com/#/artist?id=12118139" target="_blank" rel="noopener noreferrer"><span data-i18n="netease">网易云音乐</span> ↗</a><a href="https://y.qq.com/n/ryqq/singer/001uCNn02tdnZ1" target="_blank" rel="noopener noreferrer"><span data-i18n="qqMusic">QQ 音乐</span> ↗</a></div></div>
             </div>
         </section>
 
-        <section id="contact" class="scroll-fade section-marker">
-            <h2 data-lang-key="contactTitle" class="text-3xl font-bold text-center mb-12 text-blue-100">联系我</h2>
-            <div class="flex justify-center items-center gap-8 md:gap-12 flex-wrap">
-                <!-- Contacts... -->
-                <a href="https://github.com/jerryuhoo" target="_blank" rel="noopener noreferrer"
-                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
-                    <div
-                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-gray-500 transition-all">
-                        <i class="fab fa-github fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <span data-lang-key="contactGithub"
-                        class="text-lg font-medium text-gray-300 group-hover:text-white">GitHub</span>
-                </a>
-                <a href="https://www.instagram.com/wings_mu/" target="_blank" rel="noopener noreferrer"
-                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
-                    <div
-                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-pink-600 transition-all">
-                        <i class="fab fa-instagram fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
-                    </div><span data-lang-key="contactInstagram"
-                        class="text-lg font-medium text-gray-300 group-hover:text-white">Instagram</span>
-                </a>
-                <a href="mailto:yuyishenlanmusic@gmail.com"
-                    class="group flex flex-col items-center gap-4 transition-transform duration-300 hover:-translate-y-2">
-                    <div
-                        class="bg-gray-800 p-8 rounded-full border-2 border-transparent group-hover:border-blue-500 transition-all">
-                        <i class="fas fa-envelope fa-3x text-gray-300 group-hover:text-white transition-colors"></i>
-                    </div><span data-lang-key="contactEmail"
-                        class="text-lg font-medium text-gray-300 group-hover:text-white">邮箱</span>
-                </a>
-            </div>
+        <section class="about-section section-shell" id="about" aria-labelledby="about-title">
+            <div class="about-label"><p class="eyebrow mono"><span class="section-number">03 /</span> BEHIND THE WORK</p><div class="portrait-frame"><img src="assets/avatar.jpg" alt="羽翼深蓝的艺术家形象：深蓝色羽翼与兜帽" data-i18n-alt="portraitAlt" width="1800" height="1800" loading="lazy" decoding="async"><span class="mono">BLUE WINGS / 羽翼深蓝</span></div></div>
+            <div class="about-copy"><h2 id="about-title" data-i18n="aboutTitle">用音乐感受世界，<br>用代码回应好奇。</h2><p data-i18n="aboutIntro">你好，我是 Yifeng Yu，也以「羽翼深蓝 / Blue Wings」的名字创作音乐。</p><p data-i18n="aboutBody">我游走在音乐制作与软件开发之间。喜欢电子音乐的无限可能，也着迷于空间音频带来的临场感。创作中遇到的问题，常常会成为我开发下一个工具的起点。</p><p data-i18n="aboutClosing">从一段旋律到一行代码，我在意的始终是同一件事：让想象中的体验，真实发生。</p><div class="disciplines"><span data-i18n="disciplineMusic">电子音乐制作</span><span data-i18n="disciplineAudio">空间音频</span><span data-i18n="disciplineDev">音频软件开发</span></div></div>
         </section>
 
+        <section class="contact-section section-shell" id="contact" aria-labelledby="contact-title"><div class="contact-top"><p class="eyebrow mono"><span class="section-number">04 /</span> LET’S CONNECT</p><span class="mono">GOOD THINGS START WITH A CONVERSATION.</span></div><a class="contact-heading" href="mailto:yuyishenlanmusic@gmail.com"><h2 id="contact-title" data-i18n="contactTitle">让好想法，<span class="serif">产生共鸣。</span></h2><span aria-hidden="true">↗</span></a><div class="contact-bottom"><p data-i18n="contactDescription">聊音乐、聊工具，或是聊聊你的下一个灵感。</p><div class="email-actions"><a href="mailto:yuyishenlanmusic@gmail.com">yuyishenlanmusic@gmail.com</a><button id="copy-email" type="button" aria-label="复制邮箱地址" data-i18n-label="copyEmail"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="7" y="7" width="10" height="11" rx="1"/><path d="M12 4V2H2v11h2"/></svg></button></div></div><p id="copy-status" class="copy-status" role="status" aria-live="polite"></p></section>
     </main>
-
-    <footer class="bg-gray-900/50 border-t border-blue-900/50 py-8">
-        <div class="max-w-5xl mx-auto text-center text-gray-400">
-            <p>&copy; <span id="year"></span> <span data-lang-key="footerRights">羽翼深蓝. 版权所有.</span></p>
-            <div class="mt-4 flex justify-center gap-6">
-                <a href="https://github.com/jerryuhoo" target="_blank" rel="noopener noreferrer"
-                    class="hover:text-white transition-colors"><i class="fab fa-github fa-lg"></i></a>
-                <a href="https://www.instagram.com/wings_mu/" target="_blank" rel="noopener noreferrer"
-                    class="hover:text-white transition-colors"><i class="fab fa-instagram fa-lg"></i></a>
-                <a href="mailto:yuyishenlanmusic@gmail.com" class="hover:text-white transition-colors"><i
-                        class="fas fa-envelope fa-lg"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Three.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-    <script>
-        // --- INTERACTIVE WAVE BACKGROUND SCRIPT ---
-        let scene, camera, renderer, lines, raycaster, interactionPlane;
-        let mouse = new THREE.Vector2(-100, -100); // Initialize mouse off-screen
-        let clock = new THREE.Clock();
-
-        function initWave() {
-            const canvas = document.getElementById('wave-canvas');
-            const container = document.getElementById('home');
-
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 1, 1000);
-            camera.position.z = 100;
-            renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-            // Raycaster for precise mouse interaction
-            raycaster = new THREE.Raycaster();
-            const planeGeometry = new THREE.PlaneGeometry(500, 500);
-            const planeMaterial = new THREE.MeshBasicMaterial({ visible: false, side: THREE.DoubleSide });
-            interactionPlane = new THREE.Mesh(planeGeometry, planeMaterial);
-            scene.add(interactionPlane);
-
-            const lineCount = 5;
-            const pointsPerLine = 200;
-            lines = [];
-
-            for (let i = 0; i < lineCount; i++) {
-                const material = new THREE.PointsMaterial({
-                    color: 0x2563eb,
-                    size: 0.5,
-                    transparent: true,
-                    opacity: 0.5 + i * 0.1
-                });
-                const geometry = new THREE.BufferGeometry();
-                const positions = new Float32Array(pointsPerLine * 3);
-                const verticalSpacing = 8;
-                const originalY = i * verticalSpacing - (lineCount * verticalSpacing) / 2;
-
-                for (let j = 0; j < pointsPerLine; j++) {
-                    const x = (j / (pointsPerLine - 1) - 0.5) * 300;
-                    positions[j * 3] = x;
-                    positions[j * 3 + 1] = originalY;
-                    positions[j * 3 + 2] = 0;
-                }
-
-                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-                const line = new THREE.Points(geometry, material);
-                line.userData.originalY = originalY;
-                lines.push(line);
-                scene.add(line);
-            }
-
-            window.addEventListener('resize', onWindowResize, false);
-            document.addEventListener('mousemove', onMouseMove, false);
-            document.addEventListener('mouseleave', () => { mouse.x = -100; mouse.y = -100; });
-            animate();
-        }
-
-        function onWindowResize() {
-            const container = document.getElementById('home');
-            camera.aspect = container.clientWidth / container.clientHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(container.clientWidth, container.clientHeight);
-        }
-
-        function onMouseMove(event) {
-            // Normalize mouse position to [-1, 1] range
-            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-            const elapsedTime = clock.getElapsedTime();
-
-            // Find mouse intersection with the invisible plane
-            raycaster.setFromCamera(mouse, camera);
-            const intersects = raycaster.intersectObject(interactionPlane);
-            const intersectionPoint = (intersects.length > 0) ? intersects[0].point : null;
-
-            lines.forEach(line => {
-                const positions = line.geometry.attributes.position.array;
-
-                for (let i = 0; i < positions.length; i += 3) {
-                    const x = positions[i];
-                    const originalY = line.userData.originalY;
-
-                    // Base wave animation
-                    const wave = Math.sin(x * 0.1 + elapsedTime * 2) * 5;
-
-                    // Mouse interaction
-                    let mouseFactor = 0;
-                    if (intersectionPoint) {
-                        const dx = x - intersectionPoint.x;
-                        const dy = originalY - intersectionPoint.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-
-                        const radius = 50;
-                        const strength = 20;
-                        if (distance < radius) {
-                            mouseFactor = (1 - distance / radius) * strength;
-                        }
-                    }
-
-                    positions[i + 1] = originalY + wave + mouseFactor;
-                }
-                line.geometry.attributes.position.needsUpdate = true;
-            });
-
-            renderer.render(scene, camera);
-        }
-
-        // --- OTHER SCRIPTS ---
-
-        const translations = {
-            zh: {
-                nav_about: "个人介绍", nav_dolby: "杜比全景声混音", nav_plugin: "Fire 插件", nav_music: "音乐作品", nav_contact: "联系方式", nav_pluginhub: "PluginHub",
-                heroSubtitle: "音乐制作人 & 全栈程序员",
-                aboutTitle: "关于我", aboutP1: "你好，我是羽翼深蓝。我是一位热衷于探索声音与代码交织世界的艺术家。", aboutP2: "作为一名电子音乐制作人，我致力于创造沉浸式的听觉体验，尤其擅长利用<span class='font-bold text-blue-300'>杜比全景声 (Dolby Atmos)</span> 技术构建宏大的声场。同时，作为一名程序员，我对技术充满热情，享受用代码将创意变为现实的过程。", aboutP3: "我相信音乐与科技的结合能释放出无穷的创造力。欢迎来到我的世界。",
-                epTitle: "杜比全景声混音EP", epSubtitle: "一次关于梦魇的沉浸式声音旅程", epDesc: "这张EP是我在空间音频领域的一次深度探索。每一首曲目都经过精心设计，旨在通过杜比全景声技术，为您带来身临其境的听觉震撼。", epActionText: "在 Apple Music 上体验",
-                pluginTitle: "开源音乐插件", pluginSubtitle: "免费开源的多段失真插件", pluginDesc: "Fire 是一款我独立开发和设计的免费、开源多段失真插件。它旨在为声音设计师和音乐制作人提供一个强大而灵活的工具来塑造音色。", pluginLearnMore: "了解更多...",
-                listenTitle: "在各大平台收听", platformAppleMusic: "Apple Music", platformSpotify: "Spotify", platformYoutube: "YouTube", platformNetease: "网易云音乐", platformQQ: "QQ音乐",
-                contactTitle: "联系我", contactGithub: "GitHub", contactInstagram: "Instagram", contactEmail: "邮箱",
-                footerRights: "羽翼深蓝. 版权所有."
-            },
-            en: {
-                nav_about: "About", nav_dolby: "Dolby Atmos Mix", nav_plugin: "Fire Plugin", nav_music: "Music", nav_contact: "Contact", nav_pluginhub: "PluginHub",
-                heroSubtitle: "Music Producer & Full-Stack Developer",
-                aboutTitle: "About Me", aboutP1: "Hello, I'm Yifeng Yu. My artist name is Blue Wings (羽翼深蓝). I am an artist passionate about exploring the interwoven world of sound and code.", aboutP2: "As an electronic music producer, I am dedicated to creating immersive audio experiences, specializing in building vast soundscapes with <span class='font-bold text-blue-300'>Dolby Atmos</span> technology. At the same time, as a programmer, I have a passion for technology and enjoy bringing creative ideas to life with code.", aboutP3: "I believe the fusion of music and technology can unleash limitless creativity. Welcome to my world.",
-                epTitle: "Dolby Atmos Mix EP", epSubtitle: "An immersive audio journey about a nightmare", epDesc: "This EP is my deep dive into the realm of spatial audio. Each track is meticulously designed to deliver a breathtakingly immersive auditory experience through Dolby Atmos technology.", epActionText: "Experience on Apple Music",
-                pluginTitle: "Open-Source Music Plugin", pluginSubtitle: "Free & Open-Source Multi-band Distortion", pluginDesc: "Fire is a free, open-source multi-band distortion plugin I independently developed and designed. It aims to provide sound designers and music producers with a powerful and flexible tool for sound shaping.", pluginLearnMore: "Learn More...",
-                listenTitle: "Listen On All Platforms", platformAppleMusic: "Apple Music", platformSpotify: "Spotify", platformYoutube: "YouTube", platformNetease: "NetEase Music", platformQQ: "QQ Music",
-                contactTitle: "Get In Touch", contactGithub: "GitHub", contactInstagram: "Instagram", contactEmail: "Email",
-                footerRights: "Yuyi Shenlan. All rights reserved."
-            }
-        };
-
-        const setLanguage = (lang) => {
-            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-            const translation = translations[lang];
-            document.querySelectorAll('[data-lang-key]').forEach(el => {
-                const key = el.dataset.langKey;
-                if (translation[key]) {
-                    el.innerHTML = translation[key];
-                }
-            });
-            document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
-            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-            localStorage.setItem('language', lang);
-        };
-
-        document.getElementById('lang-zh').addEventListener('click', () => setLanguage('zh'));
-        document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
-
-        const savedLang = localStorage.getItem('language') || 'zh';
-        setLanguage(savedLang);
-
-        const sections = document.querySelectorAll('.section-marker');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        const activateNavLink = () => {
-            let index = sections.length;
-            while (--index && window.scrollY + 100 < sections[index].offsetTop) { }
-            navLinks.forEach((link) => link.classList.remove('active'));
-            if (navLinks[index]) {
-                navLinks[index].classList.add('active');
-            }
-        };
-
-        window.addEventListener('scroll', activateNavLink);
-        activateNavLink();
-
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        const faders = document.querySelectorAll('.scroll-fade');
-        const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
-        const appearOnScroll = new IntersectionObserver(function (entries, observer) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            });
-        }, appearOptions);
-
-        faders.forEach(fader => {
-            appearOnScroll.observe(fader);
-        });
-
-        // Initialize the wave animation once the page is loaded
-        window.onload = function () {
-            // 首先执行您原来的初始化
-            initWave();
-
-            // 侧边栏
-            const btn = document.getElementById('hamburger-button');
-            const sb = document.getElementById('sidebar');
-            const links = document.querySelectorAll('.sidebar-link');
-
-            btn.addEventListener('click', e => {
-                e.stopPropagation();
-                sb.classList.toggle('-translate-x-full');
-                sb.classList.toggle('translate-x-0');
-            });
-
-            document.addEventListener('click', e => {
-                if (
-                    sb.classList.contains('translate-x-0') &&
-                    !sb.contains(e.target) &&
-                    e.target !== btn
-                ) {
-                    sb.classList.replace('translate-x-0', '-translate-x-full');
-                }
-            });
-
-            links.forEach(link =>
-                link.addEventListener('click', () =>
-                    sb.classList.replace('translate-x-0', '-translate-x-full')
-                )
-            );
-        };
-    </script>
+    <footer class="site-footer section-shell"><a class="footer-name" href="#home">BLUE WINGS<span aria-hidden="true">✳</span></a><div class="footer-bottom"><span class="mono">© <span id="year">2026</span> BLUE WINGS</span><span data-i18n="footerNote">用好奇心创作，以热爱打磨。</span><div><a href="https://github.com/jerryuhoo" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.instagram.com/wings_mu/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="#home" data-i18n="backTop">回到顶部 ↑</a></div></div></footer>
 </body>
 </html>
