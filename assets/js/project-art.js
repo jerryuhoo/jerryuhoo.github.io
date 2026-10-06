@@ -1,4 +1,4 @@
-/* Animation lifecycle and accessible controls shared by the three SVG studies. */
+/* Animation lifecycle and accessible controls shared by the project SVG studies. */
 (() => {
     'use strict';
     const root = document.querySelector('.product-emblem');
@@ -8,6 +8,7 @@
     if (!root || !original || !createRenderer) return;
 
     const studies = {
+        sidechain: { modes: ['Handoff', 'Phase', 'Flow'], figure: '04', zh: '低频交接的概念波形图，使用方向键或移动指针探索连接；并非音频测量', en: 'A conceptual low-end handoff. Use arrow keys or your pointer to explore the connection; not an audio measurement.', hintZh: '移动鼠标，探索连接', hintEn: 'MOVE TO EXPLORE THE HANDOFF' },
         fire: { modes: ['Distortion', 'Phaser', 'Chorus', 'Reverb', 'Lo-fi', 'Granular'], figure: '01', zh: '持续变化的声音雕塑，使用方向键或移动指针改变形态', en: 'An evolving sound sculpture. Use arrow keys or move your pointer to shape it.', hintZh: '移动鼠标，塑造声音', hintEn: 'MOVE TO SHAPE THE SOUND' },
         atmos: { modes: ['Orbit', 'Field', 'Compare'], figure: '02', zh: '持续变化的空间声场，使用方向键或移动指针改变视角', en: 'An evolving spatial field. Use arrow keys or move your pointer to change its perspective.', hintZh: '移动鼠标，探索声场', hintEn: 'MOVE TO EXPLORE THE FIELD' },
         hub: { modes: ['Arrange', 'Connect', 'Flow'], figure: '03', zh: '持续变化的插件编排，使用方向键或移动指针改变排列', en: 'An evolving plugin arrangement. Use arrow keys or move your pointer to rearrange it.', hintZh: '移动鼠标，发现新的秩序', hintEn: 'MOVE TO FIND A NEW ORDER' }

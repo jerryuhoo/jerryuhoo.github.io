@@ -38,7 +38,7 @@ html[data-theme="dark"] .project-page {
     --project-light: #f5c4a4;
 }
 
-html[data-theme="dark"] .theme-atmos {
+html[data-theme="dark"] .theme-atmos, html[data-theme="dark"] .theme-sidechain {
     --project-accent: #90c8d0;
     --project-tint: #1c2a31;
     --project-dark: #162329;

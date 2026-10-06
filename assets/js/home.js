@@ -1,6 +1,7 @@
 (() => {
     'use strict';
     const english = {
+        sidechainLink: 'Explore the Sidechain Pro low-end handoff plugin', sidechainAlt: 'Sidechain Pro waveform monitor and kick-to-bass timing controls', sidechainKind: 'Low-end handoff / Development preview', sidechainDescription: 'Let the kick tail become bass. Follow pitch and phase in real time, and shape the handoff and its duration in a clear waveform workspace.',
         skip: 'Skip to content', navigation: 'Main navigation', navWork: 'Selected work', navMusic: 'Music', navAbout: 'About', navContact: 'Let’s talk', menuOpen: 'Open menu', menuClose: 'Close menu',
         heroEyebrow: 'YIFENG YU / BLUE WINGS', heroStatement: 'Creating where sound and code meet.', heroDescription: 'Music producer. Independent developer.<br>Making immersive sound and tools for creative freedom.', exploreWork: 'Explore my work', listenMusic: 'Listen to my music',
         artDescription: 'A cobalt sound sculpture that gently responds to your pointer', artNote: 'A different shape of sound', artModes: 'Sound sculpture modes', modeSpatial: 'Spatial', modeWave: 'Wave', modeDrive: 'Drive', pauseMotion: 'Pause animation', resumeMotion: 'Resume animation', scrollExplore: 'Scroll to explore',
@@ -13,6 +14,11 @@
         portraitAlt: 'Blue Wings artist image: a hooded figure with dark blue wings', aboutTitle: 'Feeling the world through music.<br>Following curiosity through code.', aboutIntro: 'Hi, I’m Yifeng Yu. I make music as Blue Wings (羽翼深蓝).', aboutBody: 'I work between music production and software development. I’m drawn to the possibilities of electronic music and the sense of presence in spatial audio. The challenges I meet while creating often become the starting point for my next tool.', aboutClosing: 'From a melody to a line of code, I care about the same thing: making an imagined experience real.', disciplineMusic: 'Electronic music', disciplineAudio: 'Spatial audio', disciplineDev: 'Audio software',
         contactTitle: 'Let’s make <span class="serif">something resonate.</span>', contactDescription: 'Music, tools, or that idea you can’t stop thinking about.', copyEmail: 'Copy email address', copied: 'Email address copied.', copyFailed: 'Could not copy. Select the email address to copy it.', footerNote: 'Made with curiosity. Refined with care.', backTop: 'Back to top ↑'
     };
+    const syncPreviews = () => document.querySelectorAll('[data-theme-preview]').forEach(img => {
+        img.src = document.documentElement.dataset.theme === 'dark' ? img.dataset.darkSrc : img.dataset.lightSrc;
+    });
+    syncPreviews();
+    window.addEventListener('site-theme-change', syncPreviews);
     const chinese = {};
     document.querySelectorAll('[data-i18n]').forEach(element => { chinese[element.dataset.i18n] = element.innerHTML; });
     document.querySelectorAll('[data-i18n-label]').forEach(element => { chinese[element.dataset.i18nLabel] = element.getAttribute('aria-label'); });
@@ -39,7 +45,7 @@
         language = lang === 'en' ? 'en' : 'zh';
         document.documentElement.lang = language === 'en' ? 'en' : 'zh-CN';
         document.title = language === 'en' ? 'Blue Wings — Between Sound & Code' : '羽翼深蓝 Blue Wings — 声音与代码之间';
-        document.querySelector('meta[name="description"]').content = language === 'en' ? 'Yifeng Yu / Blue Wings. Electronic music, spatial audio, and independent audio tools: Fire, Atmos Check and PluginHub.' : '羽翼深蓝（Yifeng Yu / Blue Wings）的个人作品集。探索电子音乐、空间音频，以及 Fire、Atmos Check 和 PluginHub 音频工具。';
+        document.querySelector('meta[name="description"]').content = language === 'en' ? 'Yifeng Yu / Blue Wings. Electronic music, spatial audio, and independent audio tools: Fire, Atmos Check, PluginHub and Sidechain Pro.' : '羽翼深蓝（Yifeng Yu / Blue Wings）的个人作品集。探索电子音乐、空间音频，以及 Fire、Atmos Check、PluginHub 和 Sidechain Pro 音频工具。';
         document.querySelectorAll('[data-i18n]').forEach(element => { if (copy[language][element.dataset.i18n]) element.innerHTML = copy[language][element.dataset.i18n]; });
         document.querySelectorAll('[data-i18n-label]').forEach(element => { if (copy[language][element.dataset.i18nLabel]) element.setAttribute('aria-label', copy[language][element.dataset.i18nLabel]); });
         document.querySelectorAll('[data-i18n-alt]').forEach(element => { if (copy[language][element.dataset.i18nAlt]) element.alt = copy[language][element.dataset.i18nAlt]; });

@@ -1,0 +1,25 @@
+/* The fourth project uses the Atmos Check series colour and a waveform study. */
+.project-sidechain { grid-column: 1 / -1; }
+.sidechain-visual { min-height: 430px; background: #dce6e8; color: #245c68; }
+.sidechain-visual .visual-heading { top: 104px; font-size: clamp(32px, 4vw, 58px); line-height: 1.2; }
+.sidechain-visual img { position: absolute; width: 70%; max-width: none; left: 35%; top: 108px; transform: rotate(-4deg); border-radius: 3px; }
+.sidechain-visual:hover img { transform: rotate(-2deg) translate(-5px, -7px); }
+.sidechain-visual .sidechain-caption { position: absolute; left: 29px; bottom: 36px; font-size: 9px; }
+html[data-theme="dark"] .sidechain-visual { background: #1c2a31; color: #90c8d0; }
+.theme-sidechain .product-heading h1 .serif { color: var(--project-accent); font-weight: 400; }
+.theme-sidechain .gallery-slide img { height: min(58vw, 670px); }
+@media (max-width: 760px) {
+    .sidechain-visual { min-height: 385px; }
+    .sidechain-visual .visual-heading { top: 75px; font-size: 35px; }
+    .sidechain-visual img { width: 92%; left: 22%; top: 188px; }
+    .sidechain-visual .sidechain-caption { display: none; }
+    .theme-sidechain .gallery-slide img { height: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .sidechain-visual img { transition: none; } }
+@media (max-width: 760px) {
+    .theme-sidechain .gallery-toolbar { flex-direction: column; align-items: stretch; gap: 14px; }
+    .theme-sidechain .gallery-navigation { justify-content: flex-end; }
+    .theme-sidechain .gallery-navigation button { width: 40px; height: 40px; flex-shrink: 0; }
+    .theme-sidechain .gallery-navigation button.gallery-expand { font-size: 18px; margin-left: 0; }
+    .theme-sidechain .gallery-tabs button { min-height: 40px; }
+}

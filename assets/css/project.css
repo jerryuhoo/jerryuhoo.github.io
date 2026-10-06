@@ -5,7 +5,7 @@
     --project-dark: #302823;
     --project-light: #efb798;
 }
-.theme-atmos {
+.theme-atmos, .theme-sidechain {
     --project-accent: #245c68;
     --project-tint: #dce6e8;
     --project-dark: #223238;
