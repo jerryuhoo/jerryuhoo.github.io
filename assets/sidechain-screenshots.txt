@@ -1,0 +1,49 @@
+Sidechain Pro website screenshots
+Captured: 2026-10-15
+Source project revision: 89a2ded1ad835276cd8c8d1111de879f3a607b49
+Source worktree: clean at capture start
+Capture tool: Sidechain Pro Tests/ProcessorTests.cpp (actual JUCE editor)
+Capture command: ./build/ProcessorTests <output-directory>
+Build configuration: Release
+Capture binary SHA-256: 88678d83c678edb6583999822490d1a38faac6dd8c9060605b943f4a56d6b179
+Native processor integration tests passed (exit 0), including Output Trim/Match, sound Undo/Redo, persistent A/B, preset identity, and scaled UI layouts.
+Source and binary hashes (45 recorded files) were unchanged throughout capture.
+Concurrent source edits and new test builds appeared after capture. They are not included in this verified 89a2ded screenshot snapshot.
+Audio: synthetic demonstration signals
+Images copied without retouching, cropping or recoloring.
+Learn fixture retains its actual captured-headroom message and historical OVER counter.
+
+Website asset: SidechainPro-Light.png
+Original capture: SidechainPro-Light.png
+Dimensions: 2000 x 1600
+SHA-256: 5f0f593d711afadeee91fc9431ce58764fa974093478904e56de1b2096b3e406
+
+Website asset: SidechainPro-Dark.png
+Original capture: SidechainPro-Dark.png
+Dimensions: 2000 x 1600
+SHA-256: 1a8f887e9fa805c6120fbc717c0a70713ab180714ee04b8e4a31f65ee461d415
+
+Website asset: SidechainPro-Learn.png
+Original capture: SidechainPro-Learn-Result-Light.png
+Dimensions: 2000 x 1600
+SHA-256: dbf9408e8e5db1943be96f14b515b84ce22fd2ede6932d527767b20c2b1f620e
+
+Website asset: SidechainPro-Spectral.png
+Original capture: SidechainPro-Spectral-Light.png
+Dimensions: 1720 x 1520
+SHA-256: 16ddfd7e81832f81e1e4273714bfcdea05385455f6c241263e726f1fffd6f0f3
+
+Website asset: SidechainPro-Crossover.png
+Original capture: SidechainPro-Crossover-Active-Light.png
+Dimensions: 1720 x 1520
+SHA-256: a818d3b3d4963c6f72dfc17ebc6b3ce8d90a4bd48b0b54c75d893d3c96ade23f
+
+Website asset: SidechainPro-Expanded.png
+Original capture: SidechainPro-Layers-Focus-Light.png
+Dimensions: 2000 x 1600
+SHA-256: 7be47b5cb6d4f2200786d40c40b41e8c28be4c5f72eb1ddc4fe7cba6218d5261
+
+Website asset: SidechainPro-Compact.png
+Original capture: SidechainPro-Collapsed-Compact.png
+Dimensions: 1440 x 1520
+SHA-256: c2cdb2c0c49eb7b819574580688cc38ef72dfe2ff5bc06dbb4c3d000f4bfcc8a

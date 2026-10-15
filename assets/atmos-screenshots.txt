@@ -1,0 +1,29 @@
+Atmos Check website interface previews
+Captured: 2026-10-15
+Source project revision: f28fed91df19032a0a80a28911bce3e3910cb93c
+Application version: 1.0.0
+Runtime: actual built React/Tauri frontend rendered in Chrome via a browser-only initialization adapter. These are NOT screenshots of the native Tauri runtime.
+The compiled application JavaScript, CSS and image assets were preserved byte-for-byte from the frozen frontend build. The copied index.html loads a separate initialization adapter.
+Adapter: in-memory settings/event registration and build/version metadata only. Native file access, analysis, export and account actions are disabled.
+No audio files, customer data or analysis-result fixtures were loaded. Every view shows INPUT FILES 0 / Awaiting files.
+Displayed custom-reference numbers are the unmodified UI defaults for an editable local studio reference; they are not measured results, official platform presets or compliance certifications.
+Capture method: Chrome browser DOM interactions and tab screenshot, JPEG pixel bytes saved directly without retouching, cropping, recoloring or rescaling.
+Viewport: existing browser viewport, 1920 x 878 pixels.
+Compiled frontend JS SHA-256: fefb02ecd30a028a353344a0156f27e35aa122d2b58f87535b65c29fb272213e
+Compiled frontend CSS SHA-256: 19be31d427c45ebc1b620273eb89bb6a6bed001ef0c17eef23c820318b1f9af5
+Initialization adapter SHA-256: a2161aa211d1510b46660048edc4c34f22cae081efcc62db97d1cc23cdec5ed0
+
+Website asset: AtmosCheck1.jpg
+View: Light Stem comparison: empty Master Print and Stems preparation workspace.
+Dimensions: 1920 x 878
+SHA-256: c0a5f389c3651a2120b6595bb1833fa0058fe092e7cc2caae6e16bcaf9c7313c
+
+Website asset: AtmosCheck2.jpg
+View: Light ADM inspection: empty ADM BWF workspace with Custom studio reference fields visible.
+Dimensions: 1920 x 878
+SHA-256: 81aefcf4ad6b9580e004329241e9340216713c239fdf2df859598137dae38975
+
+Website asset: AtmosCheck3.jpg
+View: Dark 5.1 Loudness: empty surround-file workspace with Custom studio reference and explicit L R C LFE Ls Rs channel mapping.
+Dimensions: 1920 x 878
+SHA-256: 46d07e92c2f626326c0466977fb33be3a82210a5218fa6311d57207ada5a14ae

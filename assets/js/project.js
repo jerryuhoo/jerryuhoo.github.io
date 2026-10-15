@@ -28,7 +28,8 @@
         const image = slide.querySelector('img');
         dialogImage.src = image.currentSrc || image.src;
         dialogImage.alt = image.alt;
-        dialogCaption.textContent = slide.querySelector('figcaption')?.textContent || image.alt;
+        const caption = slide.querySelector('[data-gallery-caption]') || slide.querySelector('figcaption');
+        dialogCaption.textContent = caption?.textContent.trim() || image.alt;
     }
     closeButton.addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', event => {
@@ -74,8 +75,10 @@
             if (event.altKey || event.ctrlKey || event.metaKey) return;
             if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
                 event.preventDefault();
-                select(gallery.index + (event.key === 'ArrowRight' ? 1 : -1));
-                if (event.target.matches('[data-slide]')) buttons.find(button => Number(button.dataset.slide) === gallery.index)?.focus();
+                const focusedChoice = event.target.closest('[data-slide]');
+                const origin = focusedChoice ? Number(focusedChoice.dataset.slide) : gallery.index;
+                select(origin + (event.key === 'ArrowRight' ? 1 : -1));
+                if (focusedChoice) buttons.find(button => Number(button.dataset.slide) === gallery.index)?.focus();
             }
         });
         const expandButton = element.querySelector('[data-gallery-expand]');

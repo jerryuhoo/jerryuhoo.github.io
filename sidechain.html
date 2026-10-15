@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#f3f2ee">
     <script src="assets/js/theme.js"></script>
-    <meta name="description" content="Sidechain Pro：让 kick 尾音平滑接入 bass 的音频插件。零额外音频延迟、实时相位跟踪与可视化过渡，macOS AU / VST3 开发预览。" data-en="Sidechain Pro: an audio plugin for a smoother kick-to-bass handoff. Real-time phase tracking, zero added audio latency and a visual transition workspace. macOS AU / VST3 development preview.">
+    <meta name="description" content="Sidechain Pro：从 Kick/Bass 低频桥接，到 Spectral Duck 通用频谱避让。支持 Kick/Bass Learn 时间与电平匹配、可选低频分割和立体声监测，macOS AU / VST3 开发预览。" data-en="Sidechain Pro: Kick/Bass bridging and Spectral Duck for general frequency overlap. Use Learn to fit kick/bass timing and level, preserve upper frequencies with optional Low Bridge, and inspect stereo monitoring. macOS AU / VST3 development preview.">
     <meta property="og:title" content="Sidechain Pro — Blue Wings">
-    <meta property="og:description" content="Keep the kick. Let the bass take over.">
+    <meta property="og:description" content="Smooth the handoff. Make room in the mix. Kick/Bass bridging + Spectral Duck.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://www.bluewingsmusic.com/assets/SidechainPro-Light.png">
+    <meta property="og:image" content="https://www.bluewingsmusic.com/assets/SidechainPro-Light.png?v=5f0f593d711afade">
     <meta property="og:url" content="https://www.bluewingsmusic.com/sidechain.html">
-    <title>Sidechain Pro — 让低频自然接续 | Blue Wings</title>
+    <title>Sidechain Pro — 衔接低频，让声音各得其所 | Blue Wings</title>
     <link rel="icon" type="image/svg+xml" href="assets/firewingslogo.svg">
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/project.css">
-    <link rel="stylesheet" href="assets/css/sidechain.css">
+    <link rel="stylesheet" href="assets/css/sidechain.css?v=c4e70767b26d442c">
+    <link rel="stylesheet" href="assets/css/sidechain-demo.css?v=514353d47fb6ad55">
     <link rel="stylesheet" href="assets/css/theme.css">
-    <script src="assets/js/project.js" defer></script>
-    <script src="assets/js/project-art-sidechain.js" defer></script>
-    <script src="assets/js/project-art.js" defer></script>
+    <script src="assets/js/project.js?v=87b62ff8b3931ef2" defer></script>
+    <script src="assets/js/sidechain-demo-dsp.js?v=1911a7350f46eae2" defer></script>
+    <script src="assets/js/sidechain-demo.js?v=8f763e33bc9d28ff" defer></script>
 </head>
-<body class="project-page theme-sidechain" data-project="sidechain" data-title-en="Sidechain Pro — A Smoother Low End | Blue Wings">
+<body class="project-page theme-sidechain" data-project="sidechain" data-title-en="Sidechain Pro — Smooth the Handoff. Make Room in the Mix. | Blue Wings">
     <a class="skip-link" href="#main" data-en="Skip to content">跳至主要内容</a>
     <header class="site-header detail-header">
         <a class="wordmark" href="index.html" aria-label="Blue Wings · 首页" data-en-label="Blue Wings · Home"><img class="brand-mark" src="assets/firewingslogo.svg" alt="" width="38" height="38"><span>BLUE WINGS<span class="wordmark-cn">羽翼深蓝</span></span></a>
@@ -31,44 +32,149 @@
     </header>
     <main id="main">
         <section class="product-hero section-shell" aria-labelledby="product-title">
-            <p class="project-kicker mono"><span>04 / LOW-END FLOW</span><span data-en="DEVELOPMENT PREVIEW / macOS AU + VST3">开发预览 / macOS AU + VST3</span></p>
+            <p class="project-kicker mono"><span>04 / SIDECHAIN CONTROL</span><span data-en="DEVELOPMENT PREVIEW / macOS AU + VST3">开发预览 / macOS AU + VST3</span></p>
             <div class="product-hero-grid">
                 <div class="product-heading">
                     <h1 id="product-title">Sidechain<br><span class="serif">Pro.</span></h1>
-                    <p class="product-tagline" data-en="Keep the kick.<br><span class='serif'>Let the bass take over.</span>">保留 kick 的力度，<br><span class="serif">让 bass 自然接续。</span></p>
-                    <p class="product-description" data-en="A continuous low end begins at the handoff. Shape the space between a kick tail and a sustained bass, with phase-aware transitions and a clear view of what you hear.">连续的低频，从连接处开始。调整 kick 尾音与持续 bass 之间的交接，让相位衔接与波形变化都清晰可见。</p>
-                    <div class="product-actions"><a class="button button-project" href="#overview"><span data-en="Explore the interface">探索界面</span><span aria-hidden="true">↓</span></a><a class="text-link" href="#source"><span data-en="Source &amp; preview">源码与预览</span><span aria-hidden="true">↗</span></a></div>
+                    <p class="product-tagline" data-en="Smooth the handoff.<br><span class='serif'>Make room in the mix.</span>">让低频自然接续，<br><span class="serif">让声音各得其所。</span></p>
+                    <p class="product-description" data-en="Two ways to make space. Shape a kick-to-bass handoff with Kick/Bass, or let Spectral Duck ease competing frequencies between a main track and its reference. In Kick/Bass, Learn helps fit timing and level; your ears make the final call.">用两种方式，为声音留出空间。Kick/Bass 塑造 kick 与 bass 的低频交接，Spectral Duck 则让普通音轨之间的竞争频率动态避让。在 Kick/Bass 中，让 Learn 帮助匹配时间与电平，再用耳朵做最后的判断。</p>
+                    <div class="product-actions"><a class="button button-project" href="#overview"><span data-en="Explore the interface">探索界面</span><span aria-hidden="true">↓</span></a><a class="text-link" href="#source"><span data-en="Preview &amp; open-source plans">预览与开源计划</span><span aria-hidden="true">↗</span></a></div>
                 </div>
                 <div class="product-emblem" aria-hidden="true"><svg viewBox="0 0 440 400" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor"><path d="M35 200h370M145 55v290M295 55v290" stroke-dasharray="2 7" opacity=".2"/><path d="M35 200C45 80 65 320 80 200S105 90 120 200S150 300 165 200S200 100 220 200S250 300 275 200S305 95 330 200S370 305 405 200" stroke-width="1.6"/></g><text x="35" y="375" fill="currentColor" font-family="monospace" font-size="9" letter-spacing="2">KICK / BRIDGE / BASS</text></svg></div>
             </div>
-            <dl class="product-facts"><div><dt data-en="Added audio latency">额外音频延迟</dt><dd data-en="0 samples">0 个采样</dd></div><div><dt data-en="The sweet spot">适用低频</dt><dd data-en="25–200 Hz / tonal material">25–200 Hz / 单音素材</dd></div><div><dt data-en="Formats under development">开发格式</dt><dd>macOS / AU + VST3</dd></div></dl>
+            <dl class="product-facts"><div><dt data-en="Added audio latency">额外音频延迟</dt><dd data-en="0 samples">0 个采样</dd></div><div><dt data-en="Two workflows">两类工作流</dt><dd>Kick/Bass + Spectral Duck</dd></div><div><dt data-en="Formats under development">开发格式</dt><dd>macOS / AU + VST3</dd></div></dl>
         </section>
-        <nav class="product-section-nav section-shell" aria-label="项目导航" data-en-label="Project navigation"><a href="#overview" data-en="Interface">界面一览</a><a href="#features" data-en="The handoff">过渡控制</a><a href="#workflow" data-en="Routing">接线与使用</a><a href="#source" data-en="Source &amp; preview">源码与预览</a></nav>
-        <section class="product-gallery section-shell" id="overview" aria-labelledby="gallery-title">
-            <div class="gallery-heading"><p class="eyebrow mono">A CLOSER LOOK</p><h2 class="gallery-title" id="gallery-title" data-en="See the point where two sounds meet.">看清两个声音，在哪里交接。</h2></div>
-            <div class="gallery-stage" tabindex="0" aria-label="Sidechain Pro 真实界面截图，左右方向键切换" data-en-label="Sidechain Pro editor screenshots; use left and right arrow keys to navigate">
-                <figure class="gallery-slide"><img src="assets/SidechainPro-Light.png" alt="Sidechain Pro 浅色界面，显示 kick、bass 与过渡波形和时间参数" data-en-alt="Sidechain Pro light editor showing kick, bass, bridge waveforms and timing controls" width="2000" height="1360" decoding="async"><figcaption data-en="01 / Light workspace. Actual plugin editor, with synthetic kick and bass for demonstration.">01 / 浅色工作区。真实插件界面，波形使用合成 kick 与 bass 演示。</figcaption></figure>
-                <figure class="gallery-slide" hidden><img src="assets/SidechainPro-Dark.png" alt="Sidechain Pro 深色界面，保留相同的波形、参数与监听布局" data-en-alt="Sidechain Pro dark editor with the same waveform, parameter and monitor layout" width="2000" height="1360" loading="lazy" decoding="async"><figcaption data-en="02 / Dark workspace. Choose light, dark or local-time automatic appearance.">02 / 深色工作区。选择浅色、深色，或按当地时间自动切换。</figcaption></figure>
-                <figure class="gallery-slide" hidden><img src="assets/SidechainPro-Output.png" alt="Sidechain Pro 最终输出波形视图，呈现 kick 到 bass 的交接" data-en-alt="Sidechain Pro output waveform view showing the kick-to-bass handoff" width="2000" height="1360" loading="lazy" decoding="async"><figcaption data-en="03 / Output view. Inspect the final waveform, then return to your ears.">03 / 输出视图。检查最终波形，再回到耳朵的判断。</figcaption></figure>
+        <nav class="product-section-nav section-shell" aria-label="项目导航" data-en-label="Project navigation"><a href="#overview" data-en="Interface">界面一览</a><a href="#features" data-en="Two workflows">两类工作流</a><a href="#workflow" data-en="Routing &amp; listening">接线与试听</a><a href="#source" data-en="Preview &amp; support">预览与支持</a></nav>
+        <section class="product-gallery interface-gallery section-shell" id="overview" aria-labelledby="gallery-title">
+            <div class="gallery-heading"><p class="eyebrow mono">THE INTERFACE / A CLOSER LOOK</p><h2 class="gallery-title" id="gallery-title" data-en="An interface built around the sound.">界面，围绕声音展开。</h2></div>
+            <div class="gallery-toolbar">
+                <div class="gallery-tabs" role="group" aria-label="选择工作视图" data-en-label="Choose a workspace view">
+                    <button type="button" data-slide="0" aria-pressed="true"><span class="sc-gallery-tab-number" aria-hidden="true">01</span><span data-en="Workspace">工作区</span></button>
+                    <button type="button" data-slide="1" aria-pressed="false"><span class="sc-gallery-tab-number" aria-hidden="true">02</span><span data-en="Expanded">展开波形</span></button>
+                    <button type="button" data-slide="2" aria-pressed="false"><span class="sc-gallery-tab-number" aria-hidden="true">03</span><span data-en="Compact">紧凑布局</span></button>
+                    <button type="button" data-slide="3" aria-pressed="false"><span class="sc-gallery-tab-number" aria-hidden="true">04</span><span data-en="Learn">Learn 匹配</span></button>
+                    <button type="button" data-slide="4" aria-pressed="false"><span class="sc-gallery-tab-number" aria-hidden="true">05</span><span data-en="Spectral">频谱避让</span></button>
+                    <button type="button" data-slide="5" aria-pressed="false"><span class="sc-gallery-tab-number" aria-hidden="true">06</span><span data-en="Low Bridge">低频分割</span></button>
+                    <button type="button" data-slide="6" aria-pressed="false"><span class="sc-gallery-tab-number" aria-hidden="true">07</span><span data-en="Dark">夜间界面</span></button>
+                </div>
+                <div class="gallery-navigation"><button type="button" data-gallery-prev aria-label="上一张截图" data-en-label="Previous screenshot">←</button><span class="gallery-count mono" aria-live="polite">01 / 07</span><button type="button" data-gallery-next aria-label="下一张截图" data-en-label="Next screenshot">→</button><button type="button" class="gallery-expand" data-gallery-expand><span data-en="View full size">查看大图</span><span aria-hidden="true">↗</span></button></div>
             </div>
-            <div class="gallery-toolbar"><div class="gallery-tabs" role="group" aria-label="选择预览界面" data-en-label="Choose a preview"><button type="button" data-slide="0" aria-pressed="true" data-en="Light">浅色</button><button type="button" data-slide="1" aria-pressed="false" data-en="Dark">深色</button><button type="button" data-slide="2" aria-pressed="false" data-en="Output">输出</button></div><div class="gallery-navigation"><button type="button" data-gallery-prev aria-label="上一张截图" data-en-label="Previous screenshot">←</button><span class="gallery-count mono" aria-live="polite">01 / 03</span><button type="button" data-gallery-next aria-label="下一张截图" data-en-label="Next screenshot">→</button><button type="button" class="gallery-expand" data-gallery-expand aria-label="放大当前截图" data-en-label="Enlarge current screenshot">⤢</button></div></div>
+            <div class="gallery-stage" tabindex="0" aria-label="Sidechain Pro 实际界面，左右方向键切换工作视图" data-en-label="Sidechain Pro interface; use left and right arrow keys to browse workspace views">
+                <figure class="gallery-slide">
+                    <div class="sc-gallery-media"><img src="assets/SidechainPro-Light.png?v=5f0f593d711afade" alt="Sidechain Pro 工作区实际编辑器截图" data-en-alt="Sidechain Pro actual editor: Workspace view" width="2000" height="1600" decoding="async"></div>
+                    <figcaption class="sc-gallery-story">
+                        <p class="sc-gallery-kicker mono">01 / KICK / BASS</p>
+                        <h3 class="sc-gallery-title" data-gallery-caption data-en="See where the sounds meet.">看清两个声音，<br>如何交接。</h3>
+                        <p class="sc-gallery-description" data-en="Waveforms, view controls and levels share one workspace. Complete source references and the colored mix preview make the handoff easy to follow.">波形、显示工具与电平集中在同一个工作区。完整的输入参考与彩色混合预览，让交接位置一眼可见。</p>
+                        <ul class="sc-gallery-highlights">
+                            <li data-en="Independent Kick / Bass / Layers controls">Kick / Bass / Layers 独立切换</li>
+                            <li data-en="Always-visible Handoff and Bass times">Handoff、Bass 时间常驻显示</li>
+                            <li data-en="Undo / Redo, A/B and presets stay within reach">Undo / Redo、A/B 与预设随手可用</li>
+                        </ul>
+                    </figcaption>
+                </figure>
+                <figure class="gallery-slide" hidden>
+                    <div class="sc-gallery-media"><img src="assets/SidechainPro-Expanded.png?v=7be47b5cb6d4f220" alt="Sidechain Pro 展开波形实际编辑器截图" data-en-alt="Sidechain Pro actual editor: Expanded view" width="2000" height="1600" loading="lazy" decoding="async"></div>
+                    <figcaption class="sc-gallery-story">
+                        <p class="sc-gallery-kicker mono">02 / WAVEFORM FOCUS</p>
+                        <h3 class="sc-gallery-title" data-gallery-caption data-en="Give the waveform more room.">把更多空间，<br>留给波形。</h3>
+                        <p class="sc-gallery-description" data-en="The expanded view hides the frequency and trigger setup so you can focus on the junction. Timing values, levels and waveform controls remain within reach.">展开视图收起上方的频率与触发设置，让你专注于连接处。时间数值、电平和波形工具仍然触手可及。</p>
+                        <ul class="sc-gallery-highlights">
+                            <li data-en="Switch between expanded and full settings">展开与完整设置，一键返回</li>
+                            <li data-en="View 1× / 2× / 4× changes display magnification only">View 1× / 2× / 4× 只调整显示比例</li>
+                            <li data-en="View preferences are saved with the session">显示偏好随工程保存</li>
+                        </ul>
+                    </figcaption>
+                </figure>
+                <figure class="gallery-slide" hidden>
+                    <div class="sc-gallery-media"><img src="assets/SidechainPro-Compact.png?v=c2cdb2c0c49eb7b8" alt="Sidechain Pro 紧凑布局实际编辑器截图" data-en-alt="Sidechain Pro actual editor: Compact view" width="1440" height="1520" loading="lazy" decoding="async"></div>
+                    <figcaption class="sc-gallery-story">
+                        <p class="sc-gallery-kicker mono">03 / A SMALLER WORKSPACE</p>
+                        <h3 class="sc-gallery-title" data-gallery-caption data-en="A smaller window, a clear workflow.">窗口更小，<br>操作依然清晰。</h3>
+                        <p class="sc-gallery-description" data-en="Collapse the sidebar to leave more room for the waveform workspace. Processing modes, appearance and display scaling stay available in a busy session.">收起侧栏，把空间还给右侧的波形工作区。模式、主题和显示缩放仍然可用，适合在拥挤的工程中随时查看。</p>
+                        <ul class="sc-gallery-highlights">
+                            <li data-en="Processing and appearance remain accessible">折叠侧栏保留处理与主题入口</li>
+                            <li data-en="Toolbar and levels stay in the waveform card">工具栏与电平集中在波形卡片内</li>
+                            <li data-en="Session recall restores layout and view choices">布局与显示选择随工程恢复</li>
+                        </ul>
+                    </figcaption>
+                </figure>
+                <figure class="gallery-slide" hidden>
+                    <div class="sc-gallery-media"><img src="assets/SidechainPro-Learn.png?v=dbf9408e8e5db194" alt="Sidechain Pro Learn 匹配实际编辑器截图" data-en-alt="Sidechain Pro actual editor: Learn view" width="2000" height="1600" loading="lazy" decoding="async"></div>
+                    <figcaption class="sc-gallery-story">
+                        <p class="sc-gallery-kicker mono">04 / TIMING + LEVEL</p>
+                        <h3 class="sc-gallery-title" data-gallery-caption data-en="Learn, then compare by ear.">先匹配，<br>再用耳朵比较。</h3>
+                        <p class="sc-gallery-description" data-en="In Kick/Bass, Learn fits handoff timing and bass level to the current material. Compare the result directly or return to the starting settings.">在 Kick/Bass 中，让 Learn 结合当前素材匹配交接时间与 bass 电平。结果可直接比较，也可以回到学习前的设置。</p>
+                        <ul class="sc-gallery-highlights">
+                            <li data-en="Fits Handoff, Duration and Bass Gain together">联合匹配 Handoff、Duration 与 Bass Gain</li>
+                            <li data-en="Direct Pre Learn / Learned / Restore comparison">Pre Learn / Learned / Restore 直接对比</li>
+                            <li data-en="Level locked keeps gain fixed and learns timing only">Level locked 固定电平，只学习时间</li>
+                        </ul>
+                    </figcaption>
+                </figure>
+                <figure class="gallery-slide" hidden>
+                    <div class="sc-gallery-media"><img src="assets/SidechainPro-Spectral.png?v=16ddfd7e81832f81" alt="Sidechain Pro 频谱避让实际编辑器截图" data-en-alt="Sidechain Pro actual editor: Spectral view" width="1720" height="1520" loading="lazy" decoding="async"></div>
+                    <figcaption class="sc-gallery-story">
+                        <p class="sc-gallery-kicker mono">05 / SPECTRAL DUCK</p>
+                        <h3 class="sc-gallery-title" data-gallery-caption data-en="Make room for the sound that matters.">给重要的声音，<br>留出位置。</h3>
+                        <p class="sc-gallery-description" data-en="Let Main make room where its frequencies compete with the reference. Input levels and the EQ attenuation response share one page for adjustments by ear.">让 Main 为参考音轨的竞争频率动态让位。两路输入电平和 EQ 削减响应放在同一页面，方便边听边调整。</p>
+                        <ul class="sc-gallery-highlights">
+                            <li data-en="Clear Main and Reference input states">Main 与 Reference 的输入状态清晰可见</li>
+                            <li data-en="Accessible Amount, Depth, Attack and Release controls">Amount、Depth、Attack、Release 随手调整</li>
+                            <li data-en="Range sets the eligible frequency region">Range 指定允许避让的频率范围</li>
+                        </ul>
+                    </figcaption>
+                </figure>
+                <figure class="gallery-slide" hidden>
+                    <div class="sc-gallery-media"><img src="assets/SidechainPro-Crossover.png?v=a818d3b3d4963c6f" alt="Sidechain Pro 低频分割实际编辑器截图" data-en-alt="Sidechain Pro actual editor: Low Bridge view" width="1720" height="1520" loading="lazy" decoding="async"></div>
+                    <figcaption class="sc-gallery-story">
+                        <p class="sc-gallery-kicker mono">06 / LOW BRIDGE</p>
+                        <h3 class="sc-gallery-title" data-gallery-caption data-en="Focus the correction on the low end.">处理低频，<br>保留高频性格。</h3>
+                        <p class="sc-gallery-description" data-en="Enable Low Bridge independently in Kick/Bass to focus the correction on low frequencies. Use the crossover response and draggable split to choose the working region.">在 Kick/Bass 中独立启用 Low Bridge，把修正集中在低频。通过分频响应与可拖动的分界线，找到合适的处理范围。</p>
+                        <ul class="sc-gallery-highlights">
+                            <li data-en="Low Bridge has its own enable switch">Low Bridge 由独立开关启用</li>
+                            <li data-en="Drag the split line or enter its frequency">拖动分频线或直接输入频率</li>
+                            <li data-en="Return to the waveform with your view choices intact">返回波形，继续原来的显示选择</li>
+                        </ul>
+                    </figcaption>
+                </figure>
+                <figure class="gallery-slide" hidden>
+                    <div class="sc-gallery-media"><img src="assets/SidechainPro-Dark.png?v=1a8f887e9fa805c6" alt="Sidechain Pro 夜间界面实际编辑器截图" data-en-alt="Sidechain Pro actual editor: Dark view" width="2000" height="1600" loading="lazy" decoding="async"></div>
+                    <figcaption class="sc-gallery-story">
+                        <p class="sc-gallery-kicker mono">07 / AFTER HOURS</p>
+                        <h3 class="sc-gallery-title" data-gallery-caption data-en="The same workspace, another light.">同一个工作区，<br>另一种光线。</h3>
+                        <p class="sc-gallery-description" data-en="The dark interface keeps the same hierarchy and signal colors. Choose light appearance or let the interface follow your local time.">深色界面保留同样的操作层次与信号配色。也可以选择浅色，或让外观按当地时间自动切换。</p>
+                        <ul class="sc-gallery-highlights">
+                            <li data-en="Light, dark and automatic appearance">浅色、深色与自动外观</li>
+                            <li data-en="Consistent kick, transition and bass colors">Kick、过渡与 Bass 的颜色保持一致</li>
+                            <li data-en="Appearance preferences are saved with the host session">外观偏好随宿主工程保存</li>
+                        </ul>
+                    </figcaption>
+                </figure>
+            </div>
+            <p class="sc-gallery-footnote" data-en="Captured from the verified development build with synthetic demonstration audio. Open a full-size view to inspect every detail.">截图来自已验证的开发版编辑器，使用合成音频演示。查看大图，可读到完整的界面细节。</p>
         </section>
         <section class="product-section section-shell" id="features" aria-labelledby="features-title">
-            <div class="section-heading"><div><p class="eyebrow mono">SHAPE THE HANDOFF</p><h2 id="features-title" data-en="Two sounds.<br><span class='serif'>One low-end movement.</span>">两个声音，<br><span class="serif">一条低频的走向。</span></h2></div><p class="section-intro" data-en="Keep the controls close to the musical decision:<br>where the kick ends, and how the bass begins.">让控制贴近音乐本身：<br>kick 在哪里结束，bass 怎样接入。</p></div>
+            <div class="section-heading"><div><p class="eyebrow mono">CONNECT. LEARN. MAKE SPACE.</p><h2 id="features-title" data-en="A smoother handoff.<br><span class='serif'>A clearer balance.</span>">从低频的衔接，<br><span class="serif">到整个混音的平衡。</span></h2></div><p class="section-intro" data-en="Kick/Bass shapes the transition.<br>Spectral Duck makes room where tracks compete.">Kick/Bass 处理两个声音的交接，<br>Spectral Duck 为竞争的频率留出空间。</p></div>
             <div class="feature-grid">
-                <article class="feature-item"><span class="feature-number mono">01 / CONNECT</span><h3 data-en="A phase-aware bridge">关注相位的连接</h3><p data-en="Use the local kick tail and the current bass to shape a tonal bridge. Return smoothly to the original waveform at each boundary.">结合连接处的 kick 尾音与当前 bass，生成低频桥梁，在两端平滑接回原始波形。</p></article>
-                <article class="feature-item"><span class="feature-number mono">02 / FOLLOW</span><h3 data-en="Listen before attenuation">压低音量，持续跟踪</h3><p data-en="Track the unattenuated bass while its output is ducked. No extra audio lookahead is added; pitch detection still needs time to settle after a note change.">在 bass 输出被压低时，持续分析原始输入。无需额外音频预读，但换音后的音高检测仍需要稳定时间。</p></article>
-                <article class="feature-item"><span class="feature-number mono">03 / TIME</span><h3 data-en="Two deliberate controls">两个直接的时间控制</h3><p data-en="Drum End sets how long to keep the kick. Duration shapes the handoff into bass. Enter milliseconds, drag the slider or double-click to reset.">Drum End 决定 kick 保留多久，Duration 控制过渡时长。直接输入毫秒、拖动滑杆，或双击恢复默认值。</p></article>
-                <article class="feature-item"><span class="feature-number mono">04 / SEE</span><h3 data-en="Layers and the final output">图层与最终输出</h3><p data-en="Compare kick, bass and bridge in the layer view, or inspect the output alone. Freeze the display, zoom with the wheel or fit one host beat. The monitor shows the left or mono channel.">对照 kick、bass 与桥梁图层，或单独查看输出。冻结显示、滚轮缩放，也可适配宿主的一拍；监视器显示左声道或单声道。</p></article>
-                <article class="feature-item"><span class="feature-number mono">05 / FOCUS</span><h3 data-en="The same studio language">同一套工作室视觉</h3><p data-en="Paper tones, restrained teal and a clear workspace, shared with Atmos Check. Light, dark and automatic appearance are remembered with the session.">纸色背景、克制的青色与清晰的工作区，延续 Atmos Check 的视觉语言。浅色、深色和自动外观随工程保存。</p></article>
-                <article class="feature-item"><span class="feature-number mono">06 / ADAPT</span><h3 data-en="A considered fallback">为不确定的片段留余地</h3><p data-en="Designed for tonal low frequencies around 25–200 Hz. When pitch or phase is unreliable, the transition falls back to a smooth crossfade. Complex material still needs a listening check.">主要面向 25–200 Hz 的单音低频。音高或相位判断不可靠时，平滑回退到交叉淡化；复杂素材仍需要试听确认。</p></article>
+                <article class="feature-item"><span class="feature-number mono">01 / BRIDGE</span><h3 data-en="Shape the low-end handoff">塑造低频的交接</h3><p data-en="Kick/Bass follows the kick tail and the unattenuated bass to build a phase-aware bridge, primarily for tonal material around 25–200 Hz. Drag HANDOFF and BASS to set the timing; unreliable estimates fall back to a smooth crossfade.">Kick/Bass 分析 kick 尾音与未衰减的 bass，塑造关注相位的桥梁，主要面向 25–200 Hz 单音低频。拖动 HANDOFF 与 BASS 设置时间；估计不可靠时，平滑回退到交叉淡化。</p></article>
+                <article class="feature-item"><span class="feature-number mono">02 / LEARN</span><h3 data-en="Learn timing and level together">一起匹配时间与电平</h3><p data-en="Learn collects five valid hits: three to fit Handoff, Duration, and Bass Gain, and two to validate. Compare Pre Learn / Learned or use Restore. Level locked keeps Bass Gain fixed and learns timing only; without a reliable improvement, the current settings are kept.">Learn 采集五次有效音头：前三次联合匹配 Handoff、Duration 与 Bass Gain，后两次验证。用 Pre Learn / Learned 对比，或用 Restore 恢复。Level locked 固定 Bass Gain、只学习时间；没有可靠改善时保留当前设置。</p></article>
+                <article class="feature-item"><span class="feature-number mono">03 / LOW BRIDGE</span><h3 data-en="Keep the upper character">给高频，留住原有性格</h3><p data-en="Enable Low Bridge inside Kick/Bass to focus the correction on the low band while retaining the high-frequency residual. Crossover offers a 20–2000 Hz split preview; opening it alone does not enable processing. The split is gradual, so material near it can still change.">在 Kick/Bass 内启用 Low Bridge，把修正集中在低频，保留高频残差。Crossover 可预览并调整 20–2000 Hz 分频点，打开页面不会自动启用处理。分频是柔和过渡，边界附近的声音仍可能变化。</p></article>
+                <article class="feature-item"><span class="feature-number mono">04 / SPECTRAL DUCK</span><h3 data-en="Make room beyond kick and bass">让普通音轨，也能彼此让位</h3><p data-en="A 32-band dynamic EQ eases frequency overlap between Main and Reference: accompaniment for a vocal, or music for a lead. Shape Amount, Depth, Attack, Release, and Range. It continuously analyzes audio without requiring kick onsets or a stable pitch.">用 32 频带动态 EQ 缓解 Main 与 Reference 的同频竞争，例如伴奏给人声、音乐给主奏让位。通过 Amount、Depth、Attack、Release 与 Range 调整避让，连续分析音频，不要求 kick 音头或稳定音高。</p></article>
+                <article class="feature-item"><span class="feature-number mono">05 / TRIGGER</span><h3 data-en="Choose the trigger you need">让触发贴合你的接线</h3><p data-en="In Kick/Bass, VST3 supports Audio, Auto, and MIDI triggering at host-provided Note On sample positions; AU uses audio triggering. MIDI supplies timing, while kick audio supplies the reference and Learn material. Instrument onset and routing delays still need alignment.">在 Kick/Bass 中，VST3 支持 Audio、Auto 与 MIDI，并使用宿主提供的 Note On 采样位置触发；AU 使用音频触发。MIDI 提供时间，kick 音频仍提供参考与 Learn 素材，乐器起音和路由延迟仍需对齐。</p></article>
+                <article class="feature-item"><span class="feature-number mono">06 / MONITOR</span><h3 data-en="Separate the preview from output">分清混合预览与实际输出</h3><p data-en="Kick / Bass / Layers and View share one toolbar; View changes display magnification only. Layers is the mix preview. Set the final level with the independent OUT trim (−24 to +12 dB), check actual OUT L / R peaks and OVER, then use Reset to clear their history.">Kick / Bass / Layers 与 View 集中在统一工具栏，View 只改变显示比例。Layers 是混合预览；用独立 OUT 调整最终电平（−24 至 +12 dB），检查实际 OUT L / R 峰值与 OVER，再用 Reset 清除历史读数。</p></article>
+                <article class="feature-item"><span class="feature-number mono">07 / UNDO + A/B</span><h3 data-en="Explore, compare, and step back">放心尝试，随时回头比较</h3><p data-en="Undo / Redo keeps up to 100 sound-edit steps per instance. A/B holds two complete sets of sound parameters, with A→B / B→A copying. Both slots and their names are saved with the host session; reopening a session starts fresh undo history.">Undo / Redo 为每个实例保留最多 100 条声音操作。A/B 保存两套完整的声音参数，并支持 A→B / B→A 复制。两槽和名称随宿主工程保存；重新载入工程时，撤销历史从头开始。</p></article>
+                <article class="feature-item"><span class="feature-number mono">08 / USER PRESETS</span><h3 data-en="Keep a sound worth returning to">把值得保留的声音存下来</h3><p data-en="Save and rename user presets, import .scpreset files, or export the current sound. Presets recall sound parameters while keeping your theme, window scale and view preferences. A dot beside the name marks changes from the selected preset.">保存、重命名用户预设，导入 .scpreset 文件，或导出当前声音。预设只恢复声音参数，保留你的主题、窗口缩放与显示偏好；名称旁的圆点表示当前参数与所选预设不同。</p></article>
+                <article class="feature-item"><span class="feature-number mono">09 / RMS MATCH</span><h3 data-en="Judge the sound at a fairer level">在更接近的电平下判断声音</h3><p data-en="Match measures representative audio for each comparison state and gently attenuates to a shared RMS target. It is a temporary real-time listening aid, not LUFS matching or a limiter. Turn it off before setting final OUT; it is not saved with the session and is ignored during offline rendering.">Match 为不同对比状态测量代表性音频，并平滑衰减至共同的 RMS 目标。它是临时的实时试听辅助，不是 LUFS 匹配或限幅器。设置最终 OUT 前关闭 Match；它不随工程保存，离线渲染时忽略。</p></article>
             </div>
+            <p class="product-note" data-en="With Match off, Bypass ON returns to the untrimmed Main input; with Match on, internal bypass comparison may include RMS compensation. Host bypass always returns to the original Main. The external kick or reference keeps its normal route. Pre Learn / Learned compares processed settings; Restore recalls the starting settings.">关闭 Match 时，Bypass ON 返回未调整电平的 Main；开启 Match 时，插件内部旁路比较可能带有 RMS 补偿。宿主旁路始终返回原始 Main，外部 kick 或参考音轨继续正常输出。Pre Learn / Learned 比较处理参数，Restore 恢复起始设置。</p>
+            <p class="product-note" data-en="Both workflows report zero added audio samples; analysis and smoothing still need time to respond. Learn fits the current material, so audition the full mix to decide what works.">两类工作流都报告 0 个采样的额外音频延迟，分析与平滑仍需要响应时间。Learn 针对当前素材进行匹配，最终选择请回到完整混音中试听。</p>
         </section>
         <section class="product-story" id="workflow" aria-labelledby="workflow-title"><div class="section-shell story-grid">
-            <div class="story-copy"><p class="eyebrow mono">FROM ROUTING TO RHYTHM</p><h2 id="workflow-title" data-en="Make space.<br><span class='serif'>Keep the movement.</span>">给低频留出空间，<br><span class="serif">让律动继续向前。</span></h2><p data-en="Start with a kick tail and a sustained bass. Tune the handoff in context, then check the final output against the groove of the whole track.">从 kick 的尾音和持续的 bass 开始，在音乐语境中调整连接，再用最终输出检查整首歌的律动。</p></div>
-            <ol class="workflow-list"><li><h3 data-en="Route both sounds">接入两个声音</h3><p data-en="Place the plugin on bass and route kick to its sidechain input. The plugin includes kick in its output; avoid also sending the same kick directly to the master during this routing.">将插件放在 bass 轨道，把 kick 送入侧链输入。插件输出包含 kick，使用这套接线时，避免将同一条 kick 同时直接送入主混音而重复叠加。</p></li><li><h3 data-en="Find the handoff">找到交接的位置</h3><p data-en="Use Drum End to keep the part of the kick you want. Adjust Duration while listening, and use the highlighted waveform region to orient the transition.">通过 Drum End 保留想要的 kick 部分，边听边调整 Duration，并结合波形中的高亮区域确认过渡位置。</p></li><li><h3 data-en="Listen to the result">回到完整的声音</h3><p data-en="Switch to output view and compare with bypass. This is a development preview; judge the result with your own kick, bass and monitoring setup.">切换输出视图，与旁路进行对比。当前为开发预览，请用自己的 kick、bass 和监听环境判断结果。</p></li></ol>
+            <div class="story-copy"><p class="eyebrow mono">FROM ROUTING TO RHYTHM</p><h2 id="workflow-title" data-en="Two workflows.<br><span class='serif'>A clear signal path.</span>">先理清接线，<br><span class="serif">再听见变化。</span></h2><p data-en="The sidechain supplies a reference; it does not need to join the plugin output. Start with the default muted reference, keep the source track’s normal master route, and choose the workflow for the musical problem.">侧链提供参考，不必同时加入插件输出。从默认的参考静音开始，保留原音轨通往主混音的正常接线，再按制作中的问题选择工作流。</p><p class="product-note" data-en="Only reroute or mute the separate raw reference if you intentionally disable Drum Mute / enable Ref on to mix it inside the plugin. Keep just one audible copy to avoid doubling it.">只有在明确关闭 Drum Mute／开启 Ref on、让原始参考进入插件输出时，才需要调整或静音外部原始参考的输出，避免同一声音叠加两次。</p></div>
+            <ol class="workflow-list"><li><h3 data-en="Kick/Bass: keep the kick’s own route">Kick/Bass：保留 kick 的独立输出</h3><p data-en="Insert the plugin on bass and send only the kick to its sidechain. Leave the kick routed normally to the master: Drum Mute is on by default, so raw kick stays out of the plugin output while still driving detection, Learn, and the bridge reference.">将插件插在 bass 上，把单独的 kick 送入侧链，并让 kick 继续正常送入主混音。Drum Mute 默认开启，原始 kick 不进入插件输出，但仍参与检测、Learn 与桥梁参考。</p></li><li><h3 data-en="Spectral Duck: main and priority reference">Spectral Duck：主音轨与优先参考</h3><p data-en="Main is the track to attenuate; Sidechain is the sound to make room for. Keep the reference on its normal route. It is muted inside the plugin by default, but continuously drives spectral analysis; Ref on would mix raw reference audio into the output.">Main 接需要被衰减的音轨，Sidechain 接希望优先听清的声音，并保留参考音轨的正常输出。参考在插件内默认静音，但持续参与频谱分析；Ref on 会把原始参考混入输出。</p></li><li><h3 data-en="Learn, compare, and listen in context">学习、对比，再回到完整混音</h3><p data-en="On the Kick/Bass waveform page, play usable kick and bass audio before starting Learn. Compare Pre Learn / Learned at sensible levels. Layers cannot read your external mix bus or later effects, so check the plugin OUT meters and the full mix in your DAW as well.">在 Kick/Bass 波形页播放可用的 kick 与 bass 音频，再启动 Learn，并在合适的电平下对比 Pre Learn / Learned。Layers 无法读取外部混音总线或后续效果，还需一起检查插件 OUT 表与宿主中的完整混音。</p></li></ol>
         </div></section>
-        <section class="product-cta section-shell" id="source" aria-labelledby="source-title"><div class="cta-panel"><p class="eyebrow mono">SOURCE &amp; DEVELOPMENT PREVIEW</p><h2 id="source-title" data-en="A real studio problem.<br><span class='serif'>An evolving tool.</span>">从真实的制作问题，<br><span class="serif">继续打磨一个工具。</span></h2><p data-en="Sidechain Pro is under development. Explore the repository for the source, build instructions and current scope, or get in touch about trying a macOS AU / VST3 preview.">Sidechain Pro 正在开发中。通过仓库了解源码、构建方式和当前适用范围，或联系我交流 macOS AU / VST3 预览版的使用。</p><div class="product-actions"><a class="button button-project" href="https://github.com/jerryuhoo/Sidechain" target="_blank" rel="noopener noreferrer"><span data-en="View the repository">查看项目仓库</span><span aria-hidden="true">↗</span></a><a class="text-link" href="mailto:yuyishenlanmusic@gmail.com?subject=Sidechain%20Pro%20Preview"><span data-en="Ask about the preview">交流预览版</span><span aria-hidden="true">↗</span></a></div></div></section>
+        <section class="product-cta section-shell" id="source" aria-labelledby="source-title"><div class="cta-panel"><p class="eyebrow mono">PREVIEW, OPEN SOURCE &amp; SUPPORT</p><h2 id="source-title" data-en="A real studio problem.<br><span class='serif'>An evolving tool.</span>">从真实的制作问题，<br><span class="serif">继续打磨一个工具。</span></h2><p data-en="Sidechain Pro is under development and will be free and open source. Source release information will be shared when ready. Get in touch about the macOS AU / VST3 preview, your routing, or what you hear in a real session.">Sidechain Pro 正在开发中，计划免费开源；源码发布信息将在准备好后更新。关于 macOS AU / VST3 预览版、接线方式或实际工程中的听感，欢迎与我交流。</p><p data-en="Future support will be voluntary tips only, with no paid feature tiers or unlocks. Tipping is not available yet; support channels will be added later.">未来的付费支持仅作为自愿打赏，不设置付费专属功能，也不需要付费解锁。打赏渠道尚未开通，后续再补充。</p><div class="product-actions"><a class="button button-project" href="mailto:yuyishenlanmusic@gmail.com?subject=Sidechain%20Pro%20Preview"><span data-en="Ask about the preview">交流预览版</span><span aria-hidden="true">↗</span></a><a class="text-link" href="index.html#work"><span data-en="Explore more audio tools">探索更多音频工具</span><span aria-hidden="true">↗</span></a></div></div></section>
         <section class="project-next section-shell" aria-label="下一个项目" data-en-label="Next project"><p class="eyebrow mono" data-en="NEXT PROJECT / SOUND SHAPING">下一个项目 / 声音塑形</p><a href="fire.html"><h2>Fire<span class="serif">.</span></h2><span aria-hidden="true">↗</span></a></section>
     </main>
     <footer class="project-footer section-shell"><span class="mono">© <span data-year>2026</span> BLUE WINGS</span><div><a href="index.html#work" data-en="All projects">全部项目</a><a href="mailto:yuyishenlanmusic@gmail.com" data-en="Contact">联系</a></div></footer>

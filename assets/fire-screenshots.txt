@@ -1,0 +1,36 @@
+Fire website screenshots
+Captured: 2026-10-15
+Source project revision: 6445e7495c0efde44ccd5ad55efb705e21cd3ac9
+Native application version: 2.0.1 (development preview; public release remains 2.0.0)
+Capture: actual FireAudioProcessor and FireAudioProcessorEditor, rendered with JUCE createComponentSnapshot.
+The temporary native capture harness was compiled on 2026-10-15 with the existing CMake test build flags, and linked the current processor/editor/JUCE objects from Builds/JUCE9-EqDev.
+At capture start, the existing native objects/test executable built 2026-10-13 were newer than the committed Source, tests and artwork inputs. This was not a new full release-package build.
+Available Release AU, VST3 and CLAP packages report 2.0.1 and were built 2026-10-13 13:14. The EqDev plugin bundles are not the current release packages.
+Concurrent DSP source edits appeared after this capture. They are not included in these screenshots, tests or release-package checks; this record refers to the captured 6445e74 build snapshot.
+Pre-existing generated JuceLibraryCode and JUCE/cmake working-tree changes were left untouched.
+Selected native Shape models: Warm Triode for Vintage/Paper; Tape Saturation for Modern/Ink.
+Input: original generated stereo sine mixture; no external audio assets. These are interface views, not measurement reports.
+Images copied directly without retouching, cropping, recoloring or pixel rescaling.
+Native checks: all 23 [skin] test cases passed (9353 assertions) from /tmp with macOS GUI access; focused capture checks also passed 373 assertions in 2 cases.
+Capture harness SHA-256: fa3a4c8d45e53e3725e9494bb37edd158f15904e5c82b2a9d30e2a67ca540b5c
+Native Tests SHA-256: c563643a9c91166e5cfabc7e896084c9eff5e0d544b8d5051204c86b8f74291d
+
+Website asset: Fire1.png
+Native capture: vintage.png
+Dimensions: 1600 x 800
+SHA-256: b050ff9e579005daf17d4fca8285c63f483b6dc38563e69f7ba65a75ccc1c2ae
+
+Website asset: Fire2.png
+Native capture: modern.png
+Dimensions: 1600 x 800
+SHA-256: 8a7769d58b1e579ec4ae979cb5547fc796351045dddcad1c36589f88d4635f8c
+
+Website asset: Fire-Paper.png
+Native capture: paper.png
+Dimensions: 1600 x 800
+SHA-256: 05f8d7375642449e830f99b4effb5fea830aca5e58cb9b51e4f6c014b31a6c99
+
+Website asset: Fire-Ink.png
+Native capture: ink.png
+Dimensions: 1600 x 800
+SHA-256: 70d6ae5e619710feba69a0de5755580409f7ce66cf4813400ad2f40776bcb487

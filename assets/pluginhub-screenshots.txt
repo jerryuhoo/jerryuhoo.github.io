@@ -1,0 +1,34 @@
+PluginHub website frontend previews
+Captured: 2026-10-15
+Product version: 0.9.6
+Committed build source revision: 919c690ad524c9310cc0ec66450a691b2fe415be
+Capture kind: actual compiled frontend rendered in Chrome with an isolated synthetic Tauri fixture.
+These are browser demonstrations, not native macOS screenshots.
+The compiled JavaScript, CSS, and branding assets were copied unchanged from the existing dist build.
+Current uncommitted source work was not rebuilt or rendered.
+Data: 13 fictional plugin installations across 5 example products; no user plugin inventory was read.
+The cleanup preview only displayed a synthetic plan. Native actions were disabled.
+Raw JPEG screenshot bytes were copied without retouching, resizing, cropping or recoloring.
+Fixture SHA-256: 9858ed262575b0511c69897a6b87e967cd27a334e1fdcf7f16edc07e79e7346a
+Frontend asset: assets/index-DD39OfZZ.css
+Frontend SHA-256: e8dc674dad49509a9c2ed4ae2a7043ddc604dd487764e0601ee0eebb31af4fee
+Frontend asset: assets/index-wvEupcD8.js
+Frontend SHA-256: 2da4bf83c0803b116f6a16c12544bd752f22666472a73eebf93f516efe6cda60
+
+Website asset: PluginHub1.jpg
+Format: JPEG
+Dimensions: 1920 x 878
+Topic: Light plugin library grouped by vendor
+SHA-256: fafb741f674b3d6f351c9c8bf0efa0b00fff95ef56be6651b11279de4810387e
+
+Website asset: PluginHub2.jpg
+Format: JPEG
+Dimensions: 1920 x 878
+Topic: Cleanup review with fictional plugin and optional related resources
+SHA-256: cd7889cee2986f21bc45048a451b522a43bc6a57e0371a5d138200fd19ccf7c2
+
+Website asset: PluginHub3.jpg
+Format: JPEG
+Dimensions: 1920 x 878
+Topic: Dark library filtered to AAX and CLAP
+SHA-256: 6b04e367a829ac04aac1384e26fcad45055d79c80c5e506c9d9ef98ab5faf132
